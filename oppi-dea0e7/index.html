@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="fi">
+<head><meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Passo a Passo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap">
+<link rel="stylesheet" href="assets/tyyli.css?v=2c36f168">
+<link rel="stylesheet" href="assets/kuvitus.css?v=2c36f168">
+<link rel="stylesheet" href="assets/komponentit.css?v=2c36f168">
+<link rel="stylesheet" href="assets/asettelu.css?v=2c36f168">
+</head>
+<body>
+
+<header class="ylapalkki">
+  <div class="ylapalkki-sisus">
+    <a class="merkki" href="#etusivu">
+      <b>Passo <i>a</i> Passo</b>
+      <small>Brasilianportugalia suomeksi, askel kerrallaan</small>
+    </a>
+    <div class="toiminnot">
+      <span id="sivun-toisto"></span>
+      <button class="tyonappi" id="pysayta" type="button" title="Pysäytä puhe (Esc)">Pysäytä</button>
+      <button class="tyonappi" id="kaannokset" type="button" aria-pressed="false">Suomennokset</button>
+      <button class="tyonappi" id="aanet-nappi" type="button" aria-expanded="false" aria-controls="aanipaneeli">Äänet</button>
+    </div>
+  </div>
+  <div class="aanipaneeli" id="aanipaneeli" hidden>
+    <div class="aanipaneeli-sisus">
+      <p class="aanitila">Ladataan äänitteitä…</p>
+      <div class="rivi"><button class="tyonappi" type="button" id="aanitesti">Äänitesti</button></div>
+      <pre id="aanitesti-tulos" class="aanitesti-tulos"></pre>
+      <label class="valintaruutu"><input type="checkbox" id="aanitteet" checked> Käytä valmiita äänitteitä (suositus: kuulostavat samalta kaikilla laitteilla)</label>
+      <div class="aanirivit">
+        <div class="aanirivi">
+          <span class="aanirivi-nimi">Kertoja</span>
+          <div class="rivi"><button class="tyonappi" type="button" data-testaa="kertoja">Kokeile</button></div>
+        </div>
+        <div class="aanirivi">
+          <span class="aanirivi-nimi">Naishahmo (Maia)</span>
+          <div class="rivi"><button class="tyonappi" type="button" data-testaa="nainen">Kokeile</button></div>
+        </div>
+        <div class="aanirivi">
+          <span class="aanirivi-nimi">Mieshahmo (Jay)</span>
+          <div class="rivi"><button class="tyonappi" type="button" data-testaa="mies">Kokeile</button></div>
+        </div>
+      </div>
+      <details class="varaaanet">
+        <summary>Selaimen omat äänet (käytetään vain, jos äänitettä ei ole)</summary>
+        <div class="aanirivit">
+          <div class="aanirivi"><label for="valitse-kertoja">Kertoja</label><select id="valitse-kertoja"></select></div>
+          <div class="aanirivi"><label for="valitse-nainen">Naishahmot</label><select id="valitse-nainen"></select></div>
+          <div class="aanirivi"><label for="valitse-mies">Mieshahmot</label><select id="valitse-mies"></select></div>
+        </div>
+      </details>
+    </div>
+  </div>
+  <div class="aalto" aria-hidden="true"></div>
+</header>
+
+<div class="kehys">
+  <nav class="sivuvalikko" aria-label="Sisällys">
+    <ul id="valikko"></ul>
+  </nav>
+  <main id="sisalto"></main>
+</div>
+
+<template id="etusivu-pohja">
+  <header class="op-otsake etusivu-otsake">
+    <p class="yla">Alkeiskurssi kirjojen <i>Tudo bem!</i> ja <i>Descobertas</i> järjestyksessä</p>
+    <h1>Passo <i>a</i> passo</h1>
+    <p class="lahde-rivi">Portugalin sanoin <span class="pt">passo a passo</span> tarkoittaa ”askel askeleelta”. Opas etenee kirjojen järjestyksessä: jokaista kirjan jaksoa vastaa tässä oma oppitunti.</p>
+  </header>
+
+  <section class="osio">
+    <h2>Näin opas toimii</h2>
+    <ol class="ohjeet">
+      <li><b>Vie hiiri sanan päälle.</b> Pisteviivalla alleviivattu sana näyttää suomennoksen, ääntämisen ja kielioppitiedon. Kuplan sisälläkin alleviivatut sanat avaavat oman kuplansa. Klikkaa sanaa, niin kuulet sen. Puhelimella napauta sanaa.</li>
+      <li><b>Paina ▶ lauseen vieressä.</b> ▶ lukee lauseen Belo Horizonten ääntämyksellä.</li>
+      <li><b>Kuuntele kokonaisuuksia.</b> Dialogin yläreunan painike lukee koko dialogin, ja yläpalkin ”Koko sivu” lukee kaikki sivun lauseet. Jokainen hahmo puhuu omalla äänellään. Pysäytä puhe painikkeella tai Esc-näppäimellä.</li>
+      <li><b>Yritä ensin ilman suomennosta.</b> ”Suomennokset”-painike näyttää tai piilottaa lauseiden käännökset.</li>
+      <li><b>Kertaa sanasto.</b> Jokaisella oppitunnilla on oma sanastonsa, ja valikon lopussa ovat koko kurssin sanalistat Portugali–Suomi ja Suomi–Portugali.</li>
+    </ol>
+  </section>
+
+  <section class="osio">
+    <h2>Äänet</h2>
+    <p class="aanitila">Ladataan äänitteitä…</p>
+    <p class="ohje">Kaikki puhe on äänitetty valmiiksi avoimella XTTS-v2-puhemallilla, joten se kuulostaa samalta jokaisella laitteella ja selaimella. Kertoja ja hahmot puhuvat eri äänillä.</p>
+    <p class="s" data-h="kertoja" data-fi="Hei! Tervetuloa portugalin kurssille.">Olá! Boas-vindas ao curso de português.</p>
+  </section>
+
+  <section class="osio">
+    <h2>Oppitunnit</h2>
+    <ul id="oppituntilista"></ul>
+  </section>
+
+  <section class="osio">
+    <h2>Kirjat ja tämä opas</h2>
+    <p>Kurssi seuraa kirjojen <i>Tudo bem!</i> ja <i>Descobertas</i> kieliopin ja ääntämisen järjestystä sekä niiden tehtävätyyppejä. Kirjojen tekstejä ei kopioida: tarina, henkilöt, dialogit ja harjoitukset ovat tämän kurssin omia, paikat todellisia.</p>
+  </section>
+</template>
+
+<template id="aantaminen-pohja">
+  <section class="osio">
+    <h2>Ääntämisen merkinnät</h2>
+    <p>Jokaisen sanan ääntäminen näytetään kahdella tavalla. <b>Suomeksi</b>-rivi kirjoittaa sanan suomalaisin kirjaimin niin, että tavut on erotettu viivalla ja painollinen tavu on sininen. <b>IPA</b>-rivi on kansainvälinen foneettinen aakkosto (International Phonetic Alphabet), jota käyttävät sanakirjat kaikkialla. Molemmat noudattavat Belo Horizonten ääntämystä.</p>
+    <p class="ohje">Paina esimerkkien ▶-painiketta.</p>
+    <div class="avain">
+      <div class="avain-rivi">
+        <div class="avain-merkki">ISO tavu<span class="avain-ipa">IPA: ˈ ennen tavua</span></div>
+        <div class="avain-selitys"><p>Painollinen tavu: lausu se voimakkaammin ja hieman pidempänä. Paino ei ole ensimmäisellä tavulla kuten suomessa.</p>
+          <ul class="esim"><li class="s">obrigado</li><li class="s">café</li><li class="s">você</li><li class="s">Brasil</li></ul></div>
+      </div>
+      <div class="avain-rivi">
+        <div class="avain-merkki">ã ẽ ĩ õ ũ<span class="avain-ipa">IPA: ɐ̃ ẽ ĩ õ ũ</span></div>
+        <div class="avain-selitys"><p>Nasaalivokaali: ilma kulkee yhtä aikaa suun ja nenän kautta. Suomessa tällaista ääntä ei ole.</p>
+          <ul class="esim"><li class="s">manhã</li><li class="s">bem</li><li class="s">sim</li><li class="s">bom</li><li class="s">um</li><li class="s">não</li></ul></div>
+      </div>
+      <div class="avain-rivi">
+        <div class="avain-merkki">sh<span class="avain-ipa">IPA: ʃ</span></div>
+        <div class="avain-selitys"><p>Sihisevä suhuäänne, kuten sanassa ”shakki”. Kirjoitetaan portugaliksi ch tai x.</p>
+          <ul class="esim"><li class="s">chá</li><li class="s">chamo</li><li class="s">chama</li></ul></div>
+      </div>
+      <div class="avain-rivi">
+        <div class="avain-merkki">zh<span class="avain-ipa">IPA: ʒ</span></div>
+        <div class="avain-selitys"><p>Soinnillinen suhuäänne, kuten englannin sanan ”television” keskellä. Kirjoitetaan j tai g (e:n ja i:n edellä).</p>
+          <ul class="esim"><li class="s">hoje</li><li class="s">Janeiro</li><li class="s">gente</li></ul></div>
+      </div>
+      <div class="avain-rivi">
+        <div class="avain-merkki">d, ts<span class="avain-ipa">IPA: dʒ, tʃ</span></div>
+        <div class="avain-selitys"><p>d ja t pehmenevät i-äänteen edellä: d kuulostaa melkein dz:ltä ja t ts:ltä. Ohjeessa ne kirjoitetaan d ja ts, ja IPA-rivi näyttää tarkan äänteen (dʒ, tʃ). Sama koskee loppu-e:tä, joka kuulostaa i:ltä.</p>
+          <ul class="esim"><li class="s">dia</li><li class="s">tarde</li><li class="s">tia</li><li class="s">noite</li></ul></div>
+      </div>
+      <div class="avain-rivi">
+        <div class="avain-merkki">h<span class="avain-ipa">IPA: h</span></div>
+        <div class="avain-selitys"><p>Belo Horizonten r-äänne sanan alussa, kahden r:n kohdalla ja tavun lopussa: pehmeä h kuten suomen sanassa ”hauska”. Riossa sama äänne on karheampi.</p>
+          <ul class="esim"><li class="s">Rio</li><li class="s">carro</li><li class="s">mar</li><li class="s">por favor</li></ul></div>
+      </div>
+      <div class="avain-rivi">
+        <div class="avain-merkki">r<span class="avain-ipa">IPA: ɾ</span></div>
+        <div class="avain-selitys"><p>Kahden vokaalin välissä ja konsonantin jälkeen r on lyhyt kielen napautus, kuten suomen r.</p>
+          <ul class="esim"><li class="s">caro</li><li class="s">obrigado</li><li class="s">três</li></ul></div>
+      </div>
+      <div class="avain-rivi">
+        <div class="avain-merkki">z<span class="avain-ipa">IPA: z</span></div>
+        <div class="avain-selitys"><p>Soinnillinen s, kuten englannin sanassa ”zoo”. Kahden vokaalin välinen s äännetään aina näin.</p>
+          <ul class="esim"><li class="s">casa</li><li class="s">prazer</li><li class="s">mesmo</li><li class="s">Brasil</li></ul></div>
+      </div>
+      <div class="avain-rivi">
+        <div class="avain-merkki">lj, nj<span class="avain-ipa">IPA: ʎ, ɲ</span></div>
+        <div class="avain-selitys"><p>l tai n ja heti perään j yhtenä äänteenä. Kirjoitetaan lh ja nh.</p>
+          <ul class="esim"><li class="s">filho</li><li class="s">vinho</li><li class="s">manhã</li></ul></div>
+      </div>
+      <div class="avain-rivi">
+        <div class="avain-merkki">u, i<span class="avain-ipa">IPA: u, i</span></div>
+        <div class="avain-selitys"><p>Painoton o sanan lopussa kuulostaa u:lta ja painoton e i:ltä.</p>
+          <ul class="esim"><li class="s">tudo</li><li class="s">como</li><li class="s">leite</li><li class="s">gente</li></ul></div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script src="assets/kurssi.js?v=2c36f168"></script>
+<script src="assets/profiili.js?v=2c36f168"></script>
+<script src="assets/ydinsanat.js?v=2c36f168"></script>
+<script src="assets/espanja.js?v=2c36f168"></script>
+<script src="oppitunnit/l00.js?v=2c36f168"></script>
+<script src="oppitunnit/l01.js?v=2c36f168"></script>
+<script src="oppitunnit/l02.js?v=2c36f168"></script>
+<script src="oppitunnit/l03.js?v=2c36f168"></script>
+<script src="oppitunnit/l04.js?v=2c36f168"></script>
+<script src="oppitunnit/l05.js?v=2c36f168"></script>
+<script src="oppitunnit/k01.js?v=2c36f168"></script>
+<script src="oppitunnit/l06.js?v=2c36f168"></script>
+<script src="oppitunnit/l07.js?v=2c36f168"></script>
+<script src="oppitunnit/l08.js?v=2c36f168"></script>
+<script src="oppitunnit/l09.js?v=2c36f168"></script>
+<script src="oppitunnit/l10.js?v=2c36f168"></script>
+<script src="oppitunnit/k02.js?v=2c36f168"></script>
+<script src="oppitunnit/l11.js?v=2c36f168"></script>
+<script src="oppitunnit/l12.js?v=2c36f168"></script>
+<script src="oppitunnit/l13.js?v=2c36f168"></script>
+<script src="oppitunnit/l14.js?v=2c36f168"></script>
+<script src="oppitunnit/l15.js?v=2c36f168"></script>
+<script src="oppitunnit/k03.js?v=2c36f168"></script>
+<script src="oppitunnit/l16.js?v=2c36f168"></script>
+<script src="oppitunnit/l17.js?v=2c36f168"></script>
+<script src="oppitunnit/l18.js?v=2c36f168"></script>
+<script src="oppitunnit/l19.js?v=2c36f168"></script>
+<script src="oppitunnit/l20.js?v=2c36f168"></script>
+<script src="oppitunnit/k04.js?v=2c36f168"></script>
+<script src="assets/kuvat.js?v=2c36f168"></script>
+<script src="assets/hahmot.js?v=2c36f168"></script>
+<script src="assets/hakuosa.js?v=2c36f168"></script>
+<script src="assets/aani.js?v=2c36f168"></script>
+<script src="assets/kuvitus.js?v=2c36f168"></script>
+<script src="assets/komponentit.js?v=2c36f168"></script>
+<script src="assets/asettelu.js?v=2c36f168"></script>
+<script src="assets/app.js?v=2c36f168"></script>
+</body>
+</html>

@@ -1,0 +1,294 @@
+/* Tottakain oma kopio Passon tiedostosta assets/kuvitus.css (23.10.2026, AV-063; omistaja jaetuista tiedostoista: ”There shouldnt be.”).
+   Passo käyttää edelleen omaa alkuperäistään; muutokset tähän eivät näy Passossa eivätkä Passon muutokset täällä. */
+/* Kuvitus (assets/kuvitus.js): piirretyt hahmot, näyttämö, videopuhelu, puhekuplat kuvissa, näppäimistö, lomakkeet.
+   Käyttää tyyli.css:n värimuuttujia, joten vaalea ja tumma teema toimivat. */
+
+.hahmokuva { display: inline-block; flex: none; border-radius: 50%; overflow: hidden; line-height: 0; vertical-align: middle; }
+.hahmokuva svg { width: 100%; height: 100%; display: block; }
+.hahmolista-kasvo { width: 34px; height: 34px; align-self: center; }
+.hahmot li:has(.hahmolista-kasvo)::before { display: none; }
+.puhuja-kasvo { width: 30px; height: 30px; margin-right: 6px; box-shadow: 0 0 0 2px var(--pv); }
+.s .puhuja:has(.puhuja-kasvo) { display: inline-flex; align-items: center; white-space: nowrap; }
+/* Kuvallinen puhuja tarvitsee leveämmän sarakkeen kuin pelkkä nimi: kuva 30 px + väli + pisin nimi (KERTOJA). */
+.s.on-puhuja:has(.puhuja-kasvo) { grid-template-columns: auto 8.6em minmax(0, 1fr) auto; column-gap: 14px; }
+.s.on-puhuja:has(.puhuja-kasvo) .puhuja { align-self: center; }
+@media (max-width: 640px) { .s.on-puhuja:has(.puhuja-kasvo) { grid-template-columns: auto minmax(0, 1fr) auto; } }
+.ryhma { display: inline-flex; gap: 4px; vertical-align: middle; }
+.ryhma-kasvo { width: 58px; height: 58px; box-shadow: 0 0 0 2px var(--pinta); }
+.valinta .kysymys:has(.ryhma) { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+
+/* Näyttämö: kuva sivun taustalla vaihtuu sen mukaan, missä kohtaa tarinaa lukija on. Huntu pitää tekstin luettavana. */
+html { background: var(--paperi); }
+body.on-nayttamo { background: transparent; }
+.nayttamo { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+.nayttamo-kuva { position: absolute; inset: 0; background: center / cover no-repeat; opacity: 0; transition: opacity .9s ease; }
+.nayttamo-kuva.nakyy { opacity: 1; }
+.nayttamo-huntu { position: absolute; inset: 0; background: var(--paperi); opacity: .45; }
+/* Savulasi: teksti on sumennetun ja tummennetun paneelin päällä, jotta kuva ei riitele tekstin kanssa (käyttäjän
+   toive 16.10.2026). Kuva näkyy selvänä vain paneelien ulkopuolella. */
+body.on-nayttamo #sisalto, body.on-nayttamo .sivuvalikko {
+  /* Käyttäjän säätö 16.10.2026: sävy 50 %, sumennus 12 px (alun 80 % ja 18 px olivat liian savuisia). */
+  background: color-mix(in srgb, var(--paperi) 50%, transparent);
+  -webkit-backdrop-filter: blur(12px) saturate(.85) brightness(.875);
+  backdrop-filter: blur(12px) saturate(.85) brightness(.875);
+  border: 1px solid color-mix(in srgb, var(--viiva) 70%, transparent);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .35);
+}
+body.on-nayttamo #sisalto { border-radius: 18px; padding: 22px 30px 30px; margin: -22px 0 0 -30px; }
+body.on-nayttamo .sivuvalikko { border-radius: 14px; padding: 6px 8px; margin-top: -6px; }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  body.on-nayttamo #sisalto, body.on-nayttamo .sivuvalikko { background: color-mix(in srgb, var(--paperi) 93%, transparent); }
+}
+@media (max-width: 760px) {
+  body.on-nayttamo #sisalto { padding: 14px 14px 24px; margin: -14px -8px 0; border-radius: 12px; }
+}
+.nayttamo-paikka {
+  position: fixed; right: 14px; bottom: 12px; z-index: 15; max-width: min(520px, calc(100vw - 28px));
+  background: var(--pinta); border: 1px solid var(--viiva); border-left: 4px solid var(--meri); border-radius: 8px;
+  padding: 5px 12px; font-size: 13px; box-shadow: var(--varjo); color: var(--himmea);
+}
+.nayttamo-paikka b { color: var(--muste); }
+
+/* Kuva, jossa on puhekuplia (huudot) */
+.kuva-alue { position: relative; line-height: 0; }
+.huuto {
+  position: absolute; transform: translate(-50%, -100%); line-height: 1.2; cursor: pointer; white-space: nowrap;
+  background: #fffdf6; color: #23262a; font-family: var(--f-pt); font-weight: 700; font-size: 17px;
+  padding: 5px 11px; border-radius: 14px; box-shadow: 0 4px 12px rgba(0, 0, 0, .35); text-align: center;
+}
+.huuto::after { content: ""; position: absolute; left: 50%; bottom: -7px; margin-left: -6px; border: 7px solid transparent; border-top-color: #fffdf6; border-bottom: 0; }
+.huuto small { display: block; font-family: var(--f-fi); font-weight: 400; font-size: 11px; color: #6b6556; }
+.huuto:hover, .huuto:focus-visible, .huuto.soi { background: #ffe9a8; }
+.huuto.soi::after, .huuto:hover::after { border-top-color: #ffe9a8; }
+
+/* Videopuhelu: kortti sivulla ja koko ruudun puhelu (oppitunnin ainoa ”sivun rikkova” osa) */
+.puhelukortti {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 10px 0 16px; padding: 12px 16px;
+  background: #102a2e; color: #e8f3f2; border-radius: 14px; box-shadow: var(--varjo); max-width: 640px;
+}
+.puhelukortti-kuvat { display: inline-flex; }
+.puhelukortti-kuvat .hahmokuva { width: 46px; height: 46px; margin-right: -10px; box-shadow: 0 0 0 3px #102a2e; }
+.puhelukortti-teksti { display: flex; flex-direction: column; margin-left: 10px; flex: 1; min-width: 160px; }
+.puhelukortti-teksti small { color: #8fd3c9; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; }
+.puhelu-vastaa { background: #2fa36b; color: #fff; border: 0; border-radius: 999px; padding: 8px 18px; font-weight: 700; cursor: pointer; }
+body.vp-auki { overflow: hidden; }
+.vp {
+  position: fixed; inset: 0; z-index: 100; background: #0b1416; color: #f1f6f6; display: flex; flex-direction: column;
+  font-family: var(--f-fi); animation: vp-sisaan .35s ease-out;
+}
+@keyframes vp-sisaan { from { opacity: 0; transform: scale(1.04); } }
+.vp-soitto { margin: auto; text-align: center; padding: 24px; }
+.vp-soitto-kuvat { display: flex; justify-content: center; gap: 10px; margin-bottom: 14px; }
+.vp-iso { width: 96px; height: 96px; animation: vp-soi 1.2s ease-in-out infinite; box-shadow: 0 0 0 4px rgba(47, 163, 107, .5); }
+.vp-iso:nth-child(2) { animation-delay: .15s; }
+.vp-iso:nth-child(3) { animation-delay: .3s; }
+@keyframes vp-soi { 50% { transform: translateY(-6px); box-shadow: 0 0 0 10px rgba(47, 163, 107, .15); } }
+.vp-soittaja { font-family: var(--f-pt); font-size: 28px; font-weight: 700; margin: 0; }
+.vp-soittaa { color: #9fb9b6; margin: 4px 0 26px; }
+.vp-soitto-napit { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; }
+.vp-pyorea { border: 0; border-radius: 999px; min-width: 64px; height: 64px; padding: 0 22px; font-weight: 700; color: #fff; cursor: pointer; }
+.vp-ok { background: #2fa36b; }
+.vp-hylkaa { background: #d2433a; }
+.vp-yla { display: flex; align-items: center; gap: 14px; padding: 10px 16px; background: rgba(0, 0, 0, .35); }
+.vp-yla b { flex: 1; }
+.vp-aika { font-family: var(--f-aa); color: #9fb9b6; }
+.vp-pieni { background: rgba(255, 255, 255, .12); color: inherit; border: 1px solid rgba(255, 255, 255, .25); border-radius: 999px; padding: 6px 14px; cursor: pointer; }
+.vp-pieni[aria-pressed="false"] { opacity: .6; }
+.vp-ruudut { position: relative; flex: 1; min-height: 0; }
+.vp-ruutu { position: absolute; background: #24363a center / cover no-repeat; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; }
+.vp-ruutu::before { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 30%, rgba(0, 0, 0, .55)); }
+.vp-heidan { inset: 0; }
+.vp-meidan { right: 16px; top: 16px; width: min(34%, 300px); aspect-ratio: 4 / 3; border-radius: 12px; border: 2px solid rgba(255, 255, 255, .5); box-shadow: 0 8px 24px rgba(0, 0, 0, .5); }
+.vp-henkilot { position: relative; display: flex; justify-content: center; align-items: flex-end; gap: 3%; padding: 0 4% 6px; }
+.vp-heidan .vp-kasvo { width: min(22vh, 22%); height: auto; aspect-ratio: 1; }
+.vp-meidan .vp-kasvo { width: 38%; height: auto; aspect-ratio: 1; }
+.vp-kasvo { transition: transform .25s, box-shadow .25s; box-shadow: 0 0 0 3px rgba(255, 255, 255, .25); }
+.vp-kasvo.puhuu { transform: translateY(-6px) scale(1.06); box-shadow: 0 0 0 5px #2fd08a, 0 0 30px rgba(47, 208, 138, .6); }
+.vp-tiedot { position: relative; display: flex; gap: 10px; align-items: baseline; padding: 6px 12px 10px; font-size: 14px; flex-wrap: wrap; }
+.vp-tiedot span { color: #c9dbd9; }
+.vp-ala { background: rgba(0, 0, 0, .55); padding: 10px 16px 14px; display: flex; gap: 16px; align-items: center; }
+.vp-tekstit { flex: 1; position: relative; min-height: 84px; }
+.vp-rivi { position: absolute; inset: 0; opacity: 0; transition: opacity .2s; display: flex; flex-direction: column; justify-content: center; }
+.vp-rivi.soi { opacity: 1; }
+.vp-rivi b { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: #8fd3c9; }
+.vp-pt { font-family: var(--f-pt); font-size: clamp(18px, 2.6vw, 26px); }
+.vp-fi { color: #b8c9c7; font-size: 15px; }
+.vp-ei-fi .vp-fi { display: none; }
+.vp-kertoja .vp-pt { font-style: italic; }
+.vp-loppu { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(5, 12, 13, .88); z-index: 5; }
+.vp-loppu p { font-size: 22px; margin: 0 0 16px; }
+/* Häiriö: yhteys pätkii, kun Jay sanoo espanjaa. Leima kertoo virheen. */
+.vp-hairio .vp-ruutu { animation: vp-pataka .12s steps(2) 10; filter: saturate(2) hue-rotate(40deg) contrast(1.4); }
+@keyframes vp-pataka {
+  0% { transform: translate(0, 0); clip-path: inset(0 0 0 0); }
+  50% { transform: translate(-8px, 3px); clip-path: inset(12% 0 30% 0); }
+  100% { transform: translate(6px, -2px); clip-path: inset(40% 0 8% 0); }
+}
+.vp-leima {
+  position: absolute; left: 50%; top: 42%; z-index: 3; transform: translate(-50%, -50%) rotate(-8deg);
+  border: 5px solid #ff5a4f; color: #ff5a4f; background: rgba(11, 20, 22, .82); padding: 10px 26px; border-radius: 10px;
+  font-family: var(--f-pt); font-weight: 700; font-size: clamp(26px, 5vw, 52px); letter-spacing: .02em; white-space: nowrap;
+  animation: vp-leima .35s cubic-bezier(.2, 1.6, .5, 1);
+}
+.vp-leima[hidden] { display: none; }
+@keyframes vp-leima { from { transform: translate(-50%, -50%) rotate(-8deg) scale(2.4); opacity: 0; } }
+@media (max-width: 640px) {
+  .vp-meidan { width: 40%; right: 10px; top: 10px; }
+  .vp-pyorea { height: 54px; min-width: 54px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vp, .vp-iso, .vp-leima, .vp-hairio .vp-ruutu { animation: none; }
+}
+
+/* Puhelimen näppäimistö: numeroiden nimet portugaliksi näppäimissä */
+.np-puhelin {
+  width: min(300px, 100%); background: #14191b; color: #eef4f3; border-radius: 30px; padding: 16px 18px 20px;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .35), inset 0 0 0 2px #2c3437; margin: 10px 0;
+}
+.np-yla { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #9fb9b6; }
+.np-soittaja { width: 28px; height: 28px; }
+.np-naytto { font-family: var(--f-aa); font-size: 26px; text-align: center; letter-spacing: .08em; min-height: 40px; margin: 8px 0 6px; overflow-wrap: anywhere; }
+.np-kuuntele { display: block; margin: 0 auto 12px; background: #2fa36b; color: #fff; border: 0; border-radius: 999px; padding: 7px 16px; cursor: pointer; font-weight: 700; }
+.np-ruudukko { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.np-nappi {
+  aspect-ratio: 1; border-radius: 50%; border: 0; background: #283133; color: inherit; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.1;
+}
+.np-nappi b { font-size: 22px; font-weight: 600; }
+.np-nappi small { font-family: var(--f-pt); font-size: 11px; color: #8fd3c9; font-style: italic; }
+.np-nappi:active, .np-nappi.soi { background: #3d4a4d; }
+.np-toiminto { font-size: 20px; }
+.np-ok { background: #2fa36b; }
+.np-palaute { min-height: 1.4em; text-align: center; margin: 10px 0 0; font-weight: 700; }
+.np-palaute.oikein { color: #6cc485; }
+.np-palaute.vaarin { color: #f0857c; }
+
+/* Lomakkeen valokuva (piirretty hahmo paperiliittimellä) ja oppijan oma lomake */
+.dokumentti.ficha { position: relative; }
+.ficha-foto {
+  position: absolute; right: 18px; top: 52px; width: 92px; height: 112px; background: #fff; padding: 6px 6px 18px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, .2); transform: rotate(4deg); border: 1px solid #e3ddc9;
+}
+.ficha-foto .hahmokuva { width: 100%; height: 100%; border-radius: 0; }
+.ficha-foto::before {
+  content: ""; position: absolute; top: -12px; left: 18px; width: 12px; height: 34px; border: 3px solid #8d969a;
+  border-radius: 8px; z-index: 2;
+}
+.ficha-foto.tyhja { display: flex; align-items: center; justify-content: center; text-align: center; font-size: 12px; color: #9a927c; border: 2px dashed #cfc7ae; background: #fffdf6; }
+.dokumentti.ficha:has(.ficha-foto) dl { margin-right: 112px; }
+.dokumentti.ficha.oma input { width: 100%; border: 0; border-bottom: 1px dotted #b9b19a; background: transparent; font-family: var(--f-pt); font-size: 17px; font-style: italic; color: #1d3f8f; padding: 0; }
+.dokumentti.ficha.oma input:focus { outline: none; border-bottom: 2px solid #1d3f8f; }
+.dokumentti.ficha.oma dd { border-bottom: 0; }
+.ficha-tallennus { font-size: 11px; color: #9a927c; margin: 10px 0 0; }
+@media (max-width: 520px) {
+  .ficha-foto { position: static; transform: none; margin: 0 0 10px auto; }
+  .dokumentti.ficha:has(.ficha-foto) dl { margin-right: 0; }
+}
+
+/* Apuhahmo (esim. manaatti läksyissä ja visoissa): kuva ja puhekupla */
+.apuhahmo { display: flex; align-items: center; gap: 12px; margin: 0 0 12px; }
+.apuhahmo-kasvo { width: 64px; height: 64px; box-shadow: 0 0 0 3px var(--pinta), 0 4px 12px rgba(0, 0, 0, .25); }
+.apuhahmo-kupla {
+  position: relative; margin: 0; padding: 8px 14px; border-radius: 14px; background: var(--meri-pehmea);
+  font-size: 15px; font-style: italic; max-width: 62ch;
+}
+.apuhahmo-kupla::before {
+  content: ""; position: absolute; left: -8px; top: 50%; margin-top: -7px;
+  border: 7px solid transparent; border-right-color: var(--meri-pehmea); border-left: 0;
+}
+.apuhahmo-kupla b { font-style: normal; }
+
+/* ---------- Manaattila: harjoitusosio on manaatin aluetta (havaijikuvioitu kehys, kyltti, havaijipaidat) ---------- */
+.manaattila {
+  --hk-pohja: #1d6f68;
+  position: relative; padding: 16px 16px 20px; border-radius: 22px; margin-top: 30px;
+  background:
+    radial-gradient(circle at 18px 18px, #ffd166 0 3px, transparent 4px),
+    radial-gradient(circle at 18px 18px, #e2574c 0 10px, transparent 11px),
+    radial-gradient(circle at 62px 58px, #e2574c 0 3px, transparent 4px),
+    radial-gradient(circle at 62px 58px, #fff 0 9px, transparent 10px),
+    radial-gradient(circle at 70px 14px, #fff 0 2px, transparent 3px),
+    radial-gradient(circle at 70px 14px, #f4a261 0 7px, transparent 8px),
+    radial-gradient(ellipse 13px 5px at 38px 72px, #2d6a4f 0 98%, transparent 100%),
+    radial-gradient(ellipse 5px 13px at 8px 52px, #2d6a4f 0 98%, transparent 100%),
+    var(--hk-pohja);
+  background-size: 84px 84px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+}
+/* Kyltti: otsikko puulaattana */
+.manaattila > h2 {
+  display: inline-flex; align-items: center; gap: 10px; margin: 0 0 12px; padding: 8px 18px; border-radius: 12px;
+  background: #f3e3c3; color: #4a2f1a; box-shadow: 0 4px 0 #b88a55, 0 8px 16px rgba(0, 0, 0, .25); transform: rotate(-1.2deg);
+}
+.manaattila > h2::before { content: "🌺"; }
+.manaattila > h2[data-kyltti]::after { content: "· " attr(data-kyltti) " 🌴"; font-size: .8em; color: #8a5a2b; }
+/* Tekstit ja tehtäväkortit luettavalle pinnalle kuvion päälle */
+.manaattila > :not(h2):not(.apuhahmo):not(.tehtava):not(.kotitehtava) { background: var(--pinta); border-radius: 12px; padding: 8px 14px; }
+.manaattila .tehtava, .manaattila .kotitehtava { position: relative; overflow: hidden; padding-top: 22px; }
+.manaattila .tehtava::before, .manaattila .kotitehtava::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 9px;
+  background:
+    radial-gradient(circle at 8px 5px, #ffd166 0 2px, transparent 3px),
+    radial-gradient(circle at 8px 5px, #e2574c 0 4px, transparent 5px),
+    radial-gradient(circle at 24px 5px, #fff 0 3px, transparent 4px),
+    #1d6f68;
+  background-size: 32px 9px;
+}
+/* Manaatti isona osion alussa */
+.apuhahmo-iso { margin: 4px 0 16px; }
+.apuhahmo-iso .apuhahmo-kasvo { width: 104px; height: 104px; box-shadow: 0 0 0 4px #ffd166, 0 8px 20px rgba(0, 0, 0, .35); animation: manaatti-kellu 4s ease-in-out infinite; }
+.manaattila .apuhahmo-kupla { background: #fff8e7; color: #3b2a1a; font-size: 16px; }
+.manaattila .apuhahmo-kupla::before { border-right-color: #fff8e7; }
+@keyframes manaatti-kellu { 50% { transform: translateY(-5px) rotate(-2deg); } }
+@media (prefers-reduced-motion: reduce) { .apuhahmo-iso .apuhahmo-kasvo { animation: none; } }
+
+/* ---------- kelluva manaatti (Manaattila) ---------- */
+.kelluva-hahmo { position: fixed; right: 18px; bottom: 64px; z-index: 25; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; pointer-events: none; }
+.kelluva-hahmo[hidden] { display: none; }
+.kelluva-nappi { pointer-events: auto; background: none; border: 0; padding: 0; cursor: pointer; border-radius: 50%; }
+.kelluva-kasvo { width: 92px; height: 92px; box-shadow: 0 0 0 4px #ffd166, 0 10px 24px rgba(0, 0, 0, .4); animation: manaatti-kellu 4s ease-in-out infinite; }
+.kelluva-kupla {
+  pointer-events: auto; position: relative; max-width: min(300px, calc(100vw - 40px)); background: #fff8e7; color: #3b2a1a;
+  border-radius: 16px; padding: 10px 14px; font-size: 15px; line-height: 1.4; box-shadow: 0 8px 22px rgba(0, 0, 0, .35);
+  margin-right: 30px; animation: kupla-sisaan .25s ease-out;
+}
+.kelluva-kupla::after { content: ""; position: absolute; right: 22px; bottom: -9px; border: 9px solid transparent; border-top-color: #fff8e7; border-bottom: 0; }
+.kelluva-kupla b { font-size: 19px; }
+.kelluva-ok { color: #2c7a3f; }
+.kelluva-ei { color: #b3342b; }
+.kelluva-osittain { color: #b4561e; }
+.kelluva-miete { font-style: italic; }
+@keyframes kupla-sisaan { from { opacity: 0; transform: translateY(8px) scale(.96); } }
+@media (max-width: 640px) { .kelluva-kasvo { width: 64px; height: 64px; } .kelluva-hahmo { right: 10px; bottom: 56px; } }
+@media (prefers-reduced-motion: reduce) { .kelluva-kasvo, .kelluva-kupla { animation: none; } }
+
+/* ---------- Kapybaran kylpylä: kertausten harjoitusosio (kuuma lähde, höyry, mandariinit) ---------- */
+.kylpyla {
+  position: relative; padding: 16px 16px 20px; border-radius: 22px; margin-top: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+  background:
+    radial-gradient(circle at 20px 22px, #3f8f3a 0 2px, transparent 3px),
+    radial-gradient(circle at 18px 26px, #f39a1e 0 8px, transparent 9px),
+    radial-gradient(circle at 66px 64px, #3f8f3a 0 2px, transparent 3px),
+    radial-gradient(circle at 64px 68px, #f39a1e 0 8px, transparent 9px),
+    radial-gradient(ellipse 22px 6px at 44px 46px, rgba(255, 255, 255, .22) 0 60%, transparent 100%),
+    radial-gradient(ellipse 18px 5px at 82px 18px, rgba(255, 255, 255, .18) 0 60%, transparent 100%),
+    linear-gradient(180deg, #5a8f9a, #2f6a78 60%, #24525e);
+  background-size: 88px 88px, 88px 88px, 88px 88px, 88px 88px, 88px 88px, 88px 88px, 100% 100%;
+}
+.kylpyla > h2 {
+  display: inline-flex; align-items: center; gap: 10px; margin: 0 0 12px; padding: 8px 18px; border-radius: 10px;
+  background: #e9d3a8; color: #4a2f1a; box-shadow: 0 4px 0 #a57b47, 0 8px 16px rgba(0, 0, 0, .25); transform: rotate(1deg);
+  font-family: var(--f-pt);
+}
+.kylpyla > h2::before { content: "♨️"; }
+.kylpyla > h2[data-kyltti]::after { content: "· " attr(data-kyltti) " 🍊"; font-size: .8em; color: #8a5a2b; }
+.kylpyla > :not(h2):not(.apuhahmo):not(.tehtava):not(.kotitehtava) { background: var(--pinta); border-radius: 12px; padding: 8px 14px; }
+.kylpyla .tehtava, .kylpyla .kotitehtava { position: relative; overflow: hidden; padding-top: 22px; }
+.kylpyla .tehtava::before, .kylpyla .kotitehtava::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 9px;
+  background: radial-gradient(circle at 10px 5px, #f39a1e 0 4px, transparent 5px), radial-gradient(ellipse 8px 3px at 26px 5px, rgba(255, 255, 255, .6) 0 60%, transparent 100%), #2f6a78;
+  background-size: 34px 9px;
+}
+.kylpyla .apuhahmo-kupla { background: #fff4e3; color: #3b2a1a; font-size: 16px; }
+.kylpyla .apuhahmo-kupla::before { border-right-color: #fff4e3; }
+.kylpyla .apuhahmo-iso .apuhahmo-kasvo { box-shadow: 0 0 0 4px #f39a1e, 0 8px 20px rgba(0, 0, 0, .35); }

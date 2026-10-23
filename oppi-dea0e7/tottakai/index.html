@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tottakai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,400..700;1,7..72,400..600&display=swap">
+<link rel="stylesheet" href="assets/tyyli.css?v=2c36f168">
+<link rel="stylesheet" href="assets/kuvitus.css?v=2c36f168">
+<link rel="stylesheet" href="assets/komponentit.css?v=2c36f168">
+<link rel="stylesheet" href="assets/tottakai.css?v=2c36f168">
+</head>
+<body>
+
+<header class="ylapalkki">
+  <div class="ylapalkki-sisus">
+    <a class="merkki" href="#inicio">
+      <b>Totta<i>kai</i></b>
+      <small>Finlandês para brasileiros, passo a passo</small>
+    </a>
+    <div class="toiminnot">
+      <span id="sivun-toisto"></span>
+      <button class="tyonappi" id="pysayta" type="button" title="Parar o som (Esc)">Parar</button>
+      <button class="tyonappi" id="kaannokset" type="button" aria-pressed="false" title="Mostrar ou esconder a tradução em português">Tradução</button>
+      <button class="tyonappi" id="aanet-nappi" type="button" aria-expanded="false" aria-controls="aanipaneeli">Som</button>
+      <a class="tyonappi ajustes-nappi" id="ajustes-nappi" href="#ajustes" title="Ajustes" aria-label="Ajustes"><span aria-hidden="true">⚙</span></a>
+      <a class="tyonappi mandariinit" id="mandariinit" href="#ilha" title="Suas mandarinas"><span aria-hidden="true">🍊</span> <b>0</b></a>
+    </div>
+    <!-- Sisarkurssi logona yläpalkin oikeaan reunaan (omistaja 17.10.2026, kuvan mukaan; ei sivuvalikossa). Linkki ei ole jaettu
+         tiedosto (AV-063 koskee tiedostoja), joten se pysyy. -->
+    <a class="merkki sisarkurssi" href="../index.html" title="Passo a Passo: português para finlandeses">
+      <span class="sisar-nimi">Passo <span class="sisar-a">a</span> Passo</span>
+      <span class="sisar-ala">Português para finlandeses</span>
+    </a>
+  </div>
+  <div class="aanipaneeli" id="aanipaneeli" hidden>
+    <div class="aanipaneeli-sisus">
+      <p class="aanitila">Carregando…</p>
+      <label class="valintaruutu"><input type="checkbox" id="aanitteet" checked> Usar as gravações prontas (quando existirem)</label>
+      <div class="aanirivit">
+        <div class="aanirivi"><span class="aanirivi-nimi">Narração (Capivara)</span><div class="rivi"><button class="tyonappi" type="button" data-testaa="kertoja">Testar</button></div></div>
+        <div class="aanirivi"><span class="aanirivi-nimi">Voz feminina (Maia)</span><div class="rivi"><button class="tyonappi" type="button" data-testaa="nainen">Testar</button></div></div>
+        <div class="aanirivi"><span class="aanirivi-nimi">Voz masculina (Jay)</span><div class="rivi"><button class="tyonappi" type="button" data-testaa="mies">Testar</button></div></div>
+      </div>
+      <details class="varaaanet">
+        <summary>Vozes do navegador (usadas só quando não há gravação)</summary>
+        <div class="aanirivit">
+          <div class="aanirivi"><label for="valitse-kertoja">Narração</label><select id="valitse-kertoja"></select></div>
+          <div class="aanirivi"><label for="valitse-nainen">Mulheres</label><select id="valitse-nainen"></select></div>
+          <div class="aanirivi"><label for="valitse-mies">Homens</label><select id="valitse-mies"></select></div>
+        </div>
+      </details>
+    </div>
+  </div>
+  <div class="aalto" aria-hidden="true"></div>
+</header>
+
+<div class="kehys">
+  <nav class="sivuvalikko" aria-label="Sumário">
+    <ul id="valikko"></ul>
+  </nav>
+  <main id="sisalto"></main>
+</div>
+
+<template id="etusivu-pohja">
+  <header class="op-otsake etusivu-otsake">
+    <p class="yla">Curso de finlandês para quem fala português</p>
+    <h1>Totta<i>kai</i>!</h1>
+    <p class="lahde-rivi">O nome vem de <span class="fi">totta kai</span>, que quer dizer “claro!”, “com certeza!”. Este curso acompanha Maia, geóloga de Belo Horizonte, que mora em Helsinque e aprende finlandês com o namorado, Jay. Ela ensina português a ele; ele ensina finlandês a ela. Você aprende junto com a Maia, na mesma ordem.</p>
+    <p class="etusivu-aloitus"><a class="paanappi" id="aloita" href="#t00">Começar pela lição 0</a></p>
+  </header>
+
+  <section class="osio hoje" id="hoje" hidden>
+    <h2>Hoje</h2>
+  </section>
+
+  <section class="osio">
+    <h2>Como funciona</h2>
+    <ul class="ohjeet ohjeet-lyhyt">
+      <li><span class="ohje-ikoni" aria-hidden="true">👆</span><span><b>Toque numa palavra</b> (no computador: passe o mouse): aparecem o significado, a pronúncia e a forma básica. O som toca no <b>▶</b>. Experimente: <span class="fi">Helsingissä</span>.</span></li>
+      <li><span class="ohje-ikoni" aria-hidden="true">📘</span><span><b>Cada lição</b> tem diálogo, explicação e os exercícios da Manaattila (a área de exercícios do Peixe-boi); depois vêm a <b>Gramática da lição</b>, o <b>Treino</b> e o <b>quiz</b>. Ouça o diálogo primeiro sem a <b>Tradução</b>.</span></li>
+      <li><span class="ohje-ikoni" aria-hidden="true">🍊</span><span><b>Mandarinas:</b> cada acerto de primeira vale uma, cada lição terminada dá uma medalha (bronze, prata ou ouro) e voltar todo dia vale mais. Errar não tira nada. Na lojinha da ilha você compra coisas para o Capivara e o Peixe-boi: rede, coqueiro, camisas do Cruzeiro…</span></li>
+    </ul>
+  </section>
+
+  <section class="osio">
+    <h2>Som</h2>
+    <p class="aanitila">Carregando…</p>
+    <p class="s" data-h="kertoja" data-pt="Oi! Bem-vindo ao curso de finlandês.">Moi! Tervetuloa suomen kurssille.</p>
+    <p>Não ouviu nada? <button class="tyonappi" type="button" id="aanitesti">Testar o som</button></p>
+    <div id="aanitesti-tulos" class="aanitesti-tulos" aria-live="polite"></div>
+  </section>
+
+  <section class="osio">
+    <h2>Lições</h2>
+    <ul id="oppituntilista"></ul>
+  </section>
+
+  <section class="osio">
+    <h2>De onde vem este curso</h2>
+    <p>A ordem da gramática e da pronúncia segue o que os livros de finlandês para estrangeiros têm em comum, corrigida pelo que professores e alunos estrangeiros dizem que funciona (por exemplo: a gradação consonantal desde o começo, e a pronúncia pensada para quem fala português). A história, as pessoas, os diálogos e os exercícios são deste curso; os lugares são reais. As 1000 palavras vêm de uma contagem do finlandês falado em legendas (OpenSubtitles).</p>
+    <p><a href="#creditos">Créditos das fotos</a></p>
+  </section>
+</template>
+
+<script src="assets/kurssi.js?v=2c36f168"></script>
+<script src="assets/profiili.js?v=2c36f168"></script>
+<script src="assets/versio.js?v=2c36f168"></script>
+<script src="assets/ajustes.js?v=2c36f168"></script>
+<script src="assets/ui.js?v=2c36f168"></script>
+<script src="assets/ydinsanat.js?v=2c36f168"></script>
+<script src="assets/taivutus.js?v=2c36f168"></script>
+<script src="sanasto/kasitteet.js?v=2c36f168"></script>
+<script src="assets/sanasto.js?v=2c36f168"></script>
+<script src="oppitunnit/t00.js?v=2c36f168"></script>
+<script src="oppitunnit/t01.js?v=2c36f168"></script>
+<script src="oppitunnit/t02.js?v=2c36f168"></script>
+<script src="oppitunnit/t03.js?v=2c36f168"></script>
+<script src="oppitunnit/t04.js?v=2c36f168"></script>
+<script src="oppitunnit/t05.js?v=2c36f168"></script>
+<script src="oppitunnit/k01.js?v=2c36f168"></script>
+<script src="oppitunnit/t06.js?v=2c36f168"></script>
+<script src="oppitunnit/t07.js?v=2c36f168"></script>
+<script src="oppitunnit/t08.js?v=2c36f168"></script>
+<script src="oppitunnit/t09.js?v=2c36f168"></script>
+<script src="oppitunnit/t10.js?v=2c36f168"></script>
+<script src="oppitunnit/k02.js?v=2c36f168"></script>
+<script src="oppitunnit/t11.js?v=2c36f168"></script>
+<script src="oppitunnit/t12.js?v=2c36f168"></script>
+<script src="oppitunnit/t13.js?v=2c36f168"></script>
+<script src="oppitunnit/t14.js?v=2c36f168"></script>
+<script src="oppitunnit/t15.js?v=2c36f168"></script>
+<script src="oppitunnit/k03.js?v=2c36f168"></script>
+<script src="oppitunnit/t16.js?v=2c36f168"></script>
+<script src="oppitunnit/t17.js?v=2c36f168"></script>
+<script src="oppitunnit/t18.js?v=2c36f168"></script>
+<script src="oppitunnit/t19.js?v=2c36f168"></script>
+<script src="oppitunnit/t20.js?v=2c36f168"></script>
+<script src="oppitunnit/k04.js?v=2c36f168"></script>
+<script src="sanasto/t00.js?v=2c36f168"></script>
+<script src="sanasto/t01.js?v=2c36f168"></script>
+<script src="sanasto/t02.js?v=2c36f168"></script>
+<script src="sanasto/t03.js?v=2c36f168"></script>
+<script src="sanasto/t04.js?v=2c36f168"></script>
+<script src="sanasto/t05.js?v=2c36f168"></script>
+<script src="sanasto/k01.js?v=2c36f168"></script>
+<script src="sanasto/t06.js?v=2c36f168"></script>
+<script src="sanasto/t07.js?v=2c36f168"></script>
+<script src="sanasto/t08.js?v=2c36f168"></script>
+<script src="sanasto/t09.js?v=2c36f168"></script>
+<script src="sanasto/t10.js?v=2c36f168"></script>
+<script src="sanasto/k02.js?v=2c36f168"></script>
+<script src="sanasto/t11.js?v=2c36f168"></script>
+<script src="sanasto/t12.js?v=2c36f168"></script>
+<script src="sanasto/t13.js?v=2c36f168"></script>
+<script src="sanasto/t14.js?v=2c36f168"></script>
+<script src="sanasto/t15.js?v=2c36f168"></script>
+<script src="sanasto/k03.js?v=2c36f168"></script>
+<script src="sanasto/t16.js?v=2c36f168"></script>
+<script src="sanasto/t17.js?v=2c36f168"></script>
+<script src="sanasto/t18.js?v=2c36f168"></script>
+<script src="sanasto/t19.js?v=2c36f168"></script>
+<script src="sanasto/t20.js?v=2c36f168"></script>
+<script src="sanasto/k04.js?v=2c36f168"></script>
+<script src="sanasto/gramatica.js?v=2c36f168"></script>
+<script src="sanasto/treeni.js?v=2c36f168"></script>
+<script src="sanasto/pelit.js?v=2c36f168"></script>
+<script src="assets/kuvat.js?v=2c36f168"></script>
+<script src="assets/hahmot.js?v=2c36f168"></script>
+<script src="assets/sisallys.js?v=2c36f168"></script>
+<script src="assets/oppaat.js?v=2c36f168"></script>
+<script src="assets/hakuosa.js?v=2c36f168"></script>
+<script src="assets/kupla.js?v=2c36f168"></script>
+<script src="assets/treeni.js?v=2c36f168"></script>
+<script src="assets/tulokset.js?v=2c36f168"></script>
+<script src="aanet/luettelo.js?v=2c36f168"></script>
+<script src="assets/aani.js?v=2c36f168"></script>
+<script src="assets/kuvitus.js?v=2c36f168"></script>
+<script src="assets/komponentit.js?v=2c36f168"></script>
+<script src="assets/asettelu.js?v=2c36f168"></script>
+<script src="assets/pelit.js?v=2c36f168"></script>
+<script src="assets/pomo.js?v=2c36f168"></script>
+<script src="assets/saari_mitalit.js?v=2c36f168"></script>
+<script src="assets/saari.js?v=2c36f168"></script>
+<script src="assets/siirto.js?v=2c36f168"></script>
+<script src="assets/app.js?v=2c36f168"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+/* Tottakai: oppitunnin t14 sanat (Jay eksyy keskustassa, Praça da Liberdade; käsky te, postpositiot, suunnat).
+   Sopimus: tottakai/sanasto/README.md. Yksi tietue riviä kohden, tiukka JSON.
+   Jo leksikossa ja käytetään sellaisenaan: oikea (t09, myös ”direito”), kävellä, juosta, odottaa, kuunnella, istua,
+   pysähtyä, kahvila, kanssa (gramatica), mikään (ei mitään), valo, bussipysäkki. Käsky te (imper.2p: tulkaa) ja kielteinen
+   käsky te (imper.neg.2p: juosko) tulevat taivutuskoneelta (opetusjärjestys kasitteet.js OPETUS: t14), m-kenttää ei tarvita.
+   Suunnat oikealle/oikealla, vasemmalle/vasemmalla ovat johdoksia (kuten kotona = koti:missa): oma merkitys ”para a
+   direita”, kupla näyttää perusmuodon. Postpositiot ovat taipumattomia kuten kanssa ja jälkeen (huom: genetiivin jälkeen);
+   välissä voittaa väli-sanan inessiivin perusmuotona (pisteet 0 < 1). K3-pomo (pomo.js K3_POSTPOSITIOT) käyttää
+   tunnisteita vieressä, edessä, takana, luona, lähellä.
+   seistä jätettiin pois: taivutuskone ottaa vokaalisoinnun infinitiivistä (seistä → *seisonkö, *seisoivät), ja verbin
+   m-muoto ei korvaa laskettua solua (raportoitu koordinaattorille). katua (arrepender-se, piilota): ydinsana ”katua”
+   analysoituisi muuten katu-sanan partitiiviksi (Y); katu-sanan oletus ratkaisee homografit kadun ja kadut. */
+Sanasto.lisaa('t14', [
+{"id":"kääntyä","l":"verbi","pt":["virar, dobrar (para um lado)"],"t":{"tyyppi":1,"p1s":"käännyn","p3s":"kääntyy","p3p":"kääntyvät","i3s":"kääntyi"},"huom":"käänny oikealle! = vire à direita!","o":"t14"},
+{"id":"leikkiä","l":"verbi","pt":["brincar"],"t":{"tyyppi":1,"p1s":"leikin","p3s":"leikkii","p3p":"leikkivät","i3s":"leikki"},"o":"t14"},
+{"id":"käskeä","l":"verbi","pt":["mandar, dar uma ordem"],"t":{"tyyppi":1,"p1s":"käsken","p3s":"käskee","p3p":"käskevät","i3s":"käski"},"huom":"Kapteeni käskee = o capitão manda (a brincadeira “o mestre mandou”)","o":"t14"},
+{"id":"totella","l":"verbi","pt":["obedecer"],"t":{"tyyppi":3,"p1s":"tottelen","p3s":"tottelee","p3p":"tottelevat","i3s":"totteli"},"o":"t14"},
+{"id":"keskusta","l":"substantiivi","pt":["centro (da cidade)"],"t":{"gen":"keskustan","part":"keskustaa","ill":"keskustaan","mpart":"keskustoja"},"paikka":"sisa","o":"t14"},
+{"id":"katu","l":"substantiivi","pt":["rua"],"t":{"gen":"kadun","part":"katua","ill":"katuun","mpart":"katuja"},"paikka":"ulko","huom":"na rua = kadulla, com -lla","oletus":["kadun","kadut"],"o":"t14"},
+{"id":"katua","l":"verbi","pt":["arrepender-se"],"t":{"tyyppi":1,"p1s":"kadun","p3s":"katuu","p3p":"katuvat","i3s":"katui"},"huom":"não confunda com katu (rua): katua = arrepender-se; kadulla = na rua","piilota":true,"o":"t14"},
+{"id":"kulma","l":"substantiivi","pt":["esquina, canto"],"t":{"gen":"kulman","part":"kulmaa","ill":"kulmaan","mpart":"kulmia"},"paikka":"sisa","o":"t14"},
+{"id":"aukio","l":"substantiivi","pt":["praça (aberta)"],"t":{"gen":"aukion","part":"aukiota","ill":"aukioon","mpart":"aukioita"},"paikka":"ulko","huom":"na praça = aukiolla, como torilla","o":"t14"},
+{"id":"puisto","l":"substantiivi","pt":["parque, jardim público"],"t":{"gen":"puiston","part":"puistoa","ill":"puistoon","mpart":"puistoja"},"paikka":"sisa","o":"t14"},
+{"id":"kirkko","l":"substantiivi","pt":["igreja"],"t":{"gen":"kirkon","part":"kirkkoa","ill":"kirkkoon","mpart":"kirkkoja"},"paikka":"sisa","o":"t14"},
+{"id":"pankki","l":"substantiivi","pt":["banco (de dinheiro)"],"t":{"gen":"pankin","part":"pankkia","ill":"pankkiin","mpart":"pankkeja"},"paikka":"sisa","huom":"o banco de sentar é penkki","o":"t14"},
+{"id":"penkki","l":"substantiivi","pt":["banco (de sentar)"],"t":{"gen":"penkin","part":"penkkiä","ill":"penkkiin","mpart":"penkkejä"},"paikka":"ulko","huom":"o banco de dinheiro é pankki","o":"t14"},
+{"id":"apteekki","l":"substantiivi","pt":["farmácia"],"t":{"gen":"apteekin","part":"apteekkia","ill":"apteekkiin","mpart":"apteekkeja"},"paikka":"sisa","o":"t14"},
+{"id":"museo","l":"substantiivi","pt":["museu"],"t":{"gen":"museon","part":"museota","ill":"museoon","mpart":"museoita"},"paikka":"sisa","o":"t14"},
+{"id":"palatsi","l":"substantiivi","pt":["palácio"],"t":{"gen":"palatsin","part":"palatsia","ill":"palatsiin","mpart":"palatseja"},"paikka":"sisa","o":"t14"},
+{"id":"hotelli","l":"substantiivi","pt":["hotel"],"t":{"gen":"hotellin","part":"hotellia","ill":"hotelliin","mpart":"hotelleja"},"paikka":"sisa","o":"t14"},
+{"id":"suihkulähde","l":"substantiivi","pt":["chafariz, fonte"],"t":{"gen":"suihkulähteen","part":"suihkulähdettä","ill":"suihkulähteeseen","mpart":"suihkulähteitä"},"paikka":"ulko","yhd":["suihku","lähde"],"o":"t14"},
+{"id":"palmu","l":"substantiivi","pt":["palmeira"],"t":{"gen":"palmun","part":"palmua","ill":"palmuun","mpart":"palmuja"},"paikka":"sisa","o":"t14"},
+{"id":"ylämäki","l":"substantiivi","pt":["subida, ladeira"],"t":{"gen":"ylämäen","part":"ylämäkeä","ill":"ylämäkeen","mpart":"ylämäkiä"},"paikka":"sisa","yhd":["ylä","mäki"],"o":"t14"},
+{"id":"akku","l":"substantiivi","pt":["bateria"],"t":{"gen":"akun","part":"akkua","ill":"akkuun","mpart":"akkuja"},"paikka":"sisa","huom":"akku on tyhjä = a bateria acabou","o":"t14"},
+{"id":"selkä","l":"substantiivi","pt":["costas"],"t":{"gen":"selän","part":"selkää","ill":"selkään","mpart":"selkiä"},"paikka":"sisa","huom":"selän takana = atrás das costas","o":"t14"},
+{"id":"yllätys","l":"substantiivi","pt":["surpresa"],"t":{"gen":"yllätyksen","part":"yllätystä","ill":"yllätykseen","mpart":"yllätyksiä"},"paikka":"sisa","o":"t14"},
+{"id":"kapteeni","l":"substantiivi","pt":["capitão, capitã"],"t":{"gen":"kapteenin","part":"kapteenia","ill":"kapteeniin","mpart":"kapteeneja"},"paikka":"ulko","huom":"Kapteeni käskee! = a brincadeira “o mestre mandou”","o":"t14"},
+{"id":"hätä","l":"substantiivi","pt":["aperto, emergência"],"t":{"gen":"hädän","part":"hätää","ill":"hätään","mpart":"hätiä"},"paikka":"sisa","huom":"ei hätää = calma, não tem problema","o":"t14"},
+{"id":"vasen","l":"adjektiivi","pt":["esquerdo, esquerda"],"t":{"gen":"vasemman","part":"vasenta","ill":"vasempaan","mpart":"vasempia"},"vert":false,"o":"t14"},
+{"id":"tyhjä","l":"adjektiivi","pt":["vazio, vazia"],"t":{"gen":"tyhjän","part":"tyhjää","ill":"tyhjään","mpart":"tyhjiä"},"vert":["tyhjempi","tyhjin"],"o":"t14"},
+{"id":"oikealle","l":"taipumaton","pt":["para a direita"],"johdos":"oikea:all","huom":"para onde? käänny oikealle! = vire à direita!","o":"t14"},
+{"id":"oikealla","l":"taipumaton","pt":["à direita"],"johdos":"oikea:ade","huom":"onde? apteekki on oikealla = a farmácia fica à direita","o":"t14"},
+{"id":"vasemmalle","l":"taipumaton","pt":["para a esquerda"],"johdos":"vasen:all","huom":"para onde? käänny vasemmalle! = vire à esquerda!","o":"t14"},
+{"id":"vasemmalla","l":"taipumaton","pt":["à esquerda"],"johdos":"vasen:ade","huom":"onde? kirkko on vasemmalla = a igreja fica à esquerda","o":"t14"},
+{"id":"suoraan","l":"taipumaton","pt":["reto, em frente","direto, sem rodeios"],"huom":"mene suoraan! = vá reto! (direita é outra palavra: oikea)","o":"t14"},
+{"id":"eksyksissä","l":"taipumaton","pt":["perdido, perdida (sem saber o caminho)"],"huom":"olla eksyksissä = estar perdido","o":"t14"},
+{"id":"varmasti","l":"taipumaton","pt":["com certeza","com segurança"],"huom":"hitaasti mutta varmasti = devagar e sempre","o":"t14"},
+{"id":"edessä","l":"taipumaton","pt":["na frente de"],"huom":"vem depois do genitivo: pankin edessä = na frente do banco; para onde? eteen","o":"t14"},
+{"id":"takana","l":"taipumaton","pt":["atrás de"],"huom":"vem depois do genitivo: kirkon takana = atrás da igreja; para onde? taakse","o":"t14"},
+{"id":"vieressä","l":"taipumaton","pt":["ao lado de"],"huom":"vem depois do genitivo: penkin vieressä = ao lado do banco; para onde? viereen","o":"t14"},
+{"id":"välissä","l":"taipumaton","pt":["entre"],"huom":"vem depois de dois genitivos: museon ja palatsin välissä = entre o museu e o palácio","o":"t14"},
+{"id":"lähellä","l":"taipumaton","pt":["perto de","perto"],"huom":"vem depois do genitivo: puiston lähellä = perto do parque","o":"t14"},
+{"id":"alla","l":"taipumaton","pt":["debaixo de, embaixo de"],"huom":"vem depois do genitivo: palmun alla = debaixo da palmeira","o":"t14"},
+{"id":"kohdalla","l":"taipumaton","pt":["na altura de"],"huom":"vem depois do genitivo: kirkon kohdalla = na altura da igreja","o":"t14"},
+{"id":"ympäri","l":"taipumaton","pt":["em volta de"],"huom":"vem depois do genitivo: suihkulähteen ympäri = em volta do chafariz","o":"t14"},
+{"id":"luona","l":"taipumaton","pt":["na casa de, junto de (sobretudo pessoa)"],"huom":"vem depois do genitivo: Maian luona = na casa da Maia","o":"t14"},
+{"id":"kautta","l":"taipumaton","pt":["por, passando por"],"huom":"vem depois do genitivo: keskustan kautta = pelo centro","o":"t14"},
+{"id":"eteen","l":"taipumaton","pt":["para a frente de"],"huom":"para onde? (edessä = onde?): kirkon eteen = para a frente da igreja","o":"t14"},
+{"id":"taakse","l":"taipumaton","pt":["para trás de"],"huom":"para onde? (takana = onde?): suihkulähteen taakse = para trás do chafariz","o":"t14"},
+{"id":"viereen","l":"taipumaton","pt":["para o lado de"],"huom":"para onde? (vieressä = onde?): penkin viereen = para o lado do banco","o":"t14"},
+{"id":"alle","l":"taipumaton","pt":["para debaixo de"],"huom":"para onde? (alla = onde?): palmun alle = para debaixo da palmeira","o":"t14"},
+{"id":"Malu","l":"henkilo","pt":["Malu"],"t":{"gen":"Malun","all":"Malulle","part":"Malua"},"hahmo":"malu","huom":"amiga da Maia, motorista de aplicativo e sambista","o":"t14"},
+{"id":"ei hätää","l":"ilmaus","pt":["calma, não tem problema"],"osat":["ei","hätää"],"tyyppi":"kaava","o":"t14"},
+{"id":"oikeelle","l":"puhe","pt":["para a direita"],"kirja":"oikealle","o":"t14"},
+{"id":"ton","l":"puhe","pt":["daquele, daquela"],"kirja":"tuon","o":"t14"},
+{"id":"päällä","l":"taipumaton","pt":["em cima de, sobre (onde?)","ligado (aparelho, luz)"],"huom":"vem depois do genitivo: pöydän päällä = em cima da mesa; para onde? päälle","piilota":true,"o":"t14"},
+{"id":"takia","l":"taipumaton","pt":["por causa de (depois do genitivo)"],"huom":"sateen takia = por causa da chuva","o":"t14"},
+{"id":"pysyä","l":"verbi","pt":["ficar, permanecer"],"t":{"tyyppi":1,"p1s":"pysyn","p3s":"pysyy","p3p":"pysyvät","i3s":"pysyi"},"o":"t14"},
+{"id":"voittaa","l":"verbi","pt":["ganhar, vencer"],"t":{"tyyppi":1,"p1s":"voitan","p3s":"voittaa","p3p":"voittavat","i3s":"voitti"},"o":"t14"},
+{"id":"näkyä","l":"verbi","pt":["aparecer, ser visto"],"t":{"tyyppi":1,"p1s":"näyn","p3s":"näkyy","p3p":"näkyvät","i3s":"näkyi"},"huom":"Kirkko näkyy. = dá para ver a igreja","o":"t14"},
+]);

@@ -1,0 +1,24 @@
+Tottakai sanakuvat (AV-073, sarja 1: Fluent Flat + omat litteät piirrokset). Yksi tiedosto = yksi kuva, 40 px.
+
+Microsoft Fluent Emoji, Flat, Medium-Light (https://github.com/microsoft/fluentui-emoji), MIT License,
+Copyright (c) Microsoft Corporation. Lisenssiteksti: LICENSE-fluent-emoji.txt.
+  aiti.svg          Woman (Medium-Light)
+  kuuntele.svg      Megaphone (omistaja 23.10.2026: korvan tilalle, ”the ear is kinda gross”)
+  olankohautus-1.svg  Person shrugging (Medium-Light)
+  olankohautus-2.svg  Woman shrugging (Medium-Dark)
+  olankohautus-3.svg  Man shrugging (Light)
+  olankohautus-4.svg  Woman shrugging (Medium)
+  olankohautus-5.svg  Man shrugging (Dark)
+  (app.js vaihtaa olankohautus-1…5 vuorotellen, kun merkintä on data-sanakuva="olankohautus")
+  opettaja.svg      Teacher (Medium-Light)
+
+Omat piirrokset (Tottakai-projekti, Claude Opus 22.10.2026), kurssin oma lisenssi (../../../LICENSE):
+  mina.svg, sina.svg, han.svg, me.svg, te.svg, he.svg   pronominit (Maia osoittaa)
+  veli.svg, brasilialainen.svg, suomalainen.svg, geologi.svg
+
+Omat piirrokset, oppitunti 2 ja myöhemmät (Claude Opus 22.10.2026), kurssin oma lisenssi:
+  hitaasti.svg kartta.svg kello.svg kertoa.svg lukea.svg maara0.svg maara1.svg maara10.svg maara2.svg maara3.svg maara4.svg maara5.svg maara6.svg maara7.svg maara8.svg maara9.svg metro.svg nukkua.svg suomenkieli.svg tanne.svg tietaa.svg tuonne.svg ymmartaa.svg
+  (maara0…maara10 = kymmenruudukko, jossa n merkkiä; tanne = sormi osoittaa avointa kämmentä (omistajan malli: ”here”);
+  tuonne = käsi osoittaa poispäin)
+
+Tarinakuvat (sarja 2, Noto-tyyli; Claude Opus 22.10.2026), kurssin oma lisenssi: ../tarinakuvat/t01-1, t01-2, t02-1, t02-2

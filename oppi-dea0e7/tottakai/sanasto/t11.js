@@ -1,0 +1,35 @@
+/* Tottakai: oppitunnin t11 sanat (Mercado Central, vertailu, monikon partitiivi, salakieli Moaran ravintolassa).
+   Sopimus: tottakai/sanasto/README.md. Jo leksikossa ja käytetään sellaisenaan: halpa, kallis, pieni, juusto, kahvi,
+   hinta, kilo (t03), hyvä, kuin, kaunis (t01), herkullinen (t04), haluta (haluaisin) (t03), iso, parempi, paras, banaani, kana,
+   tori, ruoka, pöytä (gramatica), omena, kala, riisi, peruna, tulinen, mieto (treeni), lisää, vanha, uusi (t05),
+   huono, kuuma (t06), ravintola (t07), ihminen (t09), siis, turisti (t10).
+   Vertailumuodot (halvempi, halvin …) tulevat adjektiivin vert-kentästä (solut komp ja sup), eivät omina tietueina.
+   yhtä: adverbi ”tão” (yhtä … kuin); sama asu on yksi-sanan partitiivi, joten oletus-kenttä ratkaisee tasapelin. */
+Sanasto.lisaa('t11', [
+{"id":"kumpi","l":"pronomini","pt":["qual (de dois)?","o qual, a qual (dos dois)"],"t":{"gen":"kumman","part":"kumpaa","ines":"kummassa","ela":"kummasta","ill":"kumpaan"},"huom":"só entre dois: Kumpi on parempi, tämä vai tuo? Entre muitos: mikä","o":"t11"},
+{"id":"yhtä","l":"taipumaton","pt":["tão (yhtä … kuin = tão … quanto)"],"oletus":["yhtä"],"huom":"yhtä kallis kuin = tão caro quanto","o":"t11"},
+{"id":"kaikkein","l":"taipumaton","pt":["de todos (antes do superlativo)"],"huom":"kaikkein halvin = o mais barato de todos","o":"t11"},
+{"id":"enää","l":"taipumaton","pt":["mais (com negação: não … mais)"],"huom":"ei enää = não mais, chega","o":"t11"},
+{"id":"real","l":"substantiivi","pt":["real (a moeda do Brasil)"],"t":{"gen":"realin","part":"realia","ill":"realiin","mpart":"realeja"},"paikka":"sisa","huom":"R$ 30 = kolmekymmentä realia","o":"t11"},
+{"id":"Mercado Central","l":"paikka","pt":["Mercado Central (o mercado coberto de Belo Horizonte)"],"t":{"gen":"Mercado Centralin","part":"Mercado Centralia","ill":"Mercado Centraliin"},"paikka":"sisa","aa":{"Mercado Central":"MER-ka-do SEN-tral","Mercado Centralissa":"MER-ka-do SEN-tra-lis-sa","Mercado Centraliin":"MER-ka-do SEN-tra-liin","Mercado Centralin":"MER-ka-do SEN-tra-lin"},"ipa":{"Mercado Central":"[ˈmerkɑdo ˈsentrɑl]","Mercado Centralissa":"[ˈmerkɑdo ˈsentrɑlisːɑ]","Mercado Centraliin":"[ˈmerkɑdo ˈsentrɑliːn]","Mercado Centralin":"[ˈmerkɑdo ˈsentrɑlin]"},"huom":"nome português dito à finlandesa; o c soa como s","o":"t11"},
+{"id":"Moara","l":"henkilo","pt":["Moara"],"t":{"gen":"Moaran","all":"Moaralle","part":"Moaraa","ill":"Moaraan"},"hahmo":"moara","huom":"amiga de infância da Maia; tem um restaurante perto do Mercado Central","o":"t11"},
+{"id":"ananas","l":"substantiivi","pt":["abacaxi"],"t":{"gen":"ananaksen","part":"ananasta","ill":"ananakseen","mpart":"ananaksia"},"paikka":"sisa","o":"t11"},
+{"id":"mango","l":"substantiivi","pt":["manga (a fruta)"],"t":{"gen":"mangon","part":"mangoa","ill":"mangoon","mpart":"mangoja"},"paikka":"sisa","o":"t11"},
+{"id":"makkara","l":"substantiivi","pt":["linguiça, salsicha"],"t":{"gen":"makkaran","part":"makkaraa","ill":"makkaraan","mpart":"makkaroita"},"paikka":"sisa","o":"t11"},
+{"id":"hedelmä","l":"substantiivi","pt":["fruta"],"t":{"gen":"hedelmän","part":"hedelmää","ill":"hedelmään","mpart":"hedelmiä"},"paikka":"sisa","o":"t11"},
+{"id":"tomaatti","l":"substantiivi","pt":["tomate"],"t":{"gen":"tomaatin","part":"tomaattia","ill":"tomaattiin","mpart":"tomaatteja"},"paikka":"sisa","o":"t11"},
+{"id":"papu","l":"substantiivi","pt":["feijão (o grão)"],"t":{"gen":"pavun","part":"papua","ill":"papuun","mpart":"papuja"},"paikka":"sisa","huom":"o feijão do prato: papuja (vários grãos)","o":"t11"},
+{"id":"pippuri","l":"substantiivi","pt":["pimenta"],"t":{"gen":"pippurin","part":"pippuria","ill":"pippuriin","mpart":"pippureita"},"paikka":"sisa","o":"t11"},
+{"id":"maailma","l":"substantiivi","pt":["mundo"],"t":{"gen":"maailman","part":"maailmaa","ill":"maailmaan","mpart":"maailmoja"},"paikka":"sisa","huom":"maailman paras = o melhor do mundo","o":"t11"},
+{"id":"kuiskata","l":"verbi","pt":["cochichar, sussurrar"],"t":{"tyyppi":4,"p1s":"kuiskaan","p3s":"kuiskaa","p3p":"kuiskaavat","i3s":"kuiskasi"},"o":"t11"},
+{"id":"valittaa","l":"verbi","pt":["reclamar"],"t":{"tyyppi":1,"p1s":"valitan","p3s":"valittaa","p3p":"valittavat","i3s":"valitti"},"o":"t11"},
+{"id":"itkeä","l":"verbi","pt":["chorar"],"t":{"tyyppi":1,"p1s":"itken","p3s":"itkee","p3p":"itkevät","i3s":"itki"},"o":"t11"},
+{"id":"ku","l":"puhe","pt":["do que, como"],"kirja":"kuin","o":"t11"},
+{"id":"suuri","l":"adjektiivi","pt":["grande"],"t":{"gen":"suuren","part":"suurta","ill":"suureen","mpart":"suuria"},"vert":["suurempi","suurin"],"huom":"suuri é mais formal que iso","o":"t11"},
+{"id":"enemmän","l":"taipumaton","pt":["mais (em quantidade)"],"huom":"paljon → enemmän: enemmän ihmisiä = mais gente","o":"t11"},
+{"id":"totta","l":"taipumaton","pt":["verdade (é verdade)"],"huom":"Onko se totta? = é verdade?","o":"t11"},
+{"id":"ainoa","l":"adjektiivi","pt":["único, única"],"t":{"gen":"ainoan","part":"ainoaa","ill":"ainoaan","mpart":"ainoita"},"vert":false,"o":"t11"},
+{"id":"mahtava","l":"adjektiivi","pt":["incrível, demais, ótimo"],"t":{"gen":"mahtavan","part":"mahtavaa","ill":"mahtavaan","mpart":"mahtavia"},"vert":["mahtavampi","mahtavin"],"o":"t11"},
+{"id":"mielestäni","l":"taipumaton","pt":["na minha opinião"],"huom":"de mieli (mente): Mielestäni tämä on parempi. = na minha opinião, este é melhor","o":"t11"},
+{"id":"salakieli","l":"substantiivi","pt":["língua secreta"],"t":{"gen":"salakielen","part":"salakieltä","ill":"salakieleen","mpart":"salakieliä"},"paikka":"sisa","yhd":["sala","kieli"],"o":"t11"},
+]);

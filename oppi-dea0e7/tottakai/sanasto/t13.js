@@ -1,0 +1,40 @@
+/* Tottakai: oppitunnin t13 sanat (perheen päivä Belo Horizontessa, imperfekti, ajanilmaukset). Sopimus: tottakai/sanasto/README.md.
+   Jo leksikossa ja käytetään sellaisenaan: nukkua, lukea, mennä, tulla (t02), ostaa, kahvi, leipä, haluta (t03), syödä, juoda,
+   kävellä (t04), lehti, kuolla, lapsi (t05), keittiö (t08), ottaa, antaa, eilen, riisi, sairas (treeni),
+   aamu, ilta, yö, lounas, sitten, kanssa, tarvita, käydä, tehdä (gramatica). Imperfektin persoonat (heräsin, jaoimme,
+   nukuit …) tekee taivutuskone tunnusmuodoista (i3s + p1s); m-kenttää ei tarvita.
+   ”kaksi päivää sitten”: rakenne ”päivää sitten” (há … dias), koska gramatica.js:n sitten-tietueella ei ole merkitystä
+   ”há (tempo)”; ”viime viikolla” ja ”viime vuonna” ilmauksina, jotta kupla sanoo merkityksen kokonaisena.
+   Puhekieli (Na rua): oltiin, mentiin, syötiin = me-muoto passiivista (tunnistus; passiivi opetetaan oppitunnilla 20). */
+Sanasto.lisaa('t13', [
+{"id":"herätä","l":"verbi","pt":["acordar"],"t":{"tyyppi":4,"p1s":"herään","p3s":"herää","p3p":"heräävät","i3s":"heräsi"},"o":"t13"},
+{"id":"jakaa","l":"verbi","pt":["entregar, distribuir","dividir"],"t":{"tyyppi":1,"p1s":"jaan","p3s":"jakaa","p3p":"jakavat","i3s":"jakoi"},"huom":"jakaa postia = entregar a correspondência","o":"t13"},
+{"id":"jutella","l":"verbi","pt":["conversar, bater papo"],"t":{"tyyppi":3,"p1s":"juttelen","p3s":"juttelee","p3p":"juttelevat","i3s":"jutteli"},"huom":"com quem: genitivo + kanssa (naapurin kanssa = com a vizinha)","o":"t13"},
+{"id":"keittää","l":"verbi","pt":["fazer (café, chá)","ferver, cozinhar na água"],"t":{"tyyppi":1,"p1s":"keitän","p3s":"keittää","p3p":"keittävät","i3s":"keitti"},"o":"t13"},
+{"id":"posti","l":"substantiivi","pt":["correspondência, cartas","correio"],"t":{"gen":"postin","part":"postia","ill":"postiin","mpart":"posteja"},"paikka":"sisa","o":"t13"},
+{"id":"kirje","l":"substantiivi","pt":["carta"],"t":{"gen":"kirjeen","part":"kirjettä","ill":"kirjeeseen","mpart":"kirjeitä"},"paikka":"sisa","o":"t13"},
+{"id":"naapuri","l":"substantiivi","pt":["vizinho, vizinha"],"t":{"gen":"naapurin","part":"naapuria","ill":"naapuriin","mpart":"naapureita"},"paikka":"ulko","o":"t13"},
+{"id":"pilates","l":"substantiivi","pt":["pilates"],"t":{"gen":"pilateksen","part":"pilatesta","ill":"pilatekseen","mpart":null},"paikka":"sisa","huom":"o radical ganha -kse-: pilateksessa = no pilates","o":"t13"},
+{"id":"aamukahvi","l":"substantiivi","pt":["o primeiro café do dia"],"t":{"gen":"aamukahvin","part":"aamukahvia","ill":"aamukahviin","mpart":"aamukahveja"},"paikka":"sisa","yhd":["aamu","kahvi"],"o":"t13"},
+{"id":"unikeko","l":"substantiivi","pt":["dorminhoco, dorminhoca"],"t":{"gen":"unikeon","part":"unikekoa","ill":"unikekoon","mpart":"unikekoja"},"paikka":"ulko","yhd":["uni","keko"],"huom":"literalmente “monte de sono”; carinhoso","o":"t13"},
+{"id":"iltapäivä","l":"substantiivi","pt":["tarde (depois do meio-dia)"],"t":{"gen":"iltapäivän","part":"iltapäivää","ill":"iltapäivään","mpart":"iltapäiviä"},"paikka":"aika","yhd":["ilta","päivä"],"huom":"iltapäivällä = à tarde","o":"t13"},
+{"id":"viikko","l":"substantiivi","pt":["semana"],"t":{"gen":"viikon","part":"viikkoa","ill":"viikkoon","mpart":"viikkoja"},"paikka":"aika","huom":"kolme kertaa viikossa = três vezes por semana","o":"t13"},
+{"id":"viime","l":"taipumaton","pt":["passado, passada (no tempo)"],"huom":"não muda: viime viikolla = na semana passada, viime vuonna = no ano passado","o":"t13"},
+{"id":"viime viikolla","l":"ilmaus","pt":["na semana passada"],"osat":["viime","viikolla"],"tyyppi":"idiomi","o":"t13"},
+{"id":"viime vuonna","l":"ilmaus","pt":["no ano passado"],"osat":["viime","vuonna"],"tyyppi":"idiomi","o":"t13"},
+{"id":"päivää sitten","l":"rakenne","pt":["há … dias"],"osat":["päivää","sitten"],"kaava":"número + päivää sitten: kaksi päivää sitten = há dois dias","o":"t13"},
+{"id":"hereillä","l":"taipumaton","pt":["acordado, acordada"],"o":"t13"},
+{"id":"koko","l":"taipumaton","pt":["todo, toda, inteiro, inteira"],"huom":"vem antes da palavra e não muda: koko perhe = a família inteira","o":"t13"},
+{"id":"vihdoin","l":"taipumaton","pt":["finalmente, enfim"],"o":"t13"},
+{"id":"paitsi","l":"taipumaton","pt":["menos, exceto"],"o":"t13"},
+{"id":"Leijonakuningas","l":"nimi","pt":["O Rei Leão (filme)"],"t":{"gen":"Leijonakuninkaan","part":"Leijonakuningasta","ill":"Leijonakuninkaaseen"},"yhd":["leijona","kuningas"],"o":"t13"},
+{"id":"oltiin","l":"puhe","pt":["(nós) estávamos, estivemos"],"kirja":"olimme","o":"t13"},
+{"id":"mentiin","l":"puhe","pt":["(nós) fomos"],"kirja":"menimme","o":"t13"},
+{"id":"syötiin","l":"puhe","pt":["(nós) comemos"],"kirja":"söimme","o":"t13"},
+{"id":"yksin","l":"taipumaton","pt":["sozinho, sozinha"],"o":"t13"},
+{"id":"tyttö","l":"substantiivi","pt":["menina, moça"],"t":{"gen":"tytön","part":"tyttöä","ill":"tyttöön","mpart":"tyttöjä"},"paikka":"ulko","o":"t13"},
+{"id":"lopettaa","l":"verbi","pt":["parar, terminar, deixar de"],"t":{"tyyppi":1,"p1s":"lopetan","p3s":"lopettaa","p3p":"lopettavat","i3s":"lopetti"},"huom":"Walker lopetti työt. = o Walker se aposentou (parou de trabalhar)","o":"t13"},
+{"id":"jatkaa","l":"verbi","pt":["continuar"],"t":{"tyyppi":1,"p1s":"jatkan","p3s":"jatkaa","p3p":"jatkavat","i3s":"jatkoi","pass":"jatketaan"},"o":"t13"},
+{"id":"elää","l":"verbi","pt":["viver"],"t":{"tyyppi":1,"p1s":"elän","p3s":"elää","p3p":"elävät","i3s":"eli"},"o":"t13"},
+{"id":"silloin","l":"taipumaton","pt":["então, naquela hora, naquela época"],"o":"t13"},
+]);

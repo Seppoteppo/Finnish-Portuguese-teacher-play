@@ -1,0 +1,1768 @@
+/* Tottakain omat tyylit omien kopioiden (assets/tyyli.css, kuvitus.css, komponentit.css; AV-063) päälle. */
+
+/* Teema: järjestelmän mukaan (tyyli.css: prefers-color-scheme), tai Ajustes-sivun valinta data-theme="light"/"dark"
+   (assets/ajustes.js). Omistaja 19.10.2026: oletus järjestelmän teema, oma kurssi tummana. */
+
+/* Suomenkieliset sanat portugalinkielisessä tekstissä (vastaa Passon .pt-luokkaa) */
+span.fi, b.fi, i.fi { font-family: var(--f-pt); font-style: italic; cursor: pointer; }
+span.fi:hover { color: var(--meri); }
+b.fi { font-weight: 700; }
+
+/* Na rua -nurkka: puhekielinen lause isona, kirjakieli aina alla, käännös (Tradução-napista) sen alla. */
+.s .kirja { grid-column: -3 / -2; grid-row: 2; display: block; font-family: var(--f-pt); font-size: 15.5px; color: var(--meri); line-height: 1.4; }
+.s .kirja::before { content: "padrão: "; font-family: var(--f-fi); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--himmea); }
+.s.on-kirja .kaannos { grid-row: 3; }
+.s.on-puhuja .kirja { grid-column: 3 / -2; }
+@media (max-width: 640px) { .s.on-puhuja .kirja { grid-column: 1 / -1; grid-row: 3; } .s.on-puhuja.on-kirja .kaannos { grid-row: 4; } }
+
+/* Yläpalkin mandariinit */
+.mandariinit { position: relative; text-decoration: none; color: var(--muste); white-space: nowrap; }
+.mandariini-pop { position: absolute; right: 4px; top: -6px; font-weight: 700; color: #e07b00; animation: nousu 1.2s ease-out forwards; pointer-events: none; }
+@keyframes nousu { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-24px); } }
+
+/* Oppitunnin lisäkortit (kielioppi, Treeni) */
+.lisakortit { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.lisakortti { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; border: 1px solid var(--viiva); border-radius: 12px;
+  background: var(--pinta); text-decoration: none; color: var(--muste); }
+.lisakortti:hover { border-color: var(--meri); background: var(--meri-pehmea); }
+.lisakortti b { font-size: 17px; }
+.lisakortti span { font-size: 14px; color: var(--himmea); }
+
+/* Kielioppiosion kortit */
+.kielioppikortti { border: 1px solid var(--viiva); border-radius: 12px; background: var(--pinta); margin: 0 0 12px; }
+.kielioppikortti > summary { display: flex; align-items: center; gap: 10px; padding: 12px 16px; cursor: pointer; list-style: none; font-weight: 700; font-size: 17px; }
+.kielioppikortti > summary::-webkit-details-marker { display: none; }
+.kielioppikortti[open] > summary { border-bottom: 1px dashed var(--viiva); }
+.kk-nro { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--meri-pehmea); color: var(--meri); font-size: 14px; flex: none; }
+.kk-otsikko { flex: 1; }
+.kk-taso { font-size: 12px; font-weight: 400; color: var(--himmea); border: 1px solid var(--viiva); border-radius: 999px; padding: 1px 8px; }
+.tahti { border: 1px solid var(--viiva); background: var(--pinta); color: var(--viiva); border-radius: 50%; width: 32px; height: 32px; font-size: 17px; cursor: pointer; flex: none; }
+.tahti[aria-pressed="true"] { color: #e0a800; border-color: #e0a800; }
+.kk-sisus { padding: 6px 18px 14px; }
+.kk-linkit { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 14.5px; margin-top: 14px; }
+
+/* Koneella tehdyt taivutustaulut */
+table.taivutuskone caption { text-align: left; font-weight: 700; padding: 4px 0 6px; }
+table.taivutuskone td { white-space: normal; }   /* kapealla ruudulla rivitys, ei päällekkäisyyttä (neljännesruudukko) */
+table.taivutuskone td .ohj { margin-right: 6px; }
+table.taivutuskone td span, table.taivutuskone th[scope="row"] { font-family: var(--f-pt); }
+
+/* Treeni */
+.treeni-ruudukko { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.treeni-kortti { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; border: 1px solid var(--viiva); border-radius: 12px;
+  background: var(--pinta); text-decoration: none; color: var(--muste); }
+.treeni-kortti:hover { border-color: var(--meri); }
+.treeni-kortti span { font-size: 14px; color: var(--himmea); }
+.treeni-kortti.treeni-tuleva { opacity: .55; border-style: dashed; }
+.treeni-kortti.treeni-tuleva:hover { opacity: .85; }
+.treeni-kortti small { font-size: 12.5px; color: var(--meri); }
+.treeni-kortti .treeni-tila { font-size: 12.5px; color: var(--meri); }
+.treeni-palkki { display: flex; gap: 6px; margin-bottom: 14px; }
+.treeni-palkki i { flex: 1; height: 6px; border-radius: 3px; background: var(--viiva); }
+.treeni-palkki i.tehty { background: var(--meri); }
+.treeni-palkki i.nyt { background: #f39a1e; }
+.treeni-tila { display: block; margin: 0 0 12px; font-size: 14.5px; }
+.treeni-kirjoitus { display: flex; gap: 8px; align-items: center; margin: 10px 0; }
+.treeni-syote { font-size: 20px; padding: 6px 10px; min-width: 12ch; }
+.treeni .visa-sana { font-family: var(--f-pt); }
+.treeni .visa-sana[lang="pt-BR"] { font-family: var(--f-fi); }
+
+/* Hakuosa: haku ja luettelo */
+.hakuosa-lista { padding-left: 1.2em; }
+.hakuosa-lista li { margin: 4px 0; }
+.hakuosa-lista span { color: var(--himmea); font-size: 14.5px; }
+.hakutulos p { font-size: 17px; }
+input[type="search"] { font-size: 17px; padding: 8px 12px; width: 100%; max-width: 560px; border: 1px solid var(--viiva); border-radius: 10px; background: var(--pinta); color: var(--muste); }
+
+/* Hiekkasärkkä (luonnos) */
+.ilha-luku { font-size: 28px; }
+.ilha-kuva { display: flex; gap: 18px; padding: 24px; border-radius: 18px; margin: 10px 0 18px;
+  background: linear-gradient(#9fd3d8 0 55%, #f3dfa2 55% 100%); }
+.ilha-kuva .hahmokuva { width: 120px; height: 120px; }
+
+/* Lukutehtävän kortti (Jayn oppilaskortti) */
+.dokumentti.kortti-fi dt { font-family: var(--f-fi); }
+.dokumentti.kortti-fi dd { font-family: var(--f-pt); }
+
+/* Minimiparit ja pituus */
+.pituus { display: inline-flex; gap: 2px; font-family: var(--f-pt); font-size: 22px; }
+.pituus b { color: var(--paino); }
+.minimiparit { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; list-style: none; padding: 0; }
+.minimiparit li { border: 1px solid var(--viiva); border-radius: 10px; padding: 8px 12px; background: var(--pinta); }
+.minimiparit li .fi { font-size: 20px; }
+.minimiparit li small { display: block; color: var(--himmea); }
+
+/* Na rua · Puhekieli: ainoa paikka, jossa puhekieltä on (käyttäjä 16.10.2026). Oma väri, jotta on selvää, että
+   ollaan puhekielen maailmassa. */
+.kulttuuri.na-rua { border: 1px dashed #e07b00; border-top: 4px solid #e07b00; background: color-mix(in srgb, #e07b00 7%, var(--pinta)); }
+.kulttuuri.na-rua .yla { color: var(--puhekieli); font-weight: 700; }
+
+/* Näyttämön kelluva paikka- ja kuvatekstimerkki pois (käyttäjä 16.10.2026: ei tarpeen). Tekijät oppitunnin lopussa
+   (.kuvalahteet) ja sivulla #creditos. */
+.nayttamo-paikka { display: none; }
+.kuvalahteet { font-size: 13px; color: var(--himmea); margin-top: 24px; }
+.krediitit li { margin: 6px 0; }
+
+/* ---------- Sanakupla (assets/kupla.js; ulkoasu prototyypistä, jonka omistaja hyväksyi) ----------
+   Kuplan kehys on jaettu .kupla (assets/tyyli.css); tässä sisältö. Järjestys: sana ▶ ja sanalaji, ääntäminen,
+   merkitys, perusmuoto · muoto, paneeli (tämä muoto korostettuna, vaihtuva konsonantti värillä), huomautus, linkit. */
+.kupla { width: min(340px, calc(100vw - 24px)); }
+.pk { font-size: 15px; line-height: 1.45; }
+.pk-yla { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.pk-sana { font-family: var(--f-pt); font-size: 23px; font-weight: 600; }
+.pk-luokka { margin-left: auto; font-size: 11.5px; font-weight: 700; letter-spacing: .04em; border-radius: 999px; padding: 2px 9px; color: #fff; white-space: nowrap; }
+.l-verbi { background: #0a6b6e; } .l-subs { background: #2b55a6; } .l-adj { background: #7b3f8f; } .l-pron { background: #9a5a12; }
+.l-num { background: #2c7a3f; } .l-nimi { background: #56676c; } .l-fixa { background: #6f7b80; } .l-expr { background: #b4561e; }
+.l-fala { background: #c46a00; } .l-kone { background: #8a6d3b; }
+.pk-aa { display: flex; flex-wrap: wrap; gap: 2px 10px; align-items: baseline; margin: 3px 0 6px; }
+.pk-aa .aa-fi b { color: var(--meri); text-transform: uppercase; }
+.pk-merkitys { font-weight: 700; font-size: 16px; }
+.pk-myos { font-size: 13.5px; color: var(--himmea); }
+.pk-perus { margin-top: 5px; font-size: 14.5px; }
+.pk-perus .w, .pk-osat .w { font-family: var(--f-pt); font-weight: 700; font-style: italic; }
+.pk a { color: var(--meri); }
+.pk-paneeli { margin-top: 8px; border-top: 1px solid var(--viiva); padding-top: 7px; }
+.pk-otsake { font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--himmea); margin-bottom: 3px; }
+.pk-otsake .av { text-transform: none; font-size: 12.5px; letter-spacing: .02em; }
+.pk-taulu { width: 100%; border-collapse: collapse; font-size: 14.5px; margin-top: 3px; }
+.pk-taulu td { padding: 1px 6px 1px 0; vertical-align: top; border: 0; }
+.pk-taulu td:first-child { font-family: var(--f-pt); white-space: nowrap; }
+.pk-taulu td + td { color: var(--himmea); font-size: 13px; }
+.pk-taulu tr.tama td:first-child, .pk-persoonat .tama { font-weight: 700; color: var(--meri); }
+.pk-taulu tr.tama td { background: var(--meri-pehmea); }
+.pk-persoonat { display: grid; grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(3, auto); gap: 0 14px; font-family: var(--f-pt); font-size: 14.5px; }
+.pk-persoonat .tama { background: var(--meri-pehmea); border-radius: 4px; }
+.av { color: var(--paino); font-weight: 700; }
+.pk-huom { margin-top: 8px; font-size: 13.5px; background: color-mix(in srgb, var(--paino) 10%, var(--pinta)); border-radius: 8px; padding: 5px 9px; }
+.pk-huom.pk-kone { background: transparent; border: 1px dashed #8a6d3b; color: var(--himmea); }
+.pk-linkit { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 9px; padding-top: 7px; border-top: 1px solid var(--viiva); font-size: 13.5px; }
+.pk-osat { display: grid; grid-template-columns: auto 1fr; gap: 1px 10px; font-size: 14px; }
+.pk-osat small { color: var(--himmea); }
+.pk-kaava { margin-top: 5px; font-size: 14px; font-style: italic; }
+.pk-hahmo { display: flex; gap: 10px; align-items: center; font-size: 14px; margin-bottom: 4px; }
+.pk-hahmo .hahmokuva, .pk-hahmokuva { width: 46px; height: 46px; flex: none; }
+.pk-hahmo svg { width: 100%; height: 100%; }
+
+/* Puhelin: kupla on alareunan arkki (päätös P6, docs/SANASTOJARJESTELMA.md 5.4): sulkemisnappi vähintään 44 px,
+   vieritys arkin sisällä, sisäkkäinen sana vaihtaa sisällön, ”← voltar” palaa. Napautus ei soita. */
+/* Korkeus: enintään 62 % näkyvästä korkeudesta (dvh, jos selain tuntee) ja aina vähintään 60 px yläreunasta, jotta
+   yläpalkki (49 px) ja luettava lause jäävät näkyviin; pidempi sisältö vierii arkin sisällä. */
+.kupla.kupla-arkki { position: fixed; left: 0; right: 0; bottom: 0; top: auto; width: auto; max-width: none;
+  max-height: min(62vh, calc(100vh - 60px)); max-height: min(62dvh, calc(100dvh - 60px));
+  overflow-y: auto; overscroll-behavior: contain; border-radius: 16px 16px 0 0; border-width: 1px 0 0;
+  padding: 0 16px calc(16px + env(safe-area-inset-bottom)); box-shadow: 0 -6px 24px rgba(0, 0, 0, .2); z-index: 60; }
+.kupla.kupla-arkki::before, .kupla.kupla-arkki::after { display: none; }
+.kupla-palkki { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; gap: 8px; background: var(--pinta);
+  margin: 0 -16px 4px; padding: 2px 6px; border-bottom: 1px solid var(--viiva); }
+.kupla-sulje, .kupla-takaisin { min-width: 44px; min-height: 44px; border: 0; background: transparent; color: var(--meri); cursor: pointer;
+  font: inherit; font-size: 15px; border-radius: 10px; }
+.kupla-sulje { margin-left: auto; font-size: 28px; line-height: 1; }
+.kupla-sulje:hover, .kupla-takaisin:hover { background: var(--meri-pehmea); }
+body.arkki-auki { padding-bottom: 62vh; }
+/* Arkki tiiviinä (auditointi 3, H: kupla mahtuu useammin ilman vieritystä): ✕ kelluu otsikkorivin oikeassa reunassa
+   (oma rivi vain, kun ”← voltar” on mukana), tiiviimmät rivivälit ja paneeli. */
+.kupla-arkki .kupla-palkki.kelluva { height: 0; padding: 0; margin: 0; border: 0; justify-content: flex-end; overflow: visible; }
+.kupla-arkki .kupla-palkki.kelluva .kupla-sulje { align-self: flex-start; margin-right: -10px; background: var(--pinta); }
+/* Rivivälit tiukemmat (21.10.2026): GitHubin Linux-tarkistuksessa (ja Androidilla) fontit ovat korkeampia, ja pitkien
+   monikkomuotojen arkit (messuille, tupaantuliaisilta) ylittivät 413 px:n rajan (tarkistus H); tiivistys −22 px. */
+.kupla-arkki .pk { line-height: 1.26; padding-top: 4px; }
+.kupla-arkki .pk-yla { min-height: 40px; padding-right: 40px; }
+.kupla-arkki .pk-sana { font-size: 21px; }
+.kupla-arkki .pk-aa { margin: 1px 0 4px; }
+.kupla-arkki .pk-merkitys { font-size: 15.5px; }
+.kupla-arkki .pk-perus { margin-top: 3px; }
+.kupla-arkki .pk-paneeli { margin-top: 6px; padding-top: 5px; }
+.kupla-arkki .pk-taulu { font-size: 14px; margin-top: 1px; line-height: 1.18; }
+.kupla-arkki .pk-taulu td { padding: 0 6px 0 0; }
+.kupla-arkki .pk-taulu td + td { font-size: 12.5px; }
+.kupla-arkki .pk-huom { margin-top: 6px; padding: 4px 8px; }
+.kupla-arkki .pk-linkit { margin-top: 6px; padding-top: 5px; }
+
+/* Sanasivu #palavra-<tunniste> */
+.sanasivu .op-otsake h1 { display: flex; align-items: center; gap: 10px; }
+.sanasivu .pk-luokka { margin-left: 0; }
+.sanasivu-merkitykset li { font-size: 18px; }
+.sanasivu-taulu th[scope="row"] { font-weight: 400; color: var(--himmea); font-size: 14px; text-align: left; }
+.sanasivu-taulu td { font-family: var(--f-pt); }
+.sanasivu-esimerkit .s { margin: 6px 0; }
+.sanasivu-osat { max-width: 520px; }
+/* Sanasivun laajat taulut: harvinaiset sijat ja aikamuodot harmaina (kuten h-sijataulu), rivin huomautus, infinitiivilaatikko. */
+.sanasivu-taulu tr.sanasivu-harv, table.sanasivu-harv { color: var(--himmea); }
+.sanasivu-taulu tr.sanasivu-harv .w, table.sanasivu-harv .w { opacity: .75; }
+.sanasivu-huom { display: block; font-size: 12px; color: var(--himmea); font-weight: 400; }
+h3 .sanasivu-huom { display: inline; }
+.sanasivu-laatikko { margin-top: 18px; padding: 4px 12px 10px; border: 1px solid var(--viiva); border-radius: 8px; }
+
+/* Neljännesruudukon otsikot (käyttäjä 17.10.2026): portugalin sarakeotsikot (FINLANDÊS, PORTUGUÊS) ovat pidempiä kuin
+   Passon, joten puhelimen 25 %:n sarakkeessa ne katkesivat kesken sanan. Pienempi otsikko, ei katkaisua sanan sisällä. */
+table.neljannes thead th { font-size: 13px; overflow-wrap: normal; word-break: normal; }
+/* Taulukon väliotsikkorivi (Gramática: kaikki sijat yhdessä taulukossa). */
+table tr.taulu-ryhma th { padding-top: 14px; font-size: 14px; color: var(--himmea); text-transform: none; letter-spacing: 0; }
+/* Treino-linkki ryhmäotsakkeen näköisenä (ei avautuvaa nuolta). */
+#valikko a.v-otsake-linkki { text-decoration: none; }
+/* Neljännesruudukon taulukoissa ei solujen välistä rakoa, jotta sarakerajat osuvat samaan kohtaan kaikissa taulukoissa. */
+table.neljannes { border-collapse: collapse; }
+/* Taulukoiden käännökset samalla tyylillä kuin lauseiden käännös (.s .kaannos, assets/tyyli.css): ei uutta tyyliä
+   (käyttäjä 17.10.2026). Näkyvät Tradução-napin mukaan kuten muutkin käännökset (omistaja 18.10.2026; aiemmin aina
+   näkyvissä); ei otsikkosolun lihavointia/versaalia. */
+body:not(.kaannokset-auki) td .kaannos, body:not(.kaannokset-auki) th .kaannos { display: none; }
+/* Esimerkkilauseiden taulukko (assets/asettelu.js esimerkit): Português-sarakkeessa on vain .kaannos, joten Tradução
+   pois = koko sarake pois otsikkoineen; muuten näkyisi tyhjä sarake (omistaja 21.10.2026: ”15B Gramatica 2 has no
+   portuguese translations in table”). Teemasanaston taulukko (.teema-fi) ei muutu. */
+body:not(.kaannokset-auki) table.sanataulu:has(td.lahdesolu > .kaannos) .lahdesolu { display: none; }
+td .kaannos, th .kaannos {
+  display: block; font-size: 15px; color: var(--himmea); line-height: 1.4;
+  font-family: var(--f-fi); font-weight: 400; font-style: normal; text-transform: none; letter-spacing: 0;
+}
+/* Taulukon sanat eivät katkea kesken kirjaimen (auditointi 4 P-C1): Tottakaissa break-word, ei anywhere
+   (assets/tyyli.css). break-word katkaisee vain sanan, joka ei mahdu riville yksinään. */
+table.neljannes td, table.neljannes th { overflow-wrap: break-word; }
+/* Kapea näyttö: ei 9rem-minimiä eikä kiinteää ruudukkoa; selain mitoittaa sarakkeet sisällön mukaan
+   (assets/app.js linjaa jättää leveydet asettamatta alle 560 px). */
+@media (max-width: 560px) {
+  table.neljannes { table-layout: auto; }
+  table.neljannes col, table.neljannes col.ensimmainen { width: auto; }
+}
+/* Oppitunnin sanasto (auditointi 4 P-M8): oppitunnin muut sanat taitettuna uusien sanojen jälkeen. */
+details.sanasto-muut { margin-top: 24px; }
+details.sanasto-muut > summary { cursor: pointer; font-weight: 700; padding: 8px 0; }
+/* Sivuvalikon tulevat oppitunnit (assets/sisallys.js): himmeinä, avautuvat ”em preparação” -sivulle. */
+#valikko li.v-tulossa a { color: var(--himmea); }
+/* Oppitunnin osat A/B (TYONKULKU 11): osien navigointi ja ”seuraava osa” -linkki. */
+.osa-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 18px; }
+.osa-nav a { padding: 6px 14px; border: 1px solid var(--viiva); border-radius: 999px; color: inherit; text-decoration: none; }
+.osa-nav a[aria-current="page"] { background: var(--meri-pehmea); border-color: var(--meri); }
+.osa-seuraava { margin: 24px 0 8px; }
+/* Frases prontas (TYONKULKU 13, auditointi 5 M3): dialogin valmiit ilmaukset, joiden kielioppi tulee myöhemmin. */
+.fraasit-laatikko { border-left: 3px solid var(--meri); background: var(--meri-pehmea); border-radius: 0 12px 12px 0; padding: 10px 16px; margin: 14px 0 20px; }
+.fraasit-laatikko h3 { margin: 0 0 6px; font-size: 16px; }
+.fraasit-laatikko ul { margin: 0; padding-left: 18px; }
+
+/* ---------- Auditointi 5 (17.10.2026) ---------- */
+/* Ei suomen ääntä (C2): body.ei-aanta (assets/app.js paivitaAaniLuokka). Ilmoitusrivi kuuntelutehtävän ja visan alussa,
+   Pular-napit näkyviin, roolileikin napit piiloon. Äänen kanssa mikään näistä ei näy. */
+.ei-aanta-ilmoitus { display: none; margin: 6px 0 10px; padding: 6px 12px; font-size: 14px; border-radius: 8px;
+  border: 1px solid var(--paino); background: color-mix(in srgb, var(--paino) 10%, var(--pinta)); }
+body.ei-aanta .ei-aanta-ilmoitus { display: block; }
+.pular-nappi { display: none; margin: 8px 8px 0 0; }
+body.ei-aanta .pular-nappi { display: inline-block; }
+body.ei-aanta .rooli-nappi { display: none; }
+.valinta.ohitettu, .sanelu.ohitettu { opacity: .6; }
+/* Pieni ilmoitus ▶-napin alla, kun mitään ei voi soittaa (sijainti lasketaan koodissa). */
+.aani-toast { position: absolute; z-index: 95; max-width: min(320px, calc(100vw - 16px)); padding: 8px 12px; border-radius: 10px;
+  font-size: 14px; line-height: 1.35; background: var(--muste); color: var(--paperi); box-shadow: 0 4px 16px rgba(0, 0, 0, .2); pointer-events: none; }
+.aani-toast[hidden] { display: none; }
+
+/* Aukkotehtävä (M8): oikea muoto kentän alla ilman hiirtä. Kenttä pysyy tekstin perusviivalla (inline-flex: ensimmäinen
+   rivi määrää perusviivan). */
+.aukko-kaari { display: inline-flex; flex-direction: column; align-items: flex-start; vertical-align: baseline; }
+.aukko-oikea { font-family: var(--f-pt); font-size: 14px; line-height: 1.3; color: var(--vaarin); padding: 1px 2px 0; }
+.aukko-oikea[data-laji="aksentti"] { color: var(--oikein); }
+.autoarvio { margin: 4px 0 10px; font-size: 14px; color: var(--himmea); }
+
+/* Ydinsanalaatikko (M1): ”8 palavras que aparecem em toda conversa”. */
+.ydin-laatikko .ydin-lista { list-style: none; padding: 0; margin: 8px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 6px 16px; }
+.ydin-lista li { display: flex; align-items: baseline; gap: 8px; padding: 4px 0; border-bottom: 1px dashed var(--viiva); }
+.ydin-lista li .w { font-family: var(--f-pt); font-size: 18px; font-weight: 600; }
+.ydin-merkitys { color: var(--himmea); font-size: 15px; }
+
+/* Dialogin käännös piilossa ensimmäisellä käynnillä (m1), vaikka Tradução olisi päällä. */
+.kaannokset-auki .kpl.kaannos-piilossa .s .kaannos { display: none; }
+
+/* Sivuvalikon valmis-merkki ✓ (M6). */
+#valikko a.tehty::after { content: "✓"; margin-left: auto; padding-left: 6px; color: var(--oikein); font-weight: 700; }
+#valikko a.tehty.nyt::after { color: inherit; }
+
+/* Etusivu (M10, M7): pääpainike, lyhyt ”Como funciona” ja Hoje. */
+.etusivu-aloitus { margin: 18px 0 0; }
+.paanappi { display: inline-block; font-weight: 700; font-size: 18px; padding: 12px 22px; border-radius: 12px; text-decoration: none;
+  border: 1px solid var(--meri); background: var(--meri); color: var(--pinta); }
+.paanappi:hover { filter: brightness(1.08); }
+.paanappi.toissijainen { font-size: 16px; padding: 8px 16px; background: var(--pinta); color: var(--meri); }
+.ohjeet.ohjeet-lyhyt { list-style: none; padding-left: 0; }
+.ohjeet-lyhyt li { display: flex; gap: 12px; align-items: flex-start; }
+.ohje-ikoni { font-size: 22px; line-height: 1.2; flex: none; width: 1.5em; text-align: center; }
+.hoje-jatka { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.hoje-mista { color: var(--himmea); font-size: 14px; }
+.hoje-jono { list-style: none; padding: 0; margin: 6px 0 0; display: grid; gap: 4px; }
+.hoje-jono li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 4px 0; border-bottom: 1px dashed var(--viiva); }
+.hoje-teksti { font-family: var(--f-pt); font-size: 17px; }
+.hoje-teksti[lang="pt-BR"] { font-family: var(--f-fi); }
+.hoje-jono li a { margin-left: auto; font-size: 14.5px; }
+.hoje h3 { margin: 14px 0 4px; font-size: 16px; }
+.hoje-putki { margin: 8px 0 0; font-size: 15px; color: var(--himmea); }
+
+/* Puhuja ilman piirrettyä kuvaa: värillinen ympyrä puhujan värillä (käyttäjä 17.10.2026). */
+.puhuja-paikka { background: var(--pv); }
+/* Valikon ”Parte B” samannäköisenä kuin oppituntien otsikot (käyttäjä 17.10.2026). */
+#valikko a.v-ala.v-osa { font-size: inherit; color: var(--muste); padding-top: 6px; padding-bottom: 6px; }
+#valikko a.v-ala.v-osa.nyt { color: var(--paperi); }
+/* Pitkä puhujan nimi (ATENDENTE DO CAFÉ) rivittyy omassa sarakkeessaan eikä mene repliikin päälle (käyttäjä 17.10.2026). */
+.s.on-puhuja .puhuja:has(.puhuja-kasvo) { white-space: normal; min-width: 0; line-height: 1.2; }
+
+/* ---------- Pomotaistelu (assets/pomo.js, PELILLISTAMINEN §4): kertauksen lopun pomo ----------
+   Areena on saaren väreissä (vesi ja hiekka, kuten .ilha-kuva); pomo lähestyy vasemmalta Maiaa (left lasketaan
+   koodissa matkan mukaan). Kysymys, napit ja palaute käyttävät visan ja Treenin luokkia (.visa, .vaihtoehdot, .palaute). */
+.pomo { position: relative; display: block; }
+/* Varoituskyltti (omistaja 20.10.2026): vinossa oikealla (float: Capivaran kupla kiertää sen); kapealla ruudulla yläpuolella. */
+.pomo-vaara-kyltti { position: relative; z-index: 1; float: right; width: 210px; aspect-ratio: 240 / 150; margin: -22px 4px 10px 14px;
+  transform: rotate(7deg); filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .45)); pointer-events: none; }
+.pomo::after { content: ""; display: block; clear: both; }
+.pomo-vaara-kyltti svg { display: block; width: 100%; height: 100%; }
+@media (max-width: 900px) {
+  .pomo-vaara-kyltti { float: none; display: block; width: 180px; margin: 4px auto 12px; transform: rotate(-3deg); }
+}
+.pomo-areena { position: relative; height: 132px; margin: 10px 0 12px; border-radius: 14px; overflow: hidden;
+  background: linear-gradient(#9fd3d8 0 58%, #f3dfa2 58% 100%); }
+.pomo-peto { position: absolute; left: 0; bottom: 4px; width: 110px; height: 104px; transition: left .5s ease, opacity .6s, transform .6s; }
+.pomo-peto svg { display: block; width: 100%; height: 100%; }
+.pomo-areena .pomo-maia { position: absolute; right: 12px; bottom: 16px; width: 64px; height: 64px; box-shadow: 0 0 0 3px var(--pinta); }
+.pomo-areena[data-lahella="5"], .pomo-areena[data-lahella="6"] { box-shadow: inset 0 0 0 3px var(--vaarin); }
+.pomo-areena.osuma .pomo-peto { animation: pomo-osuma .6s ease; }
+.pomo-areena.lahestyy .pomo-maia { animation: pomo-varina .6s ease; }
+.pomo-areena.voitettu .pomo-peto { opacity: .2; transform: translateY(24px) scale(.8); }
+.pomo-heitto { position: absolute; right: 78px; bottom: 58px; font-family: var(--f-pt); font-size: 20px; font-weight: 700; color: #fff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, .6); pointer-events: none; animation: pomo-heitto .9s ease-in forwards; }
+@keyframes pomo-osuma { 0%, 100% { transform: none; filter: none; } 20% { transform: translateX(-8px) rotate(-4deg); filter: brightness(1.6); } 50% { transform: translateX(6px) rotate(3deg); } }
+@keyframes pomo-varina { 0%, 100% { transform: none; } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+@keyframes pomo-heitto { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateX(-150px) scale(1.3); } }
+.pomo-mittarit { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+.pomo-elama { flex: 1 1 160px; height: 14px; border-radius: 7px; background: var(--viiva); overflow: hidden; }
+.pomo-elama-taso { display: block; width: 100%; height: 100%; background: linear-gradient(90deg, var(--vaarin), #e07b00); transition: width .4s ease; }
+.pomo-valinnat { display: grid; gap: 8px; margin: 10px 0 14px; }
+.pomo-kehys { min-height: 150px; }
+.pomo-juhla { display: flex; align-items: center; gap: 12px; }
+.pomo-juhla p { margin: 0; }
+.pomo-juhla-kasvo { width: 72px; height: 72px; }
+/* Saaren palkinto (Pomo.palkinnot): poreallas hahmojen vieressä. */
+.ilha-kuva:has(.ilha-palkinto) { flex-wrap: wrap; align-items: flex-end; }
+.ilha-palkinto { display: inline-block; flex: none; width: 150px; height: 108px; }
+.ilha-palkinto svg { display: block; width: 100%; height: 100%; }
+@media (max-width: 640px) {
+  .pomo-areena { height: 112px; }
+  .pomo-peto { width: 84px; height: 80px; }
+  .pomo-areena .pomo-maia { width: 52px; height: 52px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pomo-peto, .pomo-elama-taso { transition: none; }
+  .pomo-areena.osuma .pomo-peto, .pomo-areena.lahestyy .pomo-maia { animation: none; }
+  .pomo-heitto { animation: none; opacity: .9; }
+}
+/* Pomotaistelun tarina (omistaja 17.10.2026): lasien luovutus (.pomo-lahja), tyrmäys ja pelastus, voiton juhla ja
+   juhlat saarella. Samat saaren värit ja piirrostyyli (kuvitus.js: tasaiset täytöt); liike vain ilman reduced-motionia. */
+.pomo-lahja { margin: 12px 0 16px; }
+.pomo-lahja p { margin: 8px 0 0; }
+.pomo-lahja-kuva { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px 16px; padding: 14px;
+  border-radius: 14px; background: linear-gradient(#9fd3d8 0 58%, #f3dfa2 58% 100%); }
+.pomo-lahja-kasvo { width: 84px; height: 84px; box-shadow: 0 0 0 3px var(--pinta); }
+.pomo-lahja-lasit { display: inline-block; flex: none; width: 120px; height: 43px; animation: pomo-lahja 1.2s ease-in-out 6 alternate; }
+.pomo-lahja-lasit svg { display: block; width: 100%; height: 100%; }
+@keyframes pomo-lahja { from { transform: translateX(-6px) rotate(-5deg); } to { transform: translateX(6px) translateY(-4px) rotate(4deg); } }
+/* Tähdet tyrmätyn Maian pään yllä (turvapaikassa). */
+.pomo-tahdet { position: absolute; left: 0; right: 0; bottom: 92%; display: flex; justify-content: space-around; pointer-events: none;
+  color: #f2d21b; font-size: 18px; line-height: 1; text-shadow: 0 1px 2px rgba(0, 0, 0, .5); }
+.pomo-tahdet span { animation: pomo-tahti 1s ease-in-out infinite alternate; }
+.pomo-tahdet span:nth-child(2) { animation-delay: .35s; font-size: 14px; }
+.pomo-tahdet span:nth-child(3) { animation-delay: .7s; }
+@keyframes pomo-tahti { from { transform: translateY(0) scale(.8); opacity: .6; } to { transform: translateY(-8px) scale(1.15); opacity: 1; } }
+/* Koko ruudun areena (Pomo: avaa). Kehys .vp (kuvitus.css: fixed, z-index 100; body.vp-auki: sivu ei vieri alla).
+   Yöranta, oma HUD, peto tulee kohti katsojaa (korkeus ja alareuna lasketaan koodissa), Maia alapalkissa (AV-026). */
+body.pomo-auki .kupla, body.pomo-auki .aani-toast { z-index: 130 !important; }
+.pomo-ruutu { background: #0d0714; }
+.pomo-ruutu.turvassa { background: #12333b; }
+.pomo-hud { flex-wrap: wrap; gap: 6px 12px; padding: 8px 12px; }
+.pomo-hud b { flex: none; color: #ffd166; font-family: var(--f-pt); letter-spacing: .02em; }
+.pomo-hud .pomo-elama { flex: 1 1 140px; background: rgba(255, 255, 255, .15); }
+.pomo-hud .visa-tila { color: #e9d7ff; font-family: var(--f-aa); font-size: 13px; }
+.pomo-matka { display: inline-flex; gap: 4px; }
+.pomo-matka span { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, .18); }
+.pomo-matka span.lahella { background: #ff3b5c; box-shadow: 0 0 6px #ff3b5c; }
+.pomo-ruutu .vp-pieni { min-width: 44px; min-height: 44px; }
+.pomo-aani { font-size: 18px; line-height: 1; }
+.pomo-naytto { position: relative; flex: 1 1 auto; min-height: 170px; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 70%, #4a1d5e 0, #24102f 45%, #0d0714 80%); }
+.pomo-horisontti { position: absolute; left: 0; right: 0; bottom: 0; height: 32%; background: linear-gradient(#3a2a2f, #1c1418);
+  border-top: 2px solid rgba(255, 140, 90, .4); }
+.pomo-naytto .pomo-peto { left: 50%; width: auto; aspect-ratio: 110 / 104; transform: translateX(-50%); z-index: 1;
+  transition: height .45s cubic-bezier(.2, .8, .3, 1.15), bottom .45s ease, opacity .3s; filter: drop-shadow(0 0 18px rgba(255, 60, 90, .35)); }
+.pomo-naytto .pomo-peto svg { transform-origin: 50% 85%; }
+.pomo-naytto.osuma .pomo-peto svg { animation: pomo-saps .45s ease; }
+@keyframes pomo-saps { 0%, 100% { transform: none; filter: none; } 25% { transform: scale(.82) translateY(4%); filter: brightness(2.3); } }
+.pomo-naytto.lahestyy .pomo-peto svg { animation: pomo-askel .5s ease; }
+@keyframes pomo-askel { 0%, 100% { transform: none; } 40% { transform: translateY(-6%); } 70% { transform: translateY(1%); } }
+.pomo-naytto.vaara::after { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; box-shadow: inset 0 0 90px rgba(255, 20, 50, .6);
+  animation: pomo-vaara .7s ease-in-out infinite alternate; }
+@keyframes pomo-vaara { from { opacity: .4; } to { opacity: 1; } }
+.pomo-naytto .pomo-heitto { right: auto; left: 50%; bottom: 14%; z-index: 3; font-size: 30px; animation: pomo-heitto-syvyys .8s ease-in forwards; }
+@keyframes pomo-heitto-syvyys { from { opacity: 1; transform: translateX(-50%) scale(1.5); } to { opacity: 0; transform: translate(-50%, -160px) scale(.4); } }
+/* Välähdykset: osuma valkoinen; virhe punainen ja sininen (värien erkaantuminen) + tärinä n. 400 ms. */
+.pomo-valo { position: absolute; inset: 0; z-index: 4; pointer-events: none; opacity: 0; }
+.pomo-ruutu.isku .pomo-valo { background: #fff; animation: pomo-valkea .35s ease-out; }
+@keyframes pomo-valkea { from { opacity: .7; } to { opacity: 0; } }
+.pomo-ruutu.virhe .pomo-valo { background: linear-gradient(90deg, rgba(255, 0, 60, .6), rgba(255, 0, 60, 0) 45%, rgba(0, 110, 255, 0) 55%, rgba(0, 110, 255, .6));
+  mix-blend-mode: screen; animation: pomo-rgb .4s steps(4); }
+@keyframes pomo-rgb { 0% { opacity: 1; transform: translateX(-14px); } 33% { opacity: .9; transform: translateX(14px); } 66% { opacity: .8; transform: translateX(-6px); } 100% { opacity: 0; transform: none; } }
+.pomo-ruutu.virhe .pomo-naytto .pomo-peto { filter: drop-shadow(-10px 0 0 rgba(255, 0, 64, .85)) drop-shadow(10px 0 0 rgba(0, 140, 255, .85)); }
+.pomo-ruutu.virhe .pomo-naytto, .pomo-ruutu.virhe .pomo-ohjaus { animation: pomo-tarina .4s linear; }
+@keyframes pomo-tarina { 0%, 100% { transform: none; } 15% { transform: translate(-10px, 4px) rotate(-.6deg); } 30% { transform: translate(9px, -5px) rotate(.5deg); }
+  45% { transform: translate(-7px, 3px); } 60% { transform: translate(6px, -2px); } 80% { transform: translate(-3px, 1px); } }
+/* Kysymyskortti areenan alaosassa (sama .visa kuin muualla, vaalea kortti tummalla pohjalla). */
+.pomo-ohjaus { flex: 0 1 auto; max-height: 56%; overflow-y: auto; padding: 10px 12px 14px; }
+.pomo-ohjaus .pomo-kehys { max-width: 760px; min-height: 0; margin: 0 auto; color: var(--muste); background: var(--pinta); }
+.pomo-ruutu .vaihtoehdot button, .pomo-ruutu .visa-seuraava, .pomo-ruutu .visa-aloita, .pomo-ruutu .pieni-nappi { min-height: 44px; }
+.pomo-ruutu.tuloksessa .pomo-ohjaus { max-height: 72%; }
+.pomo-ruutu.tuloksessa .pomo-naytto { min-height: 110px; }
+.pomo-ruutu.turvassa .pomo-hud .pomo-elama, .pomo-ruutu.turvassa .pomo-hud .visa-tila, .pomo-ruutu.turvassa .pomo-hud .pomo-matka { visibility: hidden; }
+/* AV-026, tarkennus 20.10.2026 (omistaja: ”full screen”, ”similar to the ui of doom”, ”I want them staring at the beast”):
+   areena koko leveydeltä, peto keskellä; kirjoitus-UI ja Maian kuvake yhdessä alareunan keskellä (.pomo-ohjaus = palkki).
+   Fontit ennallaan; vain suomen sana ja käännös lähes kysymyksen kokoisia, sana kirkkaalla korostuksella (.pomo-sana).
+   Isku = koko näytön sivuttainen palkki (ei lasersädettä); väärä = Maia tärisee. */
+.pomo-runko { position: relative; display: flex; flex-direction: column; flex: 1 1 auto; min-height: 0; }
+.pomo-runko > .pomo-ohjaus { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.pomo-ohjaus .pomo-kehys { flex: 0 1 620px; min-width: 0; max-width: 620px; margin: 0; }
+.pomo-maia-ruutu { flex: none; line-height: 0; }
+.pomo-maia-ruutu .pomo-maia { display: block; width: 112px; height: 112px; box-shadow: 0 0 0 3px #ffd166, 0 6px 20px rgba(0, 0, 0, .6); }
+.pomo-ruutu.tuloksessa .pomo-maia-ruutu, .pomo-ruutu.turvassa .pomo-maia-ruutu { display: none; }
+.pomo-ruutu.virhe .pomo-maia-ruutu .pomo-maia { animation: pomo-maia-tarina .5s linear; }
+.pomo-ruutu.kiinni .pomo-maia-ruutu .pomo-maia { animation: pomo-varina .3s linear 3; }
+@keyframes pomo-maia-tarina { 0%, 100% { transform: none; } 15% { transform: translateX(-9px) rotate(-6deg); } 35% { transform: translateX(8px) rotate(5deg); }
+  55% { transform: translateX(-6px) rotate(-3deg); } 75% { transform: translateX(4px) rotate(2deg); } }
+.pomo-ruutu .visa-ohje { font-size: 24px; }
+.pomo-sana { padding: 0 8px; border-radius: 6px; font-weight: 700; color: #1a1020; background: #ffe14d; box-shadow: 0 0 0 2px #ff9f1c; }
+.pomo-ruutu .treeni-kirjoitus { flex-wrap: wrap; }
+/* Kortti pysyy saman kokoisena (omistaja 20.10.2026): palautteelle kiinteä korkeus (pisin väärän vastauksen selitys
+   mahtuu), napautustilan Continuar on paikallaan mutta näkymätön, kunnes vastaus on annettu. */
+.pomo-ruutu .pomo-kehys .palaute { min-height: 4.6em; margin: 6px 0; }
+.pomo-ruutu .visa-seuraava.pomo-odottaa { visibility: hidden; }
+/* Napautustila (omistaja 20.10.2026: ”bring up the continuar button on the side, not at the bottom”): Continuar kortin
+   oikeassa yläkulmassa kysymyksen vieressä; kysymysrivi jättää sille tilaa, joten kortin koko ei muutu. */
+.pomo-ruutu .pomo-kehys { position: relative; }
+.pomo-ruutu .pomo-jatko-sivu { position: absolute; top: 14px; right: 14px; margin: 0; }
+.pomo-ruutu .pomo-kehys.napautus .visa-kysymys { padding-right: 150px; }
+@media (max-width: 640px) { .pomo-ruutu .pomo-kehys.napautus .visa-kysymys { padding-right: 0; padding-top: 50px; } }
+.pomo-ruutu .treeni-syote { min-width: 0; flex: 1 1 160px; }
+/* Sivuttainen palkki: kirkas viisto valokaista pyyhkäisee koko näytön yli vasemmalta oikealle. */
+.pomo-pyyhkaisy { position: absolute; top: 0; bottom: 0; left: 0; z-index: 6; width: 30vw; pointer-events: none;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, .85) 45%, rgba(255, 241, 150, .9) 55%, rgba(255, 255, 255, 0));
+  transform: translateX(-40vw) skewX(-18deg); animation: pomo-pyyhkaisy .5s ease-in forwards; }
+@keyframes pomo-pyyhkaisy { to { transform: translateX(130vw) skewX(-18deg); } }
+@media (max-width: 640px) {
+  .pomo-runko > .pomo-ohjaus { gap: 8px; }
+  .pomo-maia-ruutu .pomo-maia { width: 56px; height: 56px; }
+  .pomo-ruutu .visa-ohje { font-size: 21px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pomo-ruutu.virhe .pomo-maia-ruutu .pomo-maia, .pomo-ruutu.kiinni .pomo-maia-ruutu .pomo-maia { animation: none; }
+  .pomo-pyyhkaisy { display: none; }
+}
+/* Omistaja 21.10.2026: ”make it thinner … make margins smaller. Keep it in the same location … Remove the background
+   completely so the boss arena shows behind the ui box … On wrong answer, show the red text as a popup inside a thought
+   bubble coming from maias icon.” Taistelun aikana (ei tulosnäkymässä) alapalkki on areenan päällä ilman taustaa ja areena
+   täyttää koko rungon. --pomo-ala = palkin korkeus (pomo.js, ResizeObserver): horisontti, peto ja heitto mitoitetaan palkin
+   yläpuolelle jäävästä näyttämöstä kuten ennen (korkeus 24 % → 190 %, alareuna 30 % → −55 %); lattia jatkuu palkin alle. */
+.pomo-runko { --pomo-ala: 0px; }
+.pomo-ruutu.tuloksessa .pomo-runko { --pomo-ala: 0px !important; }
+.pomo-ruutu:not(.tuloksessa) .pomo-runko > .pomo-ohjaus { position: absolute; left: 0; right: 0; bottom: 0; z-index: 5; max-height: none;
+  overflow: visible; padding: 4px 10px 6px; background: none; pointer-events: none; }
+.pomo-ruutu:not(.tuloksessa) .pomo-ohjaus > * { pointer-events: auto; }
+.pomo-horisontti { height: calc(var(--pomo-ala, 0px) + (100% - var(--pomo-ala, 0px)) * .32); }
+.pomo-naytto .pomo-peto { --t: 0; height: calc((100% - var(--pomo-ala, 0px)) * (.24 + 1.66 * var(--t)));
+  bottom: calc(var(--pomo-ala, 0px) + (100% - var(--pomo-ala, 0px)) * (.30 - .85 * var(--t))); }
+.pomo-naytto .pomo-heitto { bottom: calc(var(--pomo-ala, 0px) + (100% - var(--pomo-ala, 0px)) * .14); }
+.pomo-pamaus { top: calc((100% - var(--pomo-ala, 0px)) * .45); }
+/* Ohuempi kortti: pienemmät välit, sama sijainti ja fontit; palaute ei ole kortissa (ajatuskupla alla). */
+.pomo-ruutu:not(.tuloksessa) .pomo-kehys { gap: 6px; padding: 10px 14px; max-height: 58vh; overflow-y: auto; }
+.pomo-ruutu:not(.tuloksessa) .pomo-kehys .treeni-kirjoitus, .pomo-ruutu:not(.tuloksessa) .pomo-kehys .vaihtoehdot { margin: 0; }
+.pomo-ruutu:not(.tuloksessa) .pomo-kehys .visa-kysymys { gap: 2px 14px; }
+.pomo-ruutu:not(.tuloksessa) .pomo-jatko-sivu { top: 8px; right: 10px; }
+/* Syöte ja nappi aina samalla rivillä: Atacar → Continuar ei saa rivittää korttia korkeammaksi (puhelin). */
+.pomo-ruutu:not(.tuloksessa) .pomo-kehys .treeni-kirjoitus { flex-wrap: nowrap; }
+.pomo-ruutu:not(.tuloksessa) .pomo-kehys { grid-template-columns: minmax(0, 1fr); }
+.pomo-ruutu:not(.tuloksessa) .pomo-kehys .treeni-syote { flex: 1 1 0; width: 0; min-width: 0; }
+.pomo-ruutu:not(.tuloksessa) .pomo-kehys .treeni-kirjoitus .pieni-nappi { flex: none; }
+/* Ajatuskupla: Maian kuvakkeen vasemmalla puolella, kaksi pientä palloa kohti Maiaa; kapeammalla ruudulla kuvakkeen yllä. */
+.pomo-maia-ruutu { position: relative; }
+.pomo-ajatus { position: absolute; right: calc(100% + 34px); bottom: 0; z-index: 6; width: max(240px, min(400px, calc(50vw - 420px)));
+  padding: 10px 14px; border-radius: 18px; background: #fffaf2; color: #2b2b2b; box-shadow: 0 6px 18px rgba(0, 0, 0, .45);
+  font-size: 14.5px; line-height: 1.45; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .15s, visibility 0s .15s; }
+.pomo-ajatus.nakyy { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity .15s; animation: pomo-ajatus .25s ease-out; }
+.pomo-ajatus::before, .pomo-ajatus::after { content: ""; position: absolute; border-radius: 50%; background: #fffaf2; box-shadow: 0 3px 8px rgba(0, 0, 0, .35); }
+.pomo-ajatus::before { width: 16px; height: 16px; right: -24px; bottom: 34px; }
+.pomo-ajatus::after { width: 9px; height: 9px; right: -36px; bottom: 26px; }
+.pomo-ajatus .palaute { margin: 0; min-height: 0; font-size: inherit; }
+.pomo-ajatus .palaute.ei { color: #b3261e; }
+@keyframes pomo-ajatus { from { opacity: 0; transform: scale(.85); } to { opacity: 1; transform: none; } }
+@media (max-width: 1180px) {
+  .pomo-ajatus { right: auto; left: 0; bottom: var(--pomo-kupla-ala, calc(100% + 30px)); width: min(420px, calc(100vw - 24px)); }
+  .pomo-ajatus::before { right: auto; left: 34px; bottom: -22px; }
+  .pomo-ajatus::after { right: auto; left: 22px; bottom: -36px; }
+}
+@media (prefers-reduced-motion: reduce) { .pomo-ajatus.nakyy { animation: none; } }
+/* Pedon piirros saa näkyä viewBoxin ulkopuolelle (krakenin lonkeroiden päätelaput -aan ja -lla leikkautuivat alareunasta). */
+.pomo-naytto .pomo-peto svg { overflow: visible; }
+/* Ilmoitukset (+🍊, Bom dia) taistelun aikana HUDin alle, ei syötteen päälle. */
+body.pomo-auki .aani-toast.mandariini-toast, body.pomo-auki .aani-toast { top: calc(68px + env(safe-area-inset-top, 0px)) !important; bottom: auto !important; }
+/* Alku (AV-027): vain Capivaran kuvake, kommentti ja aloitusnappi. */
+.pomo-alku { margin: 6px 0 14px; }
+.pomo-alku-kasvo { flex: none; width: 72px; height: 72px; box-shadow: 0 0 0 3px var(--pinta), 0 4px 12px rgba(0, 0, 0, .25); }
+/* Loppuisku: hidastettu isku, pamaus ja konfetti koko näytölle. */
+.pomo-naytto.loppuisku .pomo-peto svg { animation: pomo-hidas 1.4s cubic-bezier(.2, .1, .2, 1) forwards; }
+@keyframes pomo-hidas { 0% { transform: none; filter: none; } 10% { transform: scale(.9); filter: brightness(3); }
+  60% { transform: scale(.94) rotate(-4deg); filter: brightness(1.6) saturate(1.6); } 100% { transform: scale(1.05) rotate(3deg); filter: brightness(2.6); } }
+.pomo-naytto.rajahti .pomo-peto { opacity: 0; }
+.pomo-pamaus { position: absolute; left: 50%; top: 45%; z-index: 3; width: 40vmin; height: 40vmin; margin: -20vmin 0 0 -20vmin; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, #fff 0, #ffd166 30%, rgba(255, 120, 60, .6) 55%, rgba(255, 60, 90, 0) 70%); animation: pomo-pamaus .7s ease-out forwards; }
+@keyframes pomo-pamaus { from { transform: scale(.2); opacity: 1; } to { transform: scale(2.6); opacity: 0; } }
+.pomo-naytto .pomo-konfetti { z-index: 3; }
+.pomo-naytto .pomo-konfetti span { width: 10px; height: 15px; animation-name: pomo-konfetti-iso; animation-duration: 2.6s; }
+@keyframes pomo-konfetti-iso { 0% { opacity: 1; transform: translateY(0) rotate(0); } 100% { opacity: .9; transform: translateY(75vh) rotate(720deg); } }
+/* Peto saa Maian: syöksy ruudun täyteen, sitten silmät sulkeutuvat (luomet, sumeus, musta) ja aukeavat turvapaikassa. */
+.pomo-naytto.kiinni .pomo-peto { height: 330% !important; bottom: -160% !important; transition: height .3s cubic-bezier(.6, 0, .9, .5), bottom .3s ease-in; }
+.pomo-silmat { position: absolute; inset: 0; z-index: 10; pointer-events: none; overflow: hidden; }
+.pomo-luomi { position: absolute; left: -10%; right: -10%; height: 0; background: #000; }
+.pomo-luomi:first-child { top: 0; border-radius: 0 0 50% 50% / 0 0 40% 40%; }
+.pomo-luomi:last-child { bottom: 0; border-radius: 50% 50% 0 0 / 40% 40% 0 0; }
+.pomo-ruutu.sulkeutuu .pomo-luomi { animation: pomo-luomet 1.3s ease-in forwards; }
+@keyframes pomo-luomet { 0% { height: 0; } 35% { height: 40%; } 50% { height: 26%; } 80% { height: 46%; } 100% { height: 56%; } }
+.pomo-ruutu.sulkeutuu .pomo-naytto, .pomo-ruutu.sulkeutuu .pomo-ohjaus { filter: blur(7px) brightness(.55); transition: filter 1.1s ease-in; }
+.pomo-silmat.aukeaa .pomo-luomi { animation: pomo-aukeaa 1.3s ease-out forwards; }
+@keyframes pomo-aukeaa { 0% { height: 56%; } 40% { height: 30%; } 55% { height: 38%; } 100% { height: 0; } }
+/* Turvapaikka: saaren riippumatto (Maia lepää lasit vinossa, tähdet), Capivara ja Peixe-boi vieressä. */
+.pomo-naytto.pomo-turva { display: flex; align-items: center; justify-content: center; background: linear-gradient(#9fd3d8 0 58%, #f3dfa2 58% 100%); }
+.pomo-turva-nayttamo { position: relative; width: min(560px, 92%); max-height: 94%; aspect-ratio: 300 / 150; }
+.pomo-turva-kuva { position: absolute; inset: 0; }
+.pomo-turva-kuva svg { display: block; width: 100%; height: 100%; }
+.pomo-turva-maia { position: absolute; left: 40%; top: 34%; width: 20%; aspect-ratio: 1; }
+.pomo-turva-kasvo { display: block; width: 100%; height: 100%; transform: rotate(-75deg); box-shadow: 0 0 0 3px var(--pinta); }
+.pomo-turva-kaveri { position: absolute; bottom: 0; width: 18%; height: auto; aspect-ratio: 1; box-shadow: 0 0 0 3px var(--pinta); }
+.pomo-turva-nayttamo > .pomo-turva-kaveri:nth-child(3) { left: 0; }
+.pomo-turva-nayttamo > .pomo-turva-kaveri:nth-child(4) { right: 0; }
+/* Voitto: konfetti ja kolmikko hyppii. Konfetin vaakasijainti lasketaan koodissa (left), värit ja viiveet tässä. */
+.pomo-voitto { position: relative; display: flex; align-items: flex-end; justify-content: center; height: 128px; margin: 8px 0 10px; padding-bottom: 10px;
+  border-radius: 14px; overflow: hidden; background: linear-gradient(#9fd3d8 0 50%, #f3dfa2 50% 100%); }
+.pomo-voitto-ryhma { position: relative; display: flex; align-items: flex-end; gap: 12px; }
+.pomo-voitto-kasvo { width: 72px; height: 72px; box-shadow: 0 0 0 3px var(--pinta); animation: pomo-hyppy .45s ease-in-out 8 alternate; }
+.pomo-voitto-kasvo:nth-child(2) { animation-delay: .15s; }
+.pomo-voitto-kasvo:nth-child(3) { animation-delay: .3s; }
+@keyframes pomo-hyppy { from { transform: none; } to { transform: translateY(-16px) rotate(4deg); } }
+.pomo-konfetti { position: absolute; inset: 0; pointer-events: none; }
+.pomo-konfetti span { position: absolute; top: -14px; width: 8px; height: 12px; border-radius: 2px; background: #e2574c; opacity: 0;
+  animation: pomo-konfetti 2.4s linear 2 both; }
+.pomo-konfetti span:nth-child(4n+2) { background: #ffd166; }
+.pomo-konfetti span:nth-child(4n+3) { background: #2a9d8f; }
+.pomo-konfetti span:nth-child(4n) { background: #ff8fab; }
+.pomo-konfetti span:nth-child(3n) { animation-delay: .5s; }
+.pomo-konfetti span:nth-child(3n+1) { animation-delay: 1s; }
+.pomo-konfetti span:nth-child(5n) { width: 7px; height: 7px; border-radius: 50%; }
+@keyframes pomo-konfetti { 0% { opacity: 1; transform: translateY(0) rotate(0); } 100% { opacity: .9; transform: translateY(160px) rotate(540deg); } }
+/* Juhlat saarella (Pomo.juhla): rantatalo, lippunauha ja valot, juhlahatut ja Maia vieraana. */
+.ilha-kuva.ilha-juhlii { position: relative; flex-wrap: wrap; align-items: flex-end; row-gap: 34px; padding-top: 72px; }
+.ilha-koristeet { position: absolute; top: 6px; left: 10px; right: 10px; height: 46px; pointer-events: none; }
+.ilha-koristeet svg { display: block; width: 100%; height: 100%; }
+/* Rantatalo (omistaja 20.10.2026: ”the beach house is fucking tiny! Its a doll house”): vieraiden muotokuvia (~120 px) selvästi isompi. */
+.ilha-talo { display: inline-block; flex: none; width: 300px; height: 280px; max-width: 46%; }
+.ilha-talo svg { display: block; width: 100%; height: 100%; }
+.ilha-vieras { position: relative; display: inline-block; flex: none; line-height: 0; animation: ilha-tanssi .8s ease-in-out 12 alternate; }
+.ilha-vieras:nth-child(even) { animation-delay: .4s; }
+@keyframes ilha-tanssi { from { transform: rotate(-4deg); } to { transform: translateY(-6px) rotate(4deg); } }
+.ilha-hattu { position: absolute; top: -30px; left: 50%; width: 38px; height: 44px; margin-left: -19px; transform: rotate(-12deg); }
+.ilha-vieras:nth-child(even) .ilha-hattu { transform: rotate(12deg); }
+.ilha-hattu svg { display: block; width: 100%; height: 100%; }
+.ilha-valo { animation: ilha-valo 1.2s ease-in-out infinite alternate; }
+.ilha-valo:nth-of-type(odd) { animation-delay: .6s; }
+@keyframes ilha-valo { from { opacity: 1; } to { opacity: .35; } }
+.ilha-juhla-teksti { margin: -4px 0 14px; }
+.ilha-juhla-teksti p { margin: 4px 0; }
+@media (max-width: 640px) {
+  .pomo-lahja-kasvo { width: 64px; height: 64px; }
+  .pomo-lahja-lasit { width: 96px; height: 34px; }
+  .pomo-tahdet { font-size: 14px; }
+  .pomo-voitto-kasvo { width: 60px; height: 60px; }
+  .pomo-hud { padding: 6px 10px; gap: 4px 10px; }
+  .pomo-hud b { flex: 1 1 auto; }
+  .pomo-hud .pomo-elama { order: 2; flex: 1 1 50px; }
+  .pomo-hud .visa-tila { order: 3; font-size: 12px; }
+  .pomo-hud .pomo-matka { order: 4; }
+  .pomo-naytto { min-height: 150px; }
+  .pomo-ohjaus { max-height: 60%; padding: 8px 8px 10px; }
+  .pomo-turva-nayttamo { width: 96%; }
+  .ilha-kuva.ilha-juhlii { gap: 30px 10px; padding: 64px 12px 16px; }
+  .ilha-juhlii .ilha-talo { width: 190px; height: 177px; max-width: 60%; }
+  .ilha-juhlii .ilha-vieras .hahmokuva { width: 80px; height: 80px; }
+  .ilha-hattu { top: -24px; width: 30px; height: 35px; margin-left: -15px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pomo-lahja-lasit, .pomo-tahdet span, .pomo-voitto-kasvo, .ilha-vieras, .ilha-valo { animation: none; }
+  .pomo-konfetti span { animation: none; opacity: 1; top: 12px; transform: rotate(25deg); }
+  .pomo-konfetti span:nth-child(odd) { top: 38px; transform: rotate(-20deg); }
+  /* Areena: ei tärinää, syöksyä, hidastusta eikä silmien räpsyntää; virheestä vain lyhyt värisävy, kiinni = nopea häivytys mustaan. */
+  .pomo-naytto .pomo-peto, .pomo-naytto.kiinni .pomo-peto { transition: none; }
+  .pomo-naytto.kiinni .pomo-peto { height: 190% !important; bottom: -55% !important; }
+  .pomo-naytto.osuma .pomo-peto svg, .pomo-naytto.lahestyy .pomo-peto svg, .pomo-naytto.loppuisku .pomo-peto svg, .pomo-naytto.kiinni .pomo-maia,
+  .pomo-naytto.vaara::after, .pomo-naytto .pomo-heitto, .pomo-ruutu.virhe .pomo-naytto, .pomo-ruutu.virhe .pomo-ohjaus { animation: none; }
+  .pomo-naytto .pomo-heitto { opacity: 0; }
+  .pomo-ruutu.virhe .pomo-valo { animation: none; opacity: .55; transform: none; }
+  .pomo-ruutu.isku .pomo-valo { animation: none; opacity: .25; }
+  .pomo-pamaus { display: none; }
+  .pomo-luomi { display: none; }
+  .pomo-silmat { background: #000; opacity: 0; transition: opacity .3s; }
+  .pomo-ruutu.sulkeutuu .pomo-silmat { opacity: 1; }
+  .pomo-silmat.aukeaa { opacity: 0; }
+  .pomo-ruutu.sulkeutuu .pomo-naytto, .pomo-ruutu.sulkeutuu .pomo-ohjaus { filter: none; transition: none; }
+}
+
+/* ---------- Pelit (assets/pelit.js; oppitunnit 3–5, reitit #peli-<id>) ----------
+   Kehys ja osat ovat olemassa olevia: Manaattila (section.osio.manaattila), .valinta-kortti, .vaihtoehdot, .palaute,
+   .visa-aloita/-seuraava, .kuitti, .kulttuuri.na-rua, kirjoitustila (.treeni-tila, .treeni-kirjoitus) ja Kassapaniikin
+   koko ruutu .vp (kuten videopuhelu). Tässä vain pelien oma asettelu. Napautuskohteet vähintään 44 px (puhelin 375 px). */
+.peli-alku { margin: 0; }
+.peli { display: grid; gap: 14px; }
+.peli > .valinta { margin: 0; }
+.peli > * { min-width: 0; }   /* leveä taulukko vierii omassa kehyksessään, ei koko sivua (375 px) */
+.peli .vaihtoehdot button, .peli .visa-seuraava, .peli .visa-aloita, .peli .pieni-nappi, .peli .vp-pieni { min-height: 44px; }
+.peli .vaihtoehdot button:disabled { cursor: default; }
+.peli .kaannos { display: none; font-size: 15px; color: var(--himmea); line-height: 1.4; }
+.kaannokset-auki .peli .kaannos { display: block; flex-basis: 100%; }
+.peli-lause { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 0; font-family: var(--f-pt); font-size: 20px; line-height: 1.4; }
+.peli-lause[hidden] { display: none; }
+.peli-askeleet { display: flex; gap: 6px; }
+.peli-askeleet span { flex: 1; height: 6px; border-radius: 3px; background: var(--viiva); }
+.peli-askeleet span.tehty { background: var(--meri); }
+.peli-askeleet span.nyt { background: #f39a1e; }
+.peli-asiakas { display: flex; align-items: center; gap: 10px 12px; flex-wrap: wrap; }
+.peli-asiakas .kysymys { flex: 1 1 200px; margin: 0; }
+.hahmokuva.peli-kuva { width: 64px; height: 64px; }
+/* Hylly (Tokki-Manni) ja tarjotin (’Esburger): tuote, hinta ja määrä − n + */
+.peli-lista { margin: 0; padding-left: 1.2em; font-size: 17px; line-height: 1.6; }
+.peli-hylly { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 10px 0; }
+.peli-tuote { display: grid; gap: 4px; justify-items: start; padding: 10px 12px; border: 1px solid var(--viiva); border-radius: 12px; background: var(--paperi); }
+.peli-tuote[data-valittu] { border-color: var(--meri); box-shadow: inset 0 0 0 1px var(--meri); }
+.peli-ikoni { font-size: 28px; line-height: 1; }
+.peli-nimi { font-family: var(--f-pt); font-size: 18px; font-weight: 600; }
+.peli-hinta { font-family: var(--f-aa); font-size: 13.5px; color: var(--himmea); }
+.peli-maara { display: flex; align-items: center; gap: 8px; }
+.peli-maara output { min-width: 2ch; text-align: center; font-weight: 700; font-size: 18px; font-variant-numeric: tabular-nums; }
+.peli-nappi { min-width: 44px; min-height: 44px; border-radius: 50%; border: 1px solid var(--meri); background: var(--pinta); color: var(--meri);
+  font: inherit; font-size: 22px; font-weight: 700; line-height: 1; cursor: pointer; }
+.peli-nappi:hover:not(:disabled) { background: var(--meri-pehmea); }
+.peli-nappi:disabled { opacity: .35; cursor: default; }
+.peli-summa { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 16px; margin: 0 0 10px; padding: 8px 12px;
+  border-radius: 10px; background: var(--meri-pehmea); font-family: var(--f-aa); font-size: 15px; }
+/* Palkinto: Maian suklaa (maito- tai valkosuklaa, ei koskaan tumma; PELILLISTAMINEN §5) */
+.peli-palkinto { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; padding: 12px 14px; border-radius: 12px;
+  background: color-mix(in srgb, #e0a800 12%, var(--pinta)); color: var(--muste); }
+.peli-palkinto p { margin: 4px 0; }
+.suklaa-palkinto { display: inline-grid; grid-template-columns: repeat(4, 16px); grid-auto-rows: 14px; gap: 3px; flex: none; padding: 5px;
+  border-radius: 6px; background: #8a5a35; box-shadow: 0 4px 10px rgba(0, 0, 0, .25); transform: rotate(-6deg); }
+.suklaa-palkinto span { border-radius: 2px; background: #b07a4f; box-shadow: inset -2px -2px 0 rgba(0, 0, 0, .18); }
+.suklaa-palkinto[data-laji="valkoinen"] { background: #e2d2b0; }
+.suklaa-palkinto[data-laji="valkoinen"] span { background: #fbf3e2; box-shadow: inset -2px -2px 0 rgba(120, 90, 40, .18); }
+/* Sukupuu */
+.peli-tila { display: flex; flex-wrap: wrap; gap: 8px; }
+.peli-puu { display: grid; gap: 12px; }
+.peli-perhe { padding: 10px 12px 14px; border: 1px solid var(--viiva); border-radius: 14px; background: var(--paperi); }
+.peli-perhe h3 { margin: 0; font-size: 18px; }
+.peli-perhe .ohje { margin: 0 0 8px; }
+.peli-rivi { position: relative; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 14px; }
+.peli-rivi + .peli-rivi { margin-top: 20px; }
+.peli-rivi + .peli-rivi::before { content: ""; position: absolute; left: 25%; right: 25%; top: -12px; border-top: 2px solid var(--viiva); }
+.peli-henkilo { display: grid; justify-items: center; gap: 4px; min-width: 96px; min-height: 44px; padding: 6px 8px; border: 2px solid transparent;
+  border-radius: 14px; background: none; color: var(--muste); font: inherit; cursor: pointer; }
+.peli-henkilo:hover, .peli-henkilo:focus-visible { border-color: var(--meri); background: var(--meri-pehmea); }
+.peli-henkilo[aria-pressed="true"] { border-color: var(--meri); background: var(--meri-pehmea); }
+.peli-henkilo.oikein { border-color: var(--oikein); }
+.peli-henkilo.vaarin { border-color: var(--vaarin); }
+.peli-henkilo span { font-family: var(--f-pt); font-size: 16px; }
+.peli-pari { margin: 0; text-align: center; font-family: var(--f-pt); font-size: 17px; }
+.peli-kortti { padding: 10px 14px; border-left: 3px solid var(--meri); border-radius: 0 12px 12px 0; background: var(--meri-pehmea); }
+.peli-kortti[hidden] { display: none; }
+.peli-kortti p { margin: 4px 0; }
+/* Kassapaniikki: koko ruutu (.vp), jonon kärsivällisyysmittari ja Na rua -repliikki (puhekieli, padrão alla) */
+body.kassa-auki .kupla, body.kassa-auki .aani-toast { z-index: 130 !important; }
+.kassa .vp-yla { flex-wrap: wrap; gap: 8px 12px; }
+.kassa-merkki { padding: 2px 9px; border: 1px solid #e07b00; border-radius: 999px; color: #ffb35c; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.kassa-fila { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #c9dbd9; }
+.kassa-mittari { display: inline-flex; gap: 3px; width: min(180px, 34vw); }
+.kassa-mittari span { flex: 1; height: 10px; border-radius: 3px; background: rgba(255, 255, 255, .15); }
+.kassa-mittari span.on { background: #2fa36b; }
+.kassa-mittari[data-taso="matala"] span.on { background: #e0a800; }
+.kassa-mittari[data-taso="loppu"] span.on { background: #d2433a; }
+.kassa-sisus { flex: 1; min-height: 0; overflow-y: auto; width: 100%; max-width: 760px; margin: 0 auto; padding: 14px 16px 28px;
+  display: grid; gap: 14px; align-content: start; }
+.kassa-alku { display: grid; gap: 14px; justify-items: start; }
+.kassa-kyltti { justify-self: center; margin: 4px 0; padding: 12px 24px; border: 3px solid #d2433a; border-radius: 10px; background: #1e2b2e;
+  color: #ff7a6f; font-family: var(--f-pt); font-size: clamp(26px, 6vw, 40px); font-weight: 700; letter-spacing: .04em; transform: rotate(-3deg); }
+.kassa-tilanne { margin: 0; font-size: 15px; color: #c9dbd9; }
+.kassa-jono { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 6px; font-size: 30px; line-height: 1.1; }
+.kassa-huokaus { font-size: 15px; color: #f3c27a; animation: kassa-huoh .6s ease-out; }
+@keyframes kassa-huoh { from { opacity: 0; transform: translateY(6px); } }
+.kassa .valinta { border-color: rgba(255, 255, 255, .18); background: rgba(255, 255, 255, .05); color: inherit; }
+.kassa .palaute.ok { color: #6cc485; }
+.kassa .palaute.ei { color: #f0857c; }
+.kassa .kaannos { color: #b8c9c7; }
+.kassa-repliikki { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 4px 12px; margin: 0 0 10px; padding: 10px 12px;
+  border-radius: 14px; background: rgba(255, 255, 255, .06); }
+.kassa-repliikki > .hahmokuva { grid-row: span 3; align-self: start; }
+.kassa-repliikki.kassa-puhe { border: 1px dashed #e07b00; border-top: 4px solid #e07b00; }
+.kassa-repliikki .peli-lause { font-size: clamp(20px, 3.4vw, 26px); }
+.kassa-kirja { margin: 0; font-family: var(--f-pt); font-size: 15.5px; color: #8fd3c9; }
+.kassa-kirja::before { content: "padrão: "; font-family: var(--f-fi); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: #9fb9b6; }
+.kassa-repliikki.kassa-selitetty .kaannos { display: block; }
+.kassa-vuoro { margin: 0; }
+.kassa-loppu { gap: 12px; padding: 18px; overflow-y: auto; text-align: center; }
+.kassa-loppu .peli-palkinto { text-align: left; max-width: 520px; }
+@media (max-width: 640px) {
+  .peli-hylly { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .peli-henkilo { min-width: 84px; }
+  .kassa-jono { font-size: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kassa-huokaus { animation: none; }
+  .suklaa-palkinto, .kassa-kyltti { transform: none; }
+}
+
+/* Mandariinitalous ja saaren kauppa (assets/saari.js, docs/PELILLISTAMINEN.md). Samat saaren värit ja piirrostyyli kuin
+   .ilha-kuva ja Pomo.juhla; napit ja kortit samannäköisiä kuin muualla (visa-aloita, paanappi, treeni-kortti). */
+.mandariinit.mandariini-hyppy { animation: mandariini-hyppy .45s ease-out; }
+@keyframes mandariini-hyppy { 0% { transform: none; } 40% { transform: scale(1.18) rotate(-6deg); } 100% { transform: none; } }
+.mandariini-pop.miinus { color: var(--himmea); }
+.aani-toast.mandariini-toast { position: fixed; left: 50%; right: auto; top: auto; bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%); z-index: 120; display: grid; gap: 2px; font-size: 15px; font-weight: 700; text-align: center; }
+.aani-toast.mandariini-toast[hidden] { display: none; }
+.mandariini-toast-rivi { display: block; }
+.saari-fim { display: block; height: 1px; }
+/* Saaren kuva tavaroineen: kerros hahmojen takana; vesi ylhäällä, hiekka alhaalla. */
+/* Mittakaava (omistaja 20.10.2026): kohtaus 5 : 4, tavarakerros ylin 75 %, hahmot alareunassa (saari.js MITTAKAAVA). */
+.ilha-kuva.saari-kentta { position: relative; flex-wrap: wrap; align-items: flex-end; align-content: flex-end; justify-content: center;
+  padding-top: 24px; aspect-ratio: 5 / 4; background: linear-gradient(#9fd3d8 0 42%, #f3dfa2 42% 100%); }
+.ilha-kuva.saari-kentta.ilha-juhlii { padding-top: 24px; }
+.saari-kentta > :not(.saari-kerros):not(.ilha-koristeet) { position: relative; z-index: 2; }
+.saari-kerros { position: absolute; left: 0; right: 0; top: 0; height: 75%; z-index: 1; }
+.saari-esine { position: absolute; display: block; transform: translate(-50%, -100%); line-height: 0; transition: left .25s ease, top .25s ease; }
+.saari-esine svg { display: block; width: 100%; height: auto; overflow: visible; }
+.saari-esine[tabindex] { cursor: pointer; }
+.saari-esine[data-esine="disco"] { animation: saari-heilu 3s ease-in-out infinite alternate; transform-origin: 50% 0; }
+.saari-jarjestaa .saari-kerros { cursor: crosshair; outline: 2px dashed rgba(22, 35, 42, .35); outline-offset: -6px; border-radius: 18px; }
+.saari-jarjestaa .saari-esine { outline: 2px dashed rgba(255, 255, 255, .9); outline-offset: 2px; border-radius: 6px; }
+.saari-jarjestaa .saari-esine[aria-pressed="true"] { outline: 3px solid var(--meri); background: rgba(255, 255, 255, .35); }
+.saari-uusi { animation: saari-uusi .7s cubic-bezier(.2, 1.6, .4, 1) both; }
+@keyframes saari-uusi { from { opacity: 0; transform: translate(-50%, -60%) scale(.3); } to { opacity: 1; transform: translate(-50%, -100%) scale(1); } }
+.ilha-hahmo.saari-uusi { animation-name: saari-uusi-hahmo; }
+@keyframes saari-uusi-hahmo { from { transform: scale(.6) rotate(-10deg); } to { transform: none; } }
+.saari-liekki { transform-box: fill-box; transform-origin: 50% 100%; animation: saari-liekki .5s ease-in-out infinite alternate; }
+@keyframes saari-liekki { from { transform: scaleY(1) skewX(-3deg); } to { transform: scaleY(.86) skewX(4deg); } }
+.saari-nuotit { animation: saari-nuotit 1.6s ease-in-out infinite alternate; }
+@keyframes saari-nuotit { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-5px); opacity: .5; } }
+.saari-alga { transform-box: fill-box; transform-origin: 50% 100%; animation: saari-heilu 2.6s ease-in-out infinite alternate; }
+@keyframes saari-heilu { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+.saari-hoyry { animation: saari-nuotit 2.2s ease-in-out infinite alternate; }
+.saari-brilho { animation: ilha-valo 1s ease-in-out infinite alternate; }
+/* Peixe-boi riippumatossa (juhlissa hattu päässä, ei tanssia). */
+.saari-cochilo { position: absolute; left: 50%; top: 2%; width: 40%; transform: translateX(-50%) rotate(-12deg); line-height: 0; }
+.saari-cochilo .ilha-vieras { display: block; animation: none; }
+.ilha-kuva.saari-kentta .saari-cochilo .hahmokuva { width: 100%; height: auto; }
+.saari-lahja { position: absolute; transform: translate(-50%, -100%); padding: 0; border: 0; background: none; cursor: pointer; line-height: 0;
+  animation: saari-kellu 1.8s ease-in-out infinite alternate; }
+.saari-lahja svg { display: block; width: 100%; height: auto; }
+@keyframes saari-kellu { from { transform: translate(-50%, -100%) rotate(-5deg); } to { transform: translate(-50%, -106%) rotate(5deg); } }
+.saari-tyokalut { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: -8px 0 12px; }
+.saari-tyokalut:empty { display: none; }
+.saari-ohje { font-size: 14px; color: var(--himmea); }
+button.paanappi { cursor: pointer; }
+.saari-jarjesta-nappi[aria-pressed="true"] { background: var(--meri); color: var(--pinta); }
+.saari-puhe { margin: 0 0 16px; padding: 10px 14px; border-radius: 14px; background: var(--pinta); border: 1px solid var(--viiva); }
+.saari-puhe[hidden] { display: none; }
+.saari-kori { display: grid; gap: 4px; margin: 6px 0 8px; }
+.saari-kori .ohje { margin: 0; }
+.saari-kori .pomo-elama { flex: none; width: 100%; max-width: 420px; }
+.saari-saannot { margin: 0 0 18px; }
+.saari-saannot summary { cursor: pointer; font-weight: 700; }
+.saari-saannot ul { margin: 8px 0 0; padding-left: 1.2em; }
+.kauppa h3 { margin: 18px 0 10px; }
+.kauppa-ruudukko { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; }
+.kauppa-kortti { display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border: 1px solid var(--viiva); border-radius: 12px; background: var(--pinta); }
+.kauppa-kortti.omistettu { border-color: var(--meri); background: var(--meri-pehmea); }
+.kauppa-kortti.lukossa { opacity: .62; }
+/* Esillä oleva kortti, johon mandariinit eivät nyt riitä (omistaja 18.10.2026): himmeä kuten lukittu ennen. */
+.kauppa-kortti.ei-varaa { opacity: .62; }
+.kauppa-kuva { display: flex; align-items: flex-end; justify-content: center; height: 64px; margin-bottom: 4px; border-radius: 10px;
+  background: linear-gradient(#9fd3d8 0 50%, #f3dfa2 50% 100%); }
+.kauppa-kuva svg { display: block; max-width: 72px; max-height: 58px; width: auto; height: 100%; }
+.kauppa-sana { font-size: 15px; }
+.kauppa-sana .kaannos { color: var(--himmea); }
+.kauppa-kuvaus { font-size: 14px; color: var(--himmea); }
+.kauppa-rivi { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin-top: auto; padding-top: 6px; }
+.kauppa-rivi .visa-aloita { padding: 7px 14px; }
+.kauppa-hinta { font-weight: 700; font-variant-numeric: tabular-nums; }
+.kauppa-falta, .kauppa-lukko { font-size: 13.5px; color: var(--himmea); }
+.kauppa-pieni { font: inherit; font-size: 13.5px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--viiva); background: var(--paperi); color: var(--muste); cursor: pointer; }
+.kauppa-pieni:hover { border-color: var(--meri); }
+.kauppa-pieni[aria-pressed="true"] { background: var(--meri); color: var(--pinta); border-color: var(--meri); }
+@media (max-width: 640px) {
+  .ilha-kuva.saari-kentta, .ilha-kuva.saari-kentta.ilha-juhlii { gap: 12px; padding: 16px 12px 14px; }
+  .ilha-kuva.saari-kentta .hahmokuva { width: 70px; height: 70px; }
+  .ilha-kuva.saari-kentta .ilha-palkinto { width: 120px; height: 86px; }
+  .ilha-juhlii.saari-kentta .ilha-vieras .hahmokuva { width: 70px; height: 70px; }
+  .ilha-kuva.saari-kentta .saari-cochilo .hahmokuva { width: 100%; height: auto; }
+  .kauppa-ruudukko { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mandariinit.mandariini-hyppy, .saari-uusi, .ilha-hahmo.saari-uusi, .saari-liekki, .saari-nuotit, .saari-alga, .saari-hoyry, .saari-brilho,
+  .saari-lahja, .saari-esine[data-esine="disco"] { animation: none; }
+  .saari-esine { transition: none; }
+}
+
+/* Puhujan kasvot isommiksi dialogeissa (omistaja 18.10.2026); nimisarake levenee samassa suhteessa. */
+.s .puhuja-kasvo { width: 44px; height: 44px; margin-right: 8px; }
+.s.on-puhuja:has(.puhuja-kasvo) { grid-template-columns: auto 9.8em minmax(0, 1fr) auto; }
+@media (max-width: 640px) { .s .puhuja-kasvo { width: 36px; height: 36px; } .s.on-puhuja:has(.puhuja-kasvo) { grid-template-columns: auto minmax(0, 1fr) auto; } }
+
+/* Puhuja heiluu hieman, kun hänen repliikkinsä soi (omistaja 18.10.2026); aani.js merkitsee soivan rivin .soi. */
+@keyframes puhuja-puhuu { 0%, 100% { transform: rotate(0deg) translateY(0); } 25% { transform: rotate(-3deg) translateY(-1px); } 50% { transform: rotate(2.5deg) translateY(0); } 75% { transform: rotate(-1.5deg) translateY(-1px); } }
+.s.soi .puhuja-kasvo { animation: puhuja-puhuu .5s ease-in-out infinite; box-shadow: 0 0 0 3px var(--pv), 0 0 10px var(--pv); }
+@media (prefers-reduced-motion: reduce) { .s.soi .puhuja-kasvo { animation: none; box-shadow: 0 0 0 3px var(--pv); } }
+
+/* Luonnos 3 (assets/saari.js, siirto.js, ajustes.js): paikat ja kaverit saarella, mitalit, Ajustes ja QR-siirto. */
+.saari-sisalla { position: absolute; left: 70%; top: 2%; width: 22%; line-height: 0; cursor: pointer; z-index: 3; }
+.saari-sisalla svg { display: block; width: 100%; height: auto; }
+.saari-amigo, .saari-lugar { position: absolute; transform: translate(-50%, -50%); line-height: 0; cursor: pointer; z-index: 5; }
+.ilha-kuva.saari-kentta .saari-amigo .hahmokuva { width: 46px; height: 46px; box-shadow: 0 0 0 2px var(--pinta); }
+.ilha-kuva.saari-kentta .saari-lugar .hahmokuva { width: 60px; height: 60px; }
+.ilha-kuva.saari-kentta > .ilha-hahmo .hahmokuva, .ilha-kuva.saari-kentta .ilha-vieras .hahmokuva { width: 100px; height: 100px; }
+.saari-lugar .ilha-vieras { animation: none; }
+.saari-hyppy { animation: saari-hyppy .5s ease-out; }
+@keyframes saari-hyppy { 0% { translate: 0 0; } 40% { translate: 0 -10px; } 100% { translate: 0 0; } }
+.saari-efekti { position: absolute; left: 50%; top: 0; font-size: 26px; line-height: 1; pointer-events: none; animation: saari-efekti 1.2s ease-out forwards; }
+@keyframes saari-efekti { from { opacity: 1; transform: translate(-50%, 0); } to { opacity: 0; transform: translate(-50%, -48px); } }
+.saari-chute .saari-bola { animation: saari-chute .9s ease-in forwards; }
+@keyframes saari-chute { 0% { transform: none; } 70% { transform: translate(48px, -18px); } 100% { transform: translate(52px, -12px); } }
+.mitali-rivi { margin: 18px 0 0; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--viiva); background: var(--pinta); font-size: 15px; }
+/* Edistysrivi (saari.js edistysRivi, T15.17) oppitunnin otsikon alla ja etusivun luettelossa: sama teksti, pienempi, ilman kehystä. */
+.mitali-rivi.edistys-otsake { margin: 8px 0 0; padding: 0; border: 0; background: none; font-size: 14px; color: var(--himmea); }
+.mitali-rivi.edistys-luettelo { margin: 4px 0 0; padding: 0; border: 0; background: none; font-size: 13px; color: var(--himmea); }
+.mitali-merkki { margin-left: 6px; }
+.ajustes-nappi { padding-inline: 10px; }
+.ajustes .valintaruutu { display: block; margin: 8px 0; }
+.ajustes-tiedosto { font-size: 14px; max-width: 100%; }
+.ajustes-vaara { background: var(--vaarin); border-color: var(--vaarin); }
+.siirto-qr { display: grid; justify-items: start; gap: 8px; margin: 14px 0; }
+.siirto-kuva { width: min(100%, 820px); line-height: 0; border: 1px solid var(--viiva); }
+.siirto-kuva svg { display: block; width: 100%; height: auto; }
+.siirto-osa { font-weight: 700; }
+.siirto-linkit { width: 100%; font-family: var(--f-aa, monospace); font-size: 12px; padding: 8px; border: 1px solid var(--viiva); border-radius: 8px; background: var(--paperi); color: var(--muste); }
+body.liike-pois *, body.liike-pois *::before, body.liike-pois *::after { animation: none !important; transition: none !important; }
+.suklaa-palkinto[data-tayte] span:nth-child(3) { background: radial-gradient(circle at 60% 55%, var(--tayte, #c2185b) 0 34%, #5a2d14 36% 46%, transparent 48%), #b07a4f; }
+.suklaa-palkinto[data-tayte="framboesa"] { --tayte: #c2185b; }
+.suklaa-palkinto[data-tayte="morango"] { --tayte: #e2574c; }
+.suklaa-palkinto[data-tayte="ruibarbo"] { --tayte: #d9768f; }
+.suklaa-palkinto[data-laji="valkoinen"][data-tayte] span:nth-child(3) { background: radial-gradient(circle at 60% 55%, var(--tayte, #c2185b) 0 34%, #e2d2b0 36% 46%, transparent 48%), #fbf3e2; }
+@media (max-width: 640px) {
+  .ilha-kuva.saari-kentta .saari-amigo .hahmokuva { width: 34px; height: 34px; }
+  .ilha-kuva.saari-kentta .saari-lugar .hahmokuva { width: 44px; height: 44px; }
+  /* Puhelin (20.10.2026): talo, vieraat ja palkinto yhdellä rivillä alareunassa (kohtaus 5 : 4, 343 px). */
+  .ilha-kuva.saari-kentta, .ilha-kuva.saari-kentta.ilha-juhlii { gap: 8px; padding-left: 10px; padding-right: 10px; }
+  .ilha-kuva.saari-kentta > .ilha-hahmo .hahmokuva, .ilha-kuva.saari-kentta .ilha-vieras .hahmokuva { width: 60px; height: 60px; }
+  .ilha-juhlii.saari-kentta .ilha-talo { width: 140px; height: 131px; }
+  .ilha-kuva.saari-kentta .ilha-palkinto { width: 96px; height: 69px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .saari-hyppy, .saari-efekti, .saari-chute .saari-bola { animation: none; }
+}
+
+/* Conquistas (assets/saari.js): lista majan tai baarin napautuksesta; salaiset ”???”. Nimilaput vain ?testinimet=1. */
+.saari-conquistas { margin: 0 0 18px; }
+.conquistas-lista { list-style: none; padding: 0; margin: 10px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+.conquista { display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; border: 1px solid var(--viiva); border-radius: 10px; background: var(--pinta); }
+.conquista.ei { opacity: .55; filter: grayscale(1); }
+.conquista.tuleva { border-style: dashed; }
+.conquista-ikoni { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--paperi); font-size: 18px; }
+.conquista-teksti { display: grid; gap: 2px; font-size: 14.5px; }
+.conquista-teksti .ohje { margin: 0; font-size: 13px; }
+.ilha-kuva.saari-kentta > .saari-nimi, .saari-nimi { position: absolute; z-index: 60; transform: translate(-50%, -100%); padding: 1px 7px; border-radius: 999px; background: rgba(22, 35, 42, .82); color: #fff; font-size: 12px; font-weight: 700; white-space: nowrap; pointer-events: none; }
+/* Ilmoitus ”Sem voz finlandesa…” ruudun alareunaan, ei sanan päälle (omistaja 18.10.2026: ”it gets in the way”). */
+.aani-toast { position: fixed !important; left: 50% !important; top: auto !important; bottom: 16px !important; transform: translateX(-50%); }
+/* Sanasivun laskettu muoto ilman kuplaa (monikon sijat, aikamuodot): pitkä luku saa katketa solussa. */
+.sanasivu-muoto { overflow-wrap: anywhere; }
+/* Sanasivun 3–4 sarakkeen taulut: oma sarakejako (ei neljännesruudukkoa), nimisarake kapea, muotosarakkeet tasan. */
+table.sanasivu-kiintea { table-layout: fixed; width: 100%; }
+table.sanasivu-kiintea col.sanasivu-nimi { width: 28%; }
+table.sanasivu-verbi col.sanasivu-nimi { width: 18%; }
+table.sanasivu-kysy col.sanasivu-nimi { width: 16%; }
+table.sanasivu-kiintea thead th { font-size: 12px; letter-spacing: 0; overflow-wrap: anywhere; }
+
+/* Tottakai-logo vasemmalle, napit sen viereen, sisarkurssin logo oikeaan reunaan (omistaja 17.10.2026, kuvan mukaan). */
+.ylapalkki .merkki { margin-right: 0; }
+.merkki.sisarkurssi { margin-left: auto; align-items: flex-end; text-align: right; }
+.sisar-nimi { font-family: var(--f-pt); font-size: 22px; font-weight: 700; letter-spacing: -.01em; line-height: 1.1; }
+.sisar-a { color: var(--meri); font-style: italic; font-weight: 500; }
+.sisar-ala { font-size: 12.5px; color: var(--himmea); }
+@media (max-width: 860px) {
+  /* Puhelin: logot samalle riville (Tottakai vasen, Passo oikea), napit niiden alle. */
+  .ylapalkki .toiminnot { order: 2; flex-basis: 100%; }
+  .sisar-nimi { font-size: 18px; }
+  .sisar-ala { display: none; }
+}
+
+/* Ajustes: versio ja aikaleima sivun lopussa (omistaja 18.10.2026). */
+.versio-rivi { margin-top: 24px; font-size: 12.5px; color: var(--himmea); text-align: center; }
+/* Oppitunnin nimi otsakkeena (omistaja 18.10.2026): nuoli, avoimena lihavoitu; v-kiinni sulkee alalinkit. */
+#valikko a.v-oppitunti { display: flex; align-items: baseline; }
+#valikko a.v-oppitunti .v-nuoli { margin-left: auto; padding-left: 8px; }
+#valikko [data-oppitunti].aktiivinen > a.v-oppitunti { font-weight: 700; }
+#valikko [data-oppitunti].aktiivinen:not(.v-kiinni) > a.v-oppitunti .v-nuoli { transform: rotate(90deg); }
+#valikko [data-oppitunti].v-kiinni a.v-ala { display: none; }
+/* Treenin värinäyte (aihe-varit): iso ruutu kysymyksen edessä. */
+.treeni-vari { display: inline-block; width: 64px; height: 64px; border-radius: 12px; border: 1px solid var(--viiva); background: var(--vari); vertical-align: middle; margin-right: 14px; }
+/* Situações: mitä oppija haluaa, myyjän repliikin yläpuolella. */
+.treeni-tilanne { margin: 0 0 6px; font-size: 14.5px; color: var(--himmea); font-style: italic; }
+
+/* Teemapeli oppitunnin osassa (omistaja 18.10.2026): aloituskortti ja koko ruudun kerros. */
+.peli-kortti { margin: 6px 0 22px; padding: 16px 18px; border: 2px solid var(--meri); border-radius: 14px; background: var(--meri-pehmea); }
+.peli-kortti .peli-kortti-nimi { display: block; font-size: 19px; }
+.peli-kortti-rivi { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; margin: 8px 0 0; }
+.peli-kortti-tila { font-size: 13px; color: var(--himmea); }
+body.peli-auki { overflow: hidden; }
+.peli-kerros { position: fixed; inset: 0; z-index: 60; overflow-y: auto; background: var(--paperi); padding: 14px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); }
+.peli-kerros-sisus { max-width: 920px; margin: 0 auto; }
+.peli-sulje { position: sticky; top: 0; z-index: 2; display: block; margin: 0 0 10px auto; }
+/* Pelin valokuvatausta kerroksessa (A6-17, T15.5): kuva ja huntu kiinteinä kerroksen pohjalla (z -1 kerroksen omassa
+   pinontakontekstissa, siis kerroksen taustan päällä ja sisällön alla), kuten näyttämö (.nayttamo-kuva, .nayttamo-huntu)
+   oppitunnilla; oppitunnin omaan näyttämöön ei kosketa. */
+.peli-kerros-kuva { position: fixed; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; object-position: center; pointer-events: none; }
+.peli-kerros-huntu { position: fixed; inset: 0; z-index: -1; background: var(--paperi); opacity: .45; pointer-events: none; }
+/* Peixe-boin mainos pelin jälkeen: linkit Treeniin. */
+.peli-mainos { margin-top: 18px; }
+.peli-mainos-linkit { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+/* Pelin paikka oppitunnin HTML:ssä (korvautuu aloituskortilla valmistele():ssa); varaa tilan, ettei sivu hyppää. */
+.peli-upotus { min-height: 140px; }
+/* Kaupan piilotetut tavarat (omistaja 18.10.2026): kuvapuoli alaspäin käännetty kortti; paljastuessa kortti kääntyy. */
+.kauppa-kortti.kauppa-kaannetty { min-height: 230px; align-items: center; justify-content: center; border: 2px solid var(--meri);
+  background: repeating-linear-gradient(45deg, var(--meri) 0 10px, var(--meri-pehmea) 10px 20px); }
+.kauppa-kaannetty-kuvio { padding: 10px 18px; border-radius: 999px; background: var(--pinta); color: var(--muste);
+  font-size: 26px; font-weight: 700; box-shadow: 0 2px 8px rgba(0, 0, 0, .25); }
+.kauppa-kaannetty-ehto { margin-top: 10px; padding: 4px 10px; border-radius: 8px; background: var(--pinta); color: var(--muste); font-size: 13px; text-align: center; }
+.kauppa-kortti.kauppa-kaantyy { animation: kauppa-kaanto .7s ease-out both; }
+@keyframes kauppa-kaanto { 0% { transform: perspective(700px) rotateY(180deg); opacity: .4; } 100% { transform: perspective(700px) rotateY(0); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .kauppa-kortti.kauppa-kaantyy { animation: none; } }
+/* Palkintohylly (kultapalkinnot) saaren alla: sama ruudukko kuin kaupassa, hieman tiiviimpi. */
+.palkintohylly { margin-top: 8px; }
+/* Saaren maisema (omistaja 18.10.2026): taivas, aurinko ja pilvet ylhäällä, joki niiden alla, hiekka ja edessä
+   rantavesi aaltoineen. Taso: maisema 0 < tavarat 1 < hahmot 2 < rantavesi 3 (Peixe-boi kelluu siinä). */
+.ilha-kuva.saari-kentta { background: linear-gradient(#cdeaf2 0 10.8%, #9fd3d8 10.8% 30.8%, #e3c98a 30.8% 32%, #f3dfa2 32%);
+  padding-bottom: 74px; overflow: clip; overflow-clip-margin: 0; }
+.ilha-kuva.saari-kentta > .saari-maisema { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.saari-aurinko { position: absolute; right: 3%; top: -26px; width: 92px; height: 92px; }
+.saari-sateet { transform-box: fill-box; transform-origin: 50% 50%; animation: saari-sateet 40s linear infinite; }
+@keyframes saari-sateet { to { transform: rotate(360deg); } }
+.saari-pilvi { position: absolute; top: 6px; width: 96px; height: 40px; animation: saari-pilvi 70s ease-in-out infinite alternate; }
+.saari-pilvi-1 { left: 6%; }
+.saari-pilvi-2 { left: 52%; top: 14px; width: 70px; height: 29px; animation-duration: 90s; animation-direction: alternate-reverse; }
+@keyframes saari-pilvi { from { transform: translateX(-30px); } to { transform: translateX(60px); } }
+.ilha-kuva.saari-kentta > .saari-etuvesi { position: absolute; left: 0; right: 0; bottom: 0; height: 58px; z-index: 3; pointer-events: none; overflow: hidden; }
+.saari-aallot { position: absolute; left: 0; bottom: 0; width: 200%; height: 100%; animation: saari-aallot 14s linear infinite; }
+@keyframes saari-aallot { to { transform: translateX(-50%); } }
+/* Peixe-boi rivissä: puoliksi vedessä (ei, kun hän on jossain saaren paikassa). */
+.ilha-kuva.saari-kentta > .ilha-hahmo[data-hahmo="manaatti"] { margin-bottom: -46px; }
+@media (max-width: 640px) {
+  .ilha-kuva.saari-kentta { background: linear-gradient(#cdeaf2 0 38px, #9fd3d8 38px 109px, #e3c98a 109px 113px, #f3dfa2 113px); padding-bottom: 50px; }
+  .saari-aurinko { width: 62px; height: 62px; top: -18px; }
+  .saari-pilvi { width: 64px; height: 27px; top: 4px; }
+  .saari-pilvi-2 { width: 48px; height: 20px; }
+  .ilha-kuva.saari-kentta > .saari-etuvesi { height: 40px; }
+  .ilha-kuva.saari-kentta > .ilha-hahmo[data-hahmo="manaatti"] { margin-bottom: -32px; }
+}
+@media (prefers-reduced-motion: reduce) { .saari-sateet, .saari-pilvi, .saari-aallot { animation: none; } }
+/* Gramática, finlandês quebrado: toimiva perusmuotoversio omalla rivillään (ei <br>). */
+.toimii { display: block; margin-top: 4px; }
+/* Gramática-taulukot: solun toinen rivi (pääte sijan nimen alla, toinen esimerkki käännöksineen) ilman <br>:ää. */
+td .solurivi { display: block; margin-top: 2px; }
+/* Gramática, kapea näyttö: taulukko, jonka neljä saraketta ovat leveitä (pronominit: PARTITIVO, ACUSATIVO), saa
+   pienemmän välin (.tiivis); pitkät sanamuodot rinnakkain (sanatyypit: kysymykseen) myös pienemmän fontin (.pitkat),
+   jotta viimeinen sarake mahtuu puhelimeen ilman sivuttaisvieritystä. */
+@media (max-width: 560px) {
+  table.tiivis td, table.tiivis th { padding-right: 5px; }
+  table.tiivis.pitkat td { font-size: 14.5px; }
+}
+
+/* Gramática-alaryhmät (omistaja 18.10.2026): avattava alaotsake kuten ryhmän otsake, pienempänä; tila muistissa. */
+#valikko .v-alaotsake {
+  display: flex; width: 100%; justify-content: space-between; align-items: center; gap: 8px; font: inherit;
+  font-size: 11.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--himmea);
+  background: none; border: 0; border-radius: 8px; padding: 10px 10px 4px; cursor: pointer; text-align: left;
+}
+#valikko .v-alaotsake:hover { background: var(--meri-pehmea); }
+#valikko .v-alaotsake:focus-visible { outline: 2px solid var(--meri); outline-offset: 2px; }
+#valikko .v-alaotsake[aria-expanded="true"] .v-nuoli { transform: rotate(90deg); }
+#valikko .v-alaryhma > ul { padding-left: 8px; }
+#valikko .v-alaryhma.kiinni li:not(.aktiivinen) { display: none; }
+/* Avoimen sivun alaryhmä näkyy kokonaan myös suljetussa Gramáticassa (omistaja 18.10.2026). */
+#valikko .v-ryhma.kiinni .v-alaryhma.aktiivinen:not(.kiinni) li { display: list-item; }
+/* Gramática: ”Abrir tudo / Fechar tudo” aina ensimmäisenä (omistaja 18.10.2026). */
+#valikko .v-kaikki-rivi { padding: 2px 0 4px; }
+#valikko .v-kaikki {
+  width: 100%; text-align: left; font: inherit; font-size: 13px; color: var(--meri); background: none;
+  border: 1px solid var(--meri-pehmea); border-radius: 8px; padding: 5px 10px; cursor: pointer;
+}
+#valikko .v-kaikki:hover { background: var(--meri-pehmea); }
+#valikko .v-kaikki:focus-visible { outline: 2px solid var(--meri); outline-offset: 2px; }
+
+/* Emojit eivät ole kursiivilla (omistaja 19.10.2026). */
+.lause .emoji, .kirja .emoji { font-style: normal; }
+
+/* Keskiankkuroitu saaren esine (discopallo, omistaja 19.10.2026). */
+.saari-esine.saari-keskella { transform: translate(-50%, -50%); }
+
+/* Puhelin: osion otsikko (inline-flex) ei saa levetä yli sisältöalueen; 2 px:n vaakavieritys #t01-sivulla (A6-29, T15.14). */
+.osio > h2 { max-width: 100%; box-sizing: border-box; flex-wrap: wrap; }
+
+/* ==== t06: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* t06: galleria = Maian puhelimen kuvagalleria (assets/komponentit.js galleria): pyyhkäisy scroll-snapilla, keskellä
+   dialogin yläpuolella. Kuvateksti on .s-lause: puhujan nimi piiloon, lause samalle riville kuin ▶. */
+.galleria { max-width: 360px; margin: 14px auto 18px; }
+.ga-puhelin { border-radius: 30px; background: #0b141a; padding: 12px 12px 8px; box-shadow: 0 14px 34px rgba(0, 0, 0, .35), inset 0 0 0 2px #2a3942; }
+.ga-yla { display: flex; justify-content: space-between; gap: 8px; padding: 2px 10px 8px; color: #cfd8dc; font-size: 13px; }
+.ga-laskuri { font-variant-numeric: tabular-nums; color: #9fb0b8; }
+.ga-nauha { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 16px; background: var(--pinta); }
+.ga-nauha::-webkit-scrollbar { display: none; }
+.ga-nauha:focus-visible { outline: 3px solid var(--meri); outline-offset: 2px; }
+.ga-sivu { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; display: flex; flex-direction: column; }
+.ga-kuva { aspect-ratio: 4 / 3; overflow: hidden; background: #1c2a33; }
+.ga-kuva img, .ga-kuva svg { display: block; width: 100%; height: 100%; object-fit: cover; }
+.ga-teksti { padding: 8px 12px 10px; }
+.ga-teksti .s { margin: 0; }
+.ga-teksti .s.on-puhuja { grid-template-columns: auto minmax(0, 1fr) auto; }
+.ga-teksti .s .puhuja { display: none; }
+.ga-teksti .s.on-puhuja .lause { grid-column: -3 / -2; grid-row: 1; font-size: 18px; }
+.ga-teksti .s.on-puhuja .kaannos { grid-column: -3 / -2; grid-row: 2; }
+.ga-lahde { margin: 0; padding: 0 12px 8px; font-size: 11px; color: var(--himmea); }
+.ga-ohjaus { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 4px 2px; }
+.ga-nappi { min-width: 44px; min-height: 44px; border-radius: 50%; border: 1px solid #3b4d57; background: #16232b; color: #e6eef2; font-size: 26px; line-height: 1; cursor: pointer; }
+.ga-nappi:hover { background: #22343e; }
+.ga-pisteet { display: flex; gap: 7px; }
+.ga-piste { width: 8px; height: 8px; border-radius: 50%; background: #4b5b63; }
+.ga-piste.nyt { background: #f2f5f7; }
+/* t06: lainausautomaatti = Oodin itsepalveluautomaatti (assets/komponentit.js lainausautomaatti): kone (näyttö, Lainaa,
+   Palauta) ja kaksi hyllyä (hylly, Maian kassi) kirjojen selkämyksineen. Lähdemerkinnän .la-kirja ja .la-alue siirtyvät
+   koneeseen; automaatin repliikeistä puhujan nimi ja kasvot piiloon (kone puhuu näytöllä). */
+.lainausautomaatti { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; margin: 14px 0 18px; }
+@media (min-width: 820px) { .lainausautomaatti { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: start; } }
+.la-kirja, .la-alue { margin: 0; }
+.la-kone { border-radius: 18px; background: #e9eef1; border: 1px solid #c4ced4; box-shadow: 0 8px 22px rgba(0, 0, 0, .15); padding: 12px; color: #1d2a30; filter: var(--realia-himmennys); }
+.la-yla { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #4b5d66; padding: 0 4px 8px; }
+.la-naytto { min-height: 132px; border-radius: 10px; background: #12343a; color: #e6fbf4; padding: 10px 12px; box-shadow: inset 0 0 0 2px #0b2226; }
+.la-naytto > .s { margin: 0 0 4px; }
+.la-naytto > .s[hidden] { display: none; }
+.la-naytto .s .lause { font-size: 18px; color: #e6fbf4; }
+.la-naytto .s .kaannos { color: #a8d4c8; }
+.la-naytto .s.soi { background: rgba(255, 255, 255, .1); }
+.la-naytto .s.on-puhuja[data-h="automaatti"] { grid-template-columns: auto minmax(0, 1fr) auto; }
+.la-naytto .s[data-h="automaatti"] .puhuja { display: none; }
+.la-naytto .s.on-puhuja[data-h="automaatti"] .lause { grid-column: -3 / -2; grid-row: 1; }
+.la-naytto .s.on-puhuja[data-h="automaatti"] .kaannos { grid-column: -3 / -2; grid-row: 2; }
+.la-naytto .s.on-puhuja:has(.puhuja-kasvo) { grid-template-columns: auto auto minmax(0, 1fr) auto; }
+.la-naytto .s .puhuja { font-size: 0; }
+.la-napit { display: flex; gap: 10px; margin-top: 12px; }
+.la-nappi { flex: 1; min-height: 48px; border-radius: 12px; border: 0; background: #1f6f5c; color: #fff; font-family: var(--f-fi); font-size: 18px; font-weight: 700; cursor: pointer; }
+.la-nappi.la-palauta { background: #2f5d8a; }
+.la-nappi:hover { filter: brightness(1.1); }
+.la-paikat { display: grid; gap: 12px; }
+.la-paikka { border: 1px solid var(--viiva); border-radius: 12px; background: var(--pinta); padding: 8px 10px 0; }
+.la-alue { font-family: var(--f-fi); font-weight: 700; color: var(--muste); margin: 0 0 6px; }
+.la-rivi { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 4px; min-height: 140px; padding: 0 6px; border-bottom: 6px solid #8a6a43; }
+.la-rivi.la-kassi { border-bottom-color: #c9a227; background: color-mix(in srgb, #c9a227 8%, var(--pinta)); border-radius: 8px 8px 0 0; }
+.la-selka { width: 38px; height: 128px; border: 0; border-radius: 3px 3px 0 0; padding: 6px 0; cursor: pointer; color: #fff;
+  display: flex; align-items: center; justify-content: center; box-shadow: inset -4px 0 0 rgba(0, 0, 0, .18); transition: transform .2s; }
+.la-selka:nth-child(2n) { height: 118px; }
+.la-selka:nth-child(3n) { width: 34px; height: 134px; }
+.la-selka[aria-pressed="true"] { transform: translateY(-10px); outline: 3px solid var(--meri); outline-offset: 2px; }
+.la-selka-nimi { writing-mode: vertical-rl; transform: rotate(180deg); font-family: var(--f-fi); font-size: 12px; font-weight: 700;
+  letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
+.la-vari-1 { background: #7a1f2b; }
+.la-vari-2 { background: #3d4a5c; }
+.la-vari-3 { background: #5b3a6e; }
+.la-vari-4 { background: #2f6b3a; }
+.la-vari-5 { background: #c9a227; color: #1d2a30; }
+.la-vari-6 { background: #8a4b22; }
+@media (prefers-reduced-motion: reduce) { .la-selka { transition: none; } }
+/* t06: Habituurin keltainen ilmoitus ilmoitustaululla (oppitunti 6, tehtävä 7). */
+.dokumentti.juliste { max-width: 420px; margin: 14px auto 18px; padding: 16px 20px 18px; background: #ffd84d; color: #1d1d1b; border-radius: 4px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .2); transform: rotate(-1.2deg); filter: var(--realia-himmennys); }
+.dokumentti.juliste p { margin: 0 0 8px; font-family: var(--f-fi); font-size: 18px; }
+.dokumentti.juliste .juliste-otsikko { font-size: 30px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; border-bottom: 3px solid #1d1d1b; padding-bottom: 4px; }
+.dokumentti.juliste .juliste-ala { margin-bottom: 0; font-size: 15px; font-style: italic; }
+/* ==== t07: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* t07: ruokalistan kuvat ja tarjotin (.cardapio.tarjotin: tilaus puisella tarjottimella, rivit lautasina) */
+.cd-ikoni { margin-right: 6px; font-size: 1.1em; }
+.cardapio.tarjotin .cd-tilaus { background: linear-gradient(var(--tarjotin-yla), var(--tarjotin-ala)); border: 0; border-radius: 18px; color: var(--tarjotin-muste);
+  box-shadow: inset 0 0 0 6px rgba(0, 0, 0, .08), 0 6px 14px rgba(0, 0, 0, .18); }
+.cardapio.tarjotin .cd-tilaus h4, .cardapio.tarjotin .cd-yht { color: var(--tarjotin-muste); }
+.cardapio.tarjotin .cd-tilaus-lista li { margin: 6px 0; padding: 6px 12px; border: 0; border-radius: 999px; background: #fffdf8; color: #23262a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .15); }
+.cardapio.tarjotin .cd-tilaus-lista li.cd-tyhja { background: transparent; box-shadow: none; color: var(--tarjotin-himmea); }
+/* t07: Arvaa ammatti -kortit (monivalinnat korttiruudukossa; oikea vastaus kääntää kortin) */
+.arvaa-ammatti { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin: 10px 0 14px; }
+.arvaa-laskuri { grid-column: 1 / -1; margin: 0; font-weight: 700; color: var(--meri); }
+.arvaa-ammatti.arvaa-valmis .arvaa-laskuri { color: var(--oikein); }
+.arvaa-kortti { display: flex; flex-direction: column; gap: 8px; margin: 0; border-width: 2px; }
+.arvaa-kortti .s, .arvaa-kortti .kysymys { margin: 0; }
+.arvaa-kuva { position: relative; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 64px; margin: 0;
+  border-radius: 10px; background: var(--meri-pehmea); }
+.arvaa-kuva .emoji { font-size: 40px; line-height: 1; }
+.arvaa-kuva .fi { font-size: 19px; font-weight: 700; }
+.arvaa-kortti:not(.arvaa-kaannetty) .arvaa-kuva > * { visibility: hidden; }
+.arvaa-kortti:not(.arvaa-kaannetty) .arvaa-kuva::after { content: "?"; position: absolute; inset: 0; display: grid; place-items: center;
+  font-family: var(--f-pt); font-size: 40px; font-weight: 700; color: var(--meri); }
+.arvaa-kortti.arvaa-kaannetty { border-color: var(--oikein); animation: arvaa-kaanto .5s ease; }
+@keyframes arvaa-kaanto { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+@media (prefers-reduced-motion: reduce) { .arvaa-kortti.arvaa-kaannetty { animation: none; } }
+/* t07: Habituurin sähköposti (lukutehtävä) */
+.sahkoposti { max-width: 640px; margin: 10px 0 14px; overflow: hidden; border: 1px solid var(--viiva); border-radius: 12px; background: var(--pinta);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .08); }
+.sahkoposti-yla { padding: 10px 14px; border-bottom: 1px solid var(--viiva); background: var(--meri-pehmea); font-size: 15px; }
+.sahkoposti-yla p { margin: 2px 0; }
+.sahkoposti-runko { padding: 12px 16px; }
+.sahkoposti-runko p { margin: 6px 0; }
+/* ==== t08: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* t08: pohjapiirros suomen kolmijaolla (komponentit.js pohjapiirrosKolmijako; ruudukko assets/komponentit.css) */
+.pohjapiirros.ph-kolmi { background: var(--paperi); border-color: var(--viiva); }
+.ph-kolmi .ph-huone { color: var(--muste); background: var(--pinta); border: 2px solid var(--viiva); border-radius: 8px; cursor: pointer; padding: 4px 6px; }
+.ph-kolmi .ph-huone b { font-family: var(--f-fi); font-size: 17px; }
+.ph-kolmi .ph-huone.ph-k1 { background: var(--meri-pehmea); border-color: var(--meri); }
+.ph-kolmi .ph-huone.ph-k2 { background: var(--pinta); background: color-mix(in srgb, #d4789a 20%, var(--pinta)); border-color: #d4789a; }
+.ph-kolmi .ph-huone.ph-k3 { background: var(--pinta); border-style: dashed; }
+.ph-kolmi .ph-huone:hover, .ph-kolmi .ph-huone.soi { box-shadow: inset 0 0 0 3px #f39a1e; }
+.ph-kolmi .ph-pron { color: var(--meri); font-style: normal; font-weight: 700; font-family: var(--f-fi); font-size: 15px; }
+.ph-pt { font-size: 12px; color: var(--himmea); font-family: var(--f-pt); }
+.ph-kasvot { position: absolute; right: 4px; top: 4px; display: flex; gap: 2px; }
+.hahmokuva.ph-kasvo { width: 30px; height: 30px; }
+.ph-tilat { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 6px; }
+.ph-tilat .ph-tila[aria-pressed="true"] { background: var(--meri); border-color: var(--meri); color: var(--pinta); }
+.ph-puhe { min-height: 3.4em; margin: 6px 0 14px; padding: 10px 14px; border-left: 3px solid var(--meri); border-radius: 0 12px 12px 0; background: var(--meri-pehmea); }
+.ph-vihje { margin: 0 0 6px; font-size: 14px; color: var(--himmea); }
+.ph-lause { margin: 0; font-family: var(--f-fi); font-size: 19px; line-height: 1.45; }
+.ph-lause[hidden] { display: none; }
+.ph-lause .kaannos, .vk-ohjeet .kaannos { display: none; font-family: var(--f-pt); font-size: 15px; color: var(--himmea); line-height: 1.4; }
+.kaannokset-auki .ph-lause .kaannos, .kaannokset-auki .vk-ohjeet .kaannos { display: block; }
+@media (max-width: 560px) { .ph-kolmi .ph-huone b { font-size: 14px; } .hahmokuva.ph-kasvo { width: 24px; height: 24px; } .ph-pt { display: none; } }
+/* t08: asuntoilmoitukset ja Purjon punakynä (osa A, tehtävä 3) */
+.asuntoilmoitukset { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 10px 0 16px; }
+.asuntoilmoitus { padding: 12px 14px; border: 1px solid var(--viiva); border-radius: 10px; background: var(--pinta); font-family: var(--f-fi); }
+.asuntoilmoitus p { margin: 4px 0; }
+.ai-otsikko { font-size: 18px; font-weight: 700; }
+.ai-vuokra { font-weight: 700; color: var(--meri); }
+.punakyna { margin-top: 10px; color: var(--ipa-paino); font-family: "Segoe Print", "Comic Sans MS", "Bradley Hand", cursive; font-size: 17px; transform: rotate(-3deg); }
+/* t08: värityskirja (komponentit.js varityskirja, AV-037) */
+.varityskirja { margin: 10px 0; }
+.vk-runko { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.vk-vasen, .vk-oikea { min-width: 0; }
+.vk-kuva { display: block; width: 100%; height: auto; border: 1px solid var(--viiva); border-radius: 12px; background: #ffffff; filter: var(--realia-himmennys); }
+.vk-alue { stroke: #333333; stroke-width: 2; cursor: pointer; }
+.vk-alue:hover, .vk-alue:focus-visible { stroke: #f39a1e; stroke-width: 4; outline: none; }
+.vk-kiintea { pointer-events: none; }
+.vk-paletti { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.vk-vari { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 4px 10px; border: 1px solid var(--viiva); border-radius: 20px; background: var(--pinta); color: var(--muste); font-family: var(--f-fi); font-size: 15px; cursor: pointer; }
+.vk-vari[aria-pressed="true"] { border-color: var(--meri); box-shadow: 0 0 0 2px var(--meri); }
+.vk-nayte { width: 18px; height: 18px; border-radius: 50%; border: 1px solid #555555; background: var(--vari); }
+.vk-ohjeet { margin: 0 0 10px; padding-left: 1.4em; font-family: var(--f-fi); font-size: 17px; line-height: 1.7; }
+.vk-ohjeet li.vk-oikein { color: var(--oikein); }
+.vk-ohjeet li.vk-vaarin { color: var(--vaarin); }
+.vk-soita { min-width: 32px; min-height: 32px; border: 1px solid var(--viiva); border-radius: 50%; background: var(--pinta); color: var(--meri); cursor: pointer; }
+.vk-napit { display: flex; flex-wrap: wrap; gap: 8px; }
+.vk-palaute { margin: 8px 0 0; color: var(--himmea); }
+.vk-valmis-lause { margin: 8px 0 0; font-family: var(--f-fi); font-size: 19px; color: var(--meri); }
+.vk-valmis-lause[hidden] { display: none; }
+@media (min-width: 701px) { .vk-vasen { position: sticky; top: 72px; } }
+@media (max-width: 700px) { .vk-runko { grid-template-columns: 1fr; } }
+/* t08: peli Claees Oollshen (pelit.js ajaClaees) */
+.co-lista { max-width: 380px; }
+.co-kohtaus { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.co-paikka { display: grid; gap: 6px; justify-items: center; align-content: start; padding: 10px; border: 1px solid var(--viiva); border-radius: 12px; background: var(--paperi); text-align: center; }
+.co-karry { border-color: var(--meri); }
+.co-myyja { border-color: #d4789a; }
+.co-hylly { border-style: dashed; }
+.co-paikka.co-kysytty { box-shadow: 0 0 0 3px #f39a1e; }
+.co-paikka-nimi { margin: 0; font-size: 13.5px; color: var(--himmea); }
+.co-hahmot { display: flex; align-items: center; gap: 4px; min-height: 48px; }
+.co-hahmot .hahmokuva.peli-kuva { width: 44px; height: 44px; }
+.co-kaukana { font-size: 34px; }
+.co-esine { display: grid; justify-items: center; gap: 4px; }
+.co-nayte { width: 36px; height: 14px; border-radius: 7px; border: 1px solid #555555; background: var(--vari); }
+.co-nimi { font-family: var(--f-fi); font-size: 16px; }
+.co-vuoro .peli-asiakas { margin-top: 8px; }
+@media (max-width: 480px) { .co-kohtaus { grid-template-columns: 1fr; } .co-paikka { grid-template-columns: auto auto 1fr; align-items: center; justify-items: start; text-align: left; } }
+/* ==== t09: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* Matkalaukku-peli (assets/pelit.js, t09): Maian käsky, sänky tavaroineen ja kaksi paikkaa (matkalaukku, kaappi).
+   Tavaran voi napauttaa ja sitten paikan, tai raahata paikalle. Napautuskohteet vähintään 44 px (puhelin 375 px). */
+.laukku-kasky { display: flex; align-items: center; gap: 10px 12px; flex-wrap: wrap; }
+.laukku-kasky .kysymys { margin: 0 0 4px; }
+.laukku-jatko { display: grid; gap: 10px; justify-items: start; }
+.laukku-jatko:empty { display: none; }
+.laukku-sanky { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 8px; padding: 10px; border-radius: 14px;
+  background: color-mix(in srgb, var(--meri) 8%, var(--paperi)); }
+.laukku-tavara { display: grid; justify-items: center; align-content: center; gap: 4px; min-height: 72px; padding: 8px 6px;
+  border: 2px solid var(--viiva); border-radius: 12px; background: var(--pinta); color: var(--muste); font: inherit; cursor: grab; }
+.laukku-tavara:hover:not(:disabled), .laukku-tavara:focus-visible { border-color: var(--meri); }
+.laukku-tavara[aria-pressed="true"] { border-color: var(--meri); background: var(--meri-pehmea); box-shadow: inset 0 0 0 1px var(--meri); }
+.laukku-tavara.vaarin { border-color: var(--vaarin); }
+.laukku-tavara:disabled { opacity: .3; cursor: default; }
+.laukku-ikoni { font-size: 30px; line-height: 1; }
+.laukku-nimi { font-family: var(--f-pt); font-size: 16px; font-weight: 600; }
+.laukku-alueet { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.laukku-alue { display: grid; gap: 6px; align-content: start; justify-items: start; min-height: 130px; padding: 10px 12px;
+  border: 2px dashed var(--viiva); border-radius: 14px; background: var(--paperi); }
+.laukku-alue[data-alue="laukku"] { border-color: color-mix(in srgb, #c0612b 60%, var(--viiva)); }
+.laukku-alue.laukku-yli { border-style: solid; border-color: var(--meri); background: var(--meri-pehmea); }
+.laukku-alue .ohje { margin: 0; }
+.laukku-otsikko { font-family: var(--f-pt); font-size: 18px; }
+.laukku-sisalto { margin: 0; padding-left: 1.2em; font-family: var(--f-pt); font-size: 16px; line-height: 1.5; }
+.laukku-sisalto:empty { display: none; }
+/* Televisio (t09 sääennuste): kolme säätaulua rinnakkain myös kapealla ruudulla. komponentit.css:n min-width 110 px
+   rivitti kolmannen kortin kuvaruudun alareunan alle, jossa se jäi tekstityksen ja nauhan taakse. */
+.tv-kortit { flex-wrap: nowrap; }
+.tv-kortti { flex: 1 1 0; min-width: 0; padding: 6px 8px; text-align: center; }
+.tv-kortti b { font-size: clamp(12px, 1.8vw, 16px); overflow-wrap: anywhere; }
+.tv-kortti .tv-saa { font-size: clamp(22px, 3.4vw, 32px); }
+.tv-kortti .tv-lampo { font-size: clamp(14px, 2.4vw, 20px); }
+@media (max-width: 640px) {
+  .laukku-sanky { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .laukku-alueet { grid-template-columns: minmax(0, 1fr); }
+}
+/* ==== t10: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* t10: lähtötaulun suomenkieliset tilat (komponentit.js lahtotaulu tekee luokan lt-<tila ilman ääkkösiä>). */
+.lt-ajassa, .lt-lahtoselvitys { color: #7cfc8a; }
+.lt-myohassa, .lt-peruttu { color: #ff6b6b; }
+/* Suomenkieliset tilat ovat pitkiä (Lähtöselvitys): viimeinen sarake leveämmäksi, ettei sana katkea. */
+.lahtotaulu[data-sarakkeet] .lt-rivi { grid-template-columns: 4em minmax(6.5em, 1fr) 5.5em 3.5em minmax(10em, 1.1fr); }
+/* t10: tarkastuskortti (.dokumentti.ficha-kortin muunnelma): sininen reuna kuin lentoyhtiön kortissa, katkoviiva kannassa. */
+.dokumentti.tarkastuskortti { border-left: 10px solid #1f4fa3; background: linear-gradient(90deg, #fffdf6 0 78%, #f1f5fb 78% 100%); }
+.dokumentti.tarkastuskortti .ficha-yla { border-bottom-color: #1f4fa3; }
+.dokumentti.tarkastuskortti .ficha-otsikko { color: #1f4fa3; letter-spacing: .02em; }
+.dokumentti.tarkastuskortti .ficha-huom { border-top: 2px dashed #b9c4d8; padding-top: 8px; transform: none; }
+/* ==== k02: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* K2 Astevaihtelun kaksipää: areena yön sademetsänä (PELILLISTAMINEN §4.1 vaihtelu; pomo.js asettaa data-pomo). */
+.pomo-ruutu[data-pomo="k02"] { background: #04140f; }
+.pomo-ruutu[data-pomo="k02"] .pomo-naytto { background: radial-gradient(ellipse at 50% 70%, #1d5e43 0, #0f3527 45%, #04140f 80%); }
+.pomo-ruutu[data-pomo="k02"] .pomo-horisontti { background: linear-gradient(#21402f, #0f1f17); border-top-color: rgba(120, 255, 170, .35); }
+.pomo-ruutu[data-pomo="k02"] .pomo-naytto .pomo-peto { filter: drop-shadow(0 0 18px rgba(80, 255, 170, .35)); }
+.pomo-ruutu[data-pomo="k02"] .pomo-hud b { color: #8fffc7; }
+
+/* ==== t11: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* t11: vaaka suomeksi (komponentit.js vaakaVertailu; vaa'an runko assets/komponentit.css .vk-*). Lause suomeksi,
+   käännös Tradução-napista kuten dialogeissa; hinta napissa ja kupissa ilman <small>-tagia. */
+.vk-vertailu { min-height: 3.6em; margin: 10px 0; text-align: center; }
+.vk-fi-lause { margin: 0; font-family: var(--f-fi); font-size: 21px; line-height: 1.45; color: var(--meri); }
+.vk-fi-lause[hidden] { display: none; }
+.vk-fi-lause .kaannos { display: none; font-family: var(--f-pt); font-size: 15px; color: var(--himmea); line-height: 1.4; }
+.kaannokset-auki .vk-fi-lause .kaannos { display: block; }
+.vk-tuote b[lang] { font-family: var(--f-fi); font-size: 17px; }
+.vk-hinta { font-family: var(--f-pt); font-size: 13px; color: var(--himmea); }
+.vk-kuppi-sisalto { display: flex; flex-direction: column; align-items: center; line-height: 1.1; }
+.vk-kuppi-hinta { display: block; font-size: 11px; color: #4a2f1a; font-family: var(--f-pt); }
+/* t11: salakieli (komponentit.js salakieli): kuiskaukset haaleina kuplina; kuulijan korvalla sumeina ”psst… psst…”. */
+.salakieli { margin: 10px 0 16px; }
+.sk-korvat { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 6px; }
+.sk-korvat .sk-korva { min-height: 40px; }
+.sk-korvat .sk-korva[aria-pressed="true"] { background: var(--meri); border-color: var(--meri); color: var(--pinta); }
+.sk-ohje { margin: 0 0 8px; font-size: 14px; color: var(--himmea); }
+.salakieli .s.sk-kuiskaus { margin: 4px -8px; border: 1px dashed color-mix(in srgb, var(--meri) 45%, var(--viiva)); border-radius: 16px;
+  background: color-mix(in srgb, var(--meri) 6%, transparent); }
+.salakieli .s.sk-kuiskaus .lause { font-size: 18px; opacity: .85; }
+.salakieli.sk-ei-ymmarra .s.sk-kuiskaus .lause { position: relative; color: transparent; text-shadow: 0 0 9px var(--himmea); opacity: 1; user-select: none; }
+.salakieli.sk-ei-ymmarra .s.sk-kuiskaus .w { pointer-events: none; text-decoration-color: transparent; }
+.salakieli.sk-ei-ymmarra .s.sk-kuiskaus .lause .emoji { color: var(--muste); text-shadow: none; }
+.salakieli.sk-ei-ymmarra .s.sk-kuiskaus .lause::after { content: "psst… psst…"; position: absolute; left: 0; top: .2em; padding: 0 6px;
+  border-radius: 6px; background: var(--pinta); color: var(--himmea); text-shadow: none; font-family: var(--f-pt); font-size: 15px; letter-spacing: .08em; }
+.salakieli.sk-ei-ymmarra .s.sk-kuiskaus .kaannos { visibility: hidden; }
+.sk-pt, .sk-ajatus { display: grid; grid-template-columns: 2.2em 8.6em minmax(0, 1fr); column-gap: 14px; align-items: center;
+  margin: 4px -8px; padding: 6px 8px; border-radius: 8px; font-family: var(--f-pt); font-size: 18px; line-height: 1.45; }
+.sk-pt { background: color-mix(in srgb, #d35400 9%, transparent); }
+.sk-puhuja { grid-column: 2; display: inline-flex; align-items: center; white-space: nowrap; font-family: var(--f-fi); font-size: 13px;
+  text-transform: uppercase; letter-spacing: .05em; color: var(--paino); }
+.sk-teksti { grid-column: 3; }
+.hahmokuva.sk-kasvo { width: 30px; height: 30px; margin-right: 6px; }
+.sk-ajatus { display: none; border: 2px dotted var(--viiva); border-radius: 18px; color: var(--himmea); font-size: 16px; }
+.salakieli.sk-ei-ymmarra .sk-ajatus { display: grid; }
+@media (max-width: 640px) {
+  .sk-pt, .salakieli.sk-ei-ymmarra .sk-ajatus { grid-template-columns: minmax(0, 1fr); row-gap: 2px; }
+  .sk-puhuja, .sk-teksti { grid-column: 1; }
+}
+/* ==== t12: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* t12: sovituskoppi valmiilla repliikeillä (komponentit.js provadorLauseet). Värinäyte on span (ei <i>), valittu väri
+   korostetaan; repliikit ovat tavallisia .s-lauseita koppien oikealla puolella. */
+.pv-vari .pv-nayte { width: 22px; height: 22px; border-radius: 50%; background: var(--vari); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .25), 0 0 0 1.5px rgba(160, 160, 160, .7); }
+.pv-vari[aria-pressed="true"] { border-color: var(--meri); box-shadow: 0 0 0 2px var(--meri); }
+.provador[data-lauseet] .pv-lauseet { display: grid; gap: 6px; margin-top: 6px; }
+.provador[data-lauseet] .pv-lauseet > .s[hidden] { display: none; }
+/* Kapea palsta peilin vieressä: puhujasta vain kasvot (nimi piiloon kuten lainausautomaatissa), lause saa leveyden. */
+.provador[data-lauseet] .pv-lauseet > .s { margin: 0; }
+.provador[data-lauseet] .pv-lauseet > .s.on-puhuja:has(.puhuja-kasvo) { grid-template-columns: auto auto minmax(0, 1fr) auto; }
+.provador[data-lauseet] .pv-lauseet > .s .puhuja { font-size: 0; }
+.provador[data-lauseet] .pv-lauseet > .s .lause { font-size: 19px; }
+/* t12: peli Feira Hippie (pelit.js ajaFeira): Maian pöytä, korostettu tuote, ostoskassi. */
+.fh-repliikki { margin: 0 0 10px; }
+.fh-poyta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 12px 0; padding: 10px; border-radius: 12px; background: #c99a5b; box-shadow: inset 0 -6px 0 rgba(0, 0, 0, .15); }
+.fh-tuote { position: relative; display: grid; justify-items: center; gap: 4px; padding: 8px 6px; border-radius: 10px; background: var(--pinta); border: 1px solid var(--viiva); text-align: center; }
+.fh-tuote.fh-nyt { box-shadow: 0 0 0 3px #f39a1e; }
+.fh-nayte { width: 36px; height: 14px; border-radius: 7px; border: 1px solid #555555; background: var(--vari); }
+.fh-nimi { font-family: var(--f-fi); font-size: 15px; }
+.fh-hinta { font-size: 13.5px; color: var(--himmea); }
+.fh-maara { position: absolute; top: 4px; right: 6px; font-weight: 700; color: var(--laskuri); }
+.fh-pussi { margin: 0 0 12px; padding: 8px 12px; border: 1px dashed var(--viiva); border-radius: 10px; }
+.fh-pussi-lista { margin: 4px 0 0; padding-left: 1.2em; font-size: 16px; line-height: 1.6; }
+.fh-vuoro .peli-asiakas { margin-top: 8px; }
+.fh-aukko { font-size: 20px; }
+@media (max-width: 480px) { .fh-poyta { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* ==== t13: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* Aikajanan käännösrivi (komponentit.js aikajanaKielet: small.kaannos lang=pt-BR) näkyy Tradução-napista kuten dialogien käännökset. */
+body:not(.kaannokset-auki) .aj-teksti > .kaannos { display: none; }
+/* ==== t14: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* t14: kartan akkumittari (komponentit.js karttaAkku): palkki tyhjenee käskyjen mukana, vähissä punainen, nollassa
+   käskynapit himmenevät (Alusta toimii). */
+.kt-akku { display: flex; align-items: center; gap: 8px; font-family: var(--f-pt); font-size: 16px; }
+.kt-akku-kuvake { font-size: 20px; line-height: 1; }
+.kt-akku-runko { flex: 1 1 auto; height: 14px; border: 2px solid var(--viiva); border-radius: 4px; background: var(--paperi); overflow: hidden; }
+.kt-akku-taso { display: block; height: 100%; background: var(--oikein); transition: width .3s ease; }
+.kt-akku-luku { min-width: 3.2em; text-align: right; }
+.kt-akku-vahissa .kt-akku-taso { background: var(--vaarin); }
+.kt-akku-vahissa .kt-akku-luku { color: var(--vaarin); }
+.kt-akku-tyhja .kt-nappi { opacity: .4; cursor: not-allowed; }
+/* t14 tehtävä 7: aukio kadulta katsottuna (kaksi riviä: takana ja edessä), sanat kuplina. */
+.aukiokuva { display: grid; gap: 8px; max-width: 520px; margin: 12px 0 16px; padding: 12px; border-radius: 14px;
+  background: color-mix(in srgb, var(--oikein) 12%, var(--paperi)); border: 1px solid var(--viiva); }
+.ak-rivi { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.ak-kohde { display: grid; justify-items: center; gap: 4px; padding: 8px 4px; border-radius: 10px; background: var(--pinta); border: 1px solid var(--viiva); }
+.ak-kuva { font-size: 32px; line-height: 1; }
+.ak-katu { margin: 0; text-align: center; font-family: var(--f-pt); color: var(--himmea); }
+/* ==== t15: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* t15: tehtävälistan käännösrivi (komponentit.js tehtavalistaKielet: small.kaannos lang=pt-BR) näkyy Tradução-napista. */
+body:not(.kaannokset-auki) .tl-kasky > .kaannos { display: none; }
+/* t15: Purjon joulukalenteri (komponentit.js joulukalenteri): punaiset luukut ruudukossa; avattu luukku näyttää ikonin ja
+   sanan (.s-lause ilman puhujan nimeä: Jay lukee kaikki), lopuksi Jayn lause. */
+.joulukalenteri { max-width: 720px; margin: 14px 0 20px; padding: 16px; border-radius: 14px; border: 1px solid var(--viiva);
+  background: color-mix(in srgb, #2f6b3a 14%, var(--paperi)); }
+.jk-otsikko { margin: 0 0 4px; font-family: var(--f-pt); font-size: 20px; }
+.jk-laskuri { margin: 0 0 12px; color: var(--himmea); font-family: var(--f-pt); font-size: 15px; }
+.jk-ruudukko { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.jk-solu { display: flex; min-height: 96px; }
+.jk-solu.jk-auki { min-height: 96px; }
+.jk-luukku { flex: 1 1 auto; display: grid; place-items: center; min-height: 96px; border: 2px dashed rgba(255, 255, 255, .6);
+  border-radius: 10px; background: #b8322a; color: #fff; cursor: pointer; font: inherit; box-shadow: 0 2px 0 rgba(0, 0, 0, .25); }
+.jk-luukku:hover, .jk-luukku:focus-visible { background: #d0453b; }
+.jk-numero { font-family: var(--f-pt); font-size: 30px; font-weight: 700; }
+.jk-taka { flex: 1 1 auto; display: grid; justify-items: center; align-content: center; gap: 4px; padding: 8px 10px;
+  border-radius: 10px; border: 2px solid #b8322a; background: var(--pinta); animation: jk-avaa .35s ease-out; }
+.jk-ikoni { font-size: 30px; line-height: 1; }
+.jk-taka .s { margin: 0; padding: 2px 4px; }
+.jk-taka .s.on-puhuja { grid-template-columns: auto minmax(0, 1fr) auto; }
+.jk-taka .s .puhuja { display: none; }
+.jk-taka .s .lause { font-size: 18px; }
+.jk-loppu { margin-top: 14px; }
+@keyframes jk-avaa { from { transform: perspective(400px) rotateY(-70deg); opacity: .3; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .jk-taka { animation: none; } }
+/* ==== k03: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* ==== t16: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* t16: vastaajan käännösrivi (komponentit.js vastaajaKielet: small.kaannos lang=pt-BR) näkyy Tradução-napista; tumman
+   puhelimen päällä vaalea harmaa. */
+body:not(.kaannokset-auki) .va-teksti > .kaannos { display: none; }
+.va-teksti > .kaannos { color: #b8c4cf; }
+/* ==== t17: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* t17: kadonneen ilmoitus (KADONNUT: Jay, tehtävä 4): valkoinen juliste punaisella otsikolla, Jayn kuva paperiliittimellä
+   keskellä (ei lomakkeen oikeassa reunassa), aukot julisteen teksteinä. */
+.dokumentti.juliste.kadonnut { background: #fbfaf6; border: 1px solid #d8d2c2; transform: rotate(.8deg); }
+.dokumentti.juliste.kadonnut .juliste-otsikko { color: #b3261e; border-bottom-color: #b3261e; text-align: center; }
+.dokumentti.juliste.kadonnut .ficha-foto { position: relative; right: auto; top: auto; margin: 16px auto 16px; transform: rotate(-3deg); }
+.dokumentti.juliste.kadonnut .aukot p { margin: 0 0 8px; }
+/* ==== t18: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* t18: salakieli radiona (.salakieli.sk-radio, komponentti t11): radion kehys ja otsikkorivi; Marcuksen korvalla
+   kuiskausten päällä kohina ”chhh… krrr…” (psst-tekstin sijaan). Ei muuta salakielen toimintaa. */
+.salakieli.sk-radio { padding: 10px 12px 12px; border: 2px solid color-mix(in srgb, #3d6b3a 55%, var(--viiva)); border-radius: 14px;
+  background: color-mix(in srgb, #3d6b3a 5%, transparent); }
+.sk-radiopaa { display: inline-block; margin: 0 0 8px; padding: 2px 10px; border-radius: 999px; background: #2f3b2e; color: #d8f0c8;
+  font-family: var(--f-pt); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+.salakieli.sk-radio.sk-ei-ymmarra .s.sk-kuiskaus .lause::after { content: "chhh… krrr…"; }
+/* t18: kehon (komponentit.js keho, data-kaannokset) tilarivin käännös: näkyy Tradução-napista kuten dialogien käännös. */
+.kh-tila .kh-kaannos { display: none; margin-top: 4px; font-family: var(--f-pt); font-size: 15px; color: var(--himmea); line-height: 1.4; }
+.kaannokset-auki .kh-tila .kh-kaannos { display: block; }
+/* ==== t19: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* t19: postikortin käännösrivi (komponentit.js postikorttiKielet: small.kaannos lang=pt-BR) näkyy Tradução-napista. */
+body:not(.kaannokset-auki) .pk-rivi > .kaannos { display: none; }
+/* t19: matkabingo (komponentit.js bingo): 3 × 3 ruutua; täysi ruutu vihreä ja ✓, avoimen ruudun tehtävä paneelissa
+   ruudukon alla, tunnistusruudussa 👂. Piilotetut osat pysyvät piilossa, vaikka .s ja .valinta saavat näyttötavan. */
+.bingo { max-width: 720px; margin: 14px 0 20px; padding: 16px; border-radius: 14px; border: 1px solid var(--viiva);
+  background: color-mix(in srgb, #c99a2e 14%, var(--paperi)); }
+.bingo .valinta[hidden], .bingo .s[hidden], .bg-ilmoitus[hidden], .bg-paneeli[hidden] { display: none; }
+.bg-otsikko { margin: 0 0 4px; font-family: var(--f-pt); font-size: 20px; }
+.bg-laskuri { margin: 0 0 8px; color: var(--himmea); font-family: var(--f-pt); font-size: 15px; }
+.bg-ilmoitus { margin: 0 0 10px; padding: 6px 12px; border-radius: 10px; background: #c25e00; color: #fff; font-weight: 700; text-align: center; }
+.bg-ruudukko { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bg-solu { display: flex; }
+.bg-ruutu { position: relative; flex: 1 1 auto; display: grid; justify-items: center; align-content: center; gap: 4px; min-height: 104px;
+  padding: 10px 6px 8px; border: 2px solid var(--viiva); border-radius: 10px; background: var(--pinta); color: inherit; font: inherit;
+  cursor: pointer; text-align: center; }
+.bg-ruutu:hover, .bg-ruutu:focus-visible { border-color: var(--meri); }
+.bg-auki .bg-ruutu { border-color: var(--meri); box-shadow: 0 0 0 2px var(--meri); }
+.bg-ikoni { font-size: 26px; line-height: 1; }
+.bg-kasvot { display: flex; gap: 2px; }
+.bg-kasvo { width: 30px; height: 30px; }
+.bg-kasvo svg { width: 100%; height: 100%; }
+.bg-vihje { font-family: var(--f-pt); font-size: 13.5px; line-height: 1.25; }
+.bg-korva { position: absolute; top: 4px; left: 6px; font-size: 15px; }
+.bg-leima { position: absolute; top: 2px; right: 6px; font-size: 22px; font-weight: 700; color: var(--oikein); opacity: 0; }
+.bg-taysi .bg-ruutu { background: color-mix(in srgb, var(--oikein) 18%, var(--pinta)); border-color: var(--oikein); }
+.bg-taysi .bg-leima { opacity: 1; }
+.bg-paneeli { margin-top: 12px; padding: 12px; border-radius: 12px; border: 1px dashed var(--viiva); background: var(--pinta); }
+.bg-paneeli > .valinta { margin: 0; }
+.bingo-vastaus { margin-top: 8px; }
+.bingo-loppu { margin-top: 14px; }
+@media (max-width: 480px) { .bg-ruutu { min-height: 92px; } .bg-vihje { font-size: 12.5px; } }
+/* ==== t20: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* t20: albumin kuvatekstin käännös (komponentit.js albumiKielet: small.kaannos lang=pt-BR) näkyy Tradução-napista. */
+body:not(.kaannokset-auki) .al-teksti > .kaannos { display: none; }
+/* t20: tulkkaus (komponentit.js tulkkaus): kaksi palstaa, vasemmalla portugali, oikealla suomi; vuoro kerrallaan,
+   tehtävä rivin alla koko leveydellä. Piilotetut osat pysyvät piilossa, vaikka .s ja .valinta saavat näyttötavan. */
+.tulkkaus { max-width: 760px; margin: 14px 0 20px; padding: 16px; border-radius: 14px; border: 1px solid var(--viiva);
+  background: color-mix(in srgb, var(--meri) 8%, var(--paperi)); }
+.tulkkaus .valinta[hidden], .tulkkaus .s[hidden], .tulkkaus .tk-vuoro[hidden], .tulkkaus .tk-tulkki[hidden] { display: none; }
+.tk-otsikko { margin: 0 0 8px; font-family: var(--f-pt); font-size: 20px; }
+.tk-palstat, .tk-rivi { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+.tk-palstat { margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px dashed var(--viiva); }
+.tk-otsake { display: flex; align-items: center; gap: 6px; font-family: var(--f-pt); font-size: 14px; color: var(--himmea); }
+.tk-oikea { justify-content: flex-end; }
+.tk-vasen { justify-content: flex-start; }
+.tk-kasvo { width: 34px; height: 34px; flex: 0 0 auto; }
+.tk-kasvo svg { width: 100%; height: 100%; }
+.tk-laskuri { margin: 0 0 10px; color: var(--himmea); font-family: var(--f-pt); font-size: 14px; }
+.tk-vuoro { margin: 0 0 10px; }
+.tk-rivi { align-items: start; }
+.tk-solu { min-height: 44px; }
+.tk-solu > p { margin: 0; padding: 8px 10px; border-radius: 12px; background: var(--pinta); border: 1px solid var(--viiva); }
+.tk-solu > p[lang^="pt"] { font-family: var(--f-pt); }
+.tk-alku { margin: 0; }
+/* Repliikki palstassa: puhuja näkyy palstan otsakkeessa, joten nimi ja kasvot piiloon (kuten galleriassa .ga-teksti). */
+.tk-solu > .s.on-puhuja, .tk-solu > .s.on-puhuja:has(.puhuja-kasvo) { grid-template-columns: auto minmax(0, 1fr) auto; column-gap: 8px; }
+.tk-solu > .s .puhuja { display: none; }
+.tk-solu > .s.on-puhuja .lause { grid-column: -3 / -2; grid-row: 1; font-size: 17px; }
+.tk-solu > .s.on-puhuja .kaannos { grid-column: -3 / -2; grid-row: 2; }
+.tk-kohde > .tk-tulkki { border-color: var(--meri); background: color-mix(in srgb, var(--meri) 12%, var(--pinta)); }
+.tk-odottaa { display: block; padding: 8px 10px; border: 1px dashed var(--viiva); border-radius: 12px; color: var(--himmea); text-align: center; }
+.tk-vuoro > .valinta { margin: 8px 0 0; padding: 10px 12px; border-radius: 12px; border: 1px dashed var(--viiva); background: var(--pinta); }
+.tk-valmis .tk-rivi { opacity: .92; }
+.tk-loppu { margin-top: 12px; }
+@media (max-width: 480px) {
+  .tk-palstat, .tk-rivi { gap: 6px; } .tk-solu > p { padding: 6px 8px; font-size: 15px; } .tk-kasvo { width: 28px; height: 28px; }
+  .tk-solu > .s.on-puhuja, .tk-solu > .s.on-puhuja:has(.puhuja-kasvo) { grid-template-columns: minmax(0, 1fr); row-gap: 4px; }
+  .tk-solu > .s.on-puhuja .soita { justify-self: start; }
+  .tk-solu > .s.on-puhuja .lause { grid-column: 1; grid-row: 2; font-size: 16px; }
+  .tk-solu > .s.on-puhuja .kaannos { grid-column: 1; grid-row: 3; }
+}
+/* ==== k04: oppitunnin tyylit (lisää tämän rivin perään) ==== */
+/* K3 Paikallissijojen kraken: areena joen pohjana (PELILLISTAMINEN §4.1 vaihtelu; pomo.js asettaa data-pomo). */
+.pomo-ruutu[data-pomo="k03"] { background: #020c1c; }
+.pomo-ruutu[data-pomo="k03"] .pomo-naytto { background: radial-gradient(ellipse at 50% 65%, #1b4a7a 0, #0c2647 48%, #020c1c 82%); }
+.pomo-ruutu[data-pomo="k03"] .pomo-horisontti { background: linear-gradient(#3b3020, #1a140c); border-top-color: rgba(120, 200, 255, .35); }
+.pomo-ruutu[data-pomo="k03"] .pomo-naytto .pomo-peto { filter: drop-shadow(0 0 18px rgba(255, 120, 170, .4)); }
+.pomo-ruutu[data-pomo="k03"] .pomo-hud b { color: #9fd3ff; }
+/* K4 Aikakoneen golem: areena aikakoneen violettina tähtitaivaana (PELILLISTAMINEN §4.1 vaihtelu; pomo.js asettaa data-pomo). */
+.pomo-ruutu[data-pomo="k04"] { background: #0d0618; }
+.pomo-ruutu[data-pomo="k04"] .pomo-naytto { background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, .5) 0 1px, transparent 2px), radial-gradient(circle at 72% 34%, rgba(255, 255, 255, .45) 0 1px, transparent 2px), radial-gradient(ellipse at 50% 60%, #3d2470 0, #1c0f38 50%, #0d0618 85%); }
+.pomo-ruutu[data-pomo="k04"] .pomo-horisontti { background: linear-gradient(#2c2440, #141022); border-top-color: rgba(124, 255, 178, .4); }
+.pomo-ruutu[data-pomo="k04"] .pomo-naytto .pomo-peto { filter: drop-shadow(0 0 18px rgba(155, 107, 255, .5)); }
+.pomo-ruutu[data-pomo="k04"] .pomo-hud b { color: #b9ffd6; }
+/* Uutinen (omistaja 21.10.2026: ”A short news piece (headline, two lines and a photo)… build this”): sanomalehden leike,
+   vain CSS kuten juliste. Lehden nimi, otsikko (.s: ▶ ja kuplat), kuva (figure.kuva tai .ficha-foto) ja kaksi riviä. */
+.dokumentti.uutinen { max-width: 440px; margin: 14px auto 18px; padding: 12px 16px 14px; background: var(--lehti-paperi); color: var(--lehti-muste);
+  border: 1px solid var(--lehti-viiva); border-radius: 2px; box-shadow: 0 3px 10px rgba(0, 0, 0, .18); transform: rotate(-.6deg); font-family: Georgia, "Times New Roman", serif; }
+.dokumentti.uutinen p { margin: 0 0 6px; font-family: Georgia, "Times New Roman", serif; font-size: 16px; line-height: 1.4; color: var(--lehti-muste); }
+.dokumentti.uutinen .uutinen-lehti { margin-bottom: 8px; padding: 2px 0; border-top: 3px double var(--lehti-muste); border-bottom: 3px double var(--lehti-muste);
+  font-size: 13px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; text-align: center; }
+.dokumentti.uutinen .uutinen-otsikko { font-size: 24px; font-weight: 800; line-height: 1.15; }
+.dokumentti.uutinen figure.kuva { margin: 6px 0 8px; }
+.dokumentti.uutinen figure.kuva img { filter: grayscale(.35) contrast(1.05); }
+.dokumentti.uutinen .ficha-foto { float: right; width: 96px; height: 96px; margin: 2px 0 6px 10px; filter: grayscale(.35); }
+.dokumentti.uutinen::after { content: ""; display: block; clear: both; }
+@media (prefers-reduced-motion: reduce) { .dokumentti.uutinen { transform: none; } }
+/* Uutisen rivit soivat uutistenlukijan äänellä (data-h), mutta ilman puhujan kasvoja ja nimeä: ▶ ja teksti, kuin lehdessä. */
+.dokumentti.uutinen .s .puhuja { display: none; }
+.dokumentti.uutinen .s.on-puhuja, .dokumentti.uutinen .s.on-puhuja:has(.puhuja-kasvo) { grid-template-columns: auto minmax(0, 1fr) auto; }
+.dokumentti.uutinen .s.on-puhuja .lause { grid-column: -3 / -2; grid-row: 1; }
+/* Sanakuvat (AV-073, sarja 1): 40 px kuva monivalinnan kysymyksen eteen (.kysymys on jo flex) ja yhdistä-tehtävän
+   portugalinkielisen sanan eteen. Kuva ei kutistu, ja napin teksti jää kuvan viereen. */
+.sana-ikoni { width: 40px; height: 40px; flex: none; display: block; }
+.yhd-nappi:has(> .sana-ikoni) { display: flex; align-items: center; gap: 8px; min-height: 52px; }
+/* Kuvallisessa yhdistä-tehtävässä rivit ovat yhteiset (omistaja 22.10.2026: ”make the heights match up”): sarakkeet
+   puretaan kehyksen ruudukkoon (display: contents), vasen sarake → sarake 1, oikea → sarake 2, ja dense-täyttö aloittaa
+   kummankin sarakkeen ylhäältä. Rivin korkeus = rivin korkeampi nappi, joten parit ovat aina samalla korkeudella. */
+.yhd-kehys:has(.sana-ikoni) { grid-auto-flow: row dense; row-gap: 6px; }
+.yhd-kehys:has(.sana-ikoni) > .yhd-sarake { display: contents; }
+.yhd-kehys:has(.sana-ikoni) > .yhd-sarake:first-child > .yhd-nappi { grid-column: 1; display: flex; align-items: center; }
+.yhd-kehys:has(.sana-ikoni) > .yhd-sarake:last-child > .yhd-nappi { grid-column: 2; }
+/* Monivalinnassa kuva kelluu vasemmalla ja kysymys rivittyy sen viereen (flex rivitti pitkän kysymyksen kuvan alle
+   puhelimella). */
+.valinta .kysymys:has(> .sana-ikoni) { display: block; min-height: 40px; }
+.valinta .kysymys:has(> .sana-ikoni)::after { content: ""; display: block; clear: both; }
+.valinta .kysymys > .sana-ikoni { float: left; margin: 0 10px 2px 0; }
+.valinta .kysymys:has(> .sana-ikoni) > .ohj { vertical-align: middle; margin-right: 6px; }
+/* Valikon avausmerkki (omistaja 22.10.2026: ”Make the "play button" twice as big in the sidebar menu … making it a circle,
+   that is filled with a white dot when expanded (or open/selected) and hollow otherwise”): ▸-merkin tilalle 20 px rengas,
+   jonka keskellä on piste vain avoimena. Piste on tekstin värinen (tummassa teemassa valkoinen, vaaleassa tumma). */
+#valikko .v-nuoli { font-size: 0; width: 20px; height: 20px; flex: none; box-sizing: border-box; border: 2px solid currentColor;
+  border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; transform: none !important;
+  align-self: center; color: var(--meri); }
+#valikko .v-nuoli::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: transparent; }
+#valikko .v-otsake[aria-expanded="true"] .v-nuoli::after,
+#valikko .v-alaotsake[aria-expanded="true"] .v-nuoli::after,
+#valikko [data-oppitunti].aktiivinen:not(.v-kiinni) > a.v-oppitunti .v-nuoli::after { background: var(--muste); }
+#valikko a.v-oppitunti .v-nuoli { padding-left: 0; margin-left: auto; }
+/* Tarinakuvat (sarja 2): puhelimella repliikkien välissä. Leveällä näytöllä pinottuina dialogin oikeaan yläkulmaan
+   (omistaja 23.10.2026: ”the layout is wack lower picture is too low. Just make them stacked top right for now”). */
+.tarinakuva { margin: 10px auto; max-width: min(100%, 360px); }
+.tarinakuva img { display: block; width: 100%; height: auto; border-radius: 14px; }
+@media (min-width: 1100px) {
+  .kpl.on-tarinakuvia { position: relative; padding-right: 284px; min-height: 340px; }
+  .kpl.on-tarinakuvia:has(> figure.tarinakuva:nth-of-type(2)) { min-height: 620px; }
+  .kpl.on-tarinakuvia:has(> figure.tarinakuva:nth-of-type(3)) { min-height: 900px; }
+  .kpl.on-tarinakuvia > .tarinakuva { position: absolute; right: 0; top: 56px; width: 264px; max-width: none; margin: 0; }
+  .kpl.on-tarinakuvia > figure.tarinakuva:nth-of-type(2) { top: 336px; }
+  .kpl.on-tarinakuvia > figure.tarinakuva:nth-of-type(3) { top: 616px; }
+}
+
+/* AV-025 (23.10.2026, komponentit.js chat ja saapuva): puhelimen keskustelu etenee vain napista.
+   Chat: saapuvan viestin ilmoitus puhelimen päällä (ei muuta korkeutta), alapalkin nappi Abrir / Escrever / Responder;
+   lopussa palkki jää paikalleen näkymättömänä (puhelin ei pienene). Saapuva puhelu: kortti ennen puhelindialogia,
+   napit samat kuin videopuhelussa (.vp-pyorea .vp-ok / .vp-hylkaa, kuvitus.css). */
+.chat-runko { position: relative; }
+.chat-ilmoitus { position: absolute; top: 14px; left: 10px; right: 10px; display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+  border-radius: 14px; background: #1f2c34; color: #e9edef; box-shadow: 0 6px 18px rgba(0, 0, 0, .45); }
+.chat-ilmoitus div { display: flex; flex-direction: column; }
+.chat-ilmoitus small { color: #8696a0; font-size: 13px; }
+.chat-ala { display: flex; justify-content: center; padding: 10px 4px 2px; border-top: 1px solid #2a3942; }
+.chat-ala.chat-ala-loppu { visibility: hidden; }
+.chat-vastaa { font: inherit; font-weight: 700; font-size: 16px; min-height: 44px; padding: 8px 22px; border: 0; border-radius: 999px;
+  background: #2fa36b; color: #ffffff; cursor: pointer; }
+.chat-vastaa:hover, .chat-vastaa:focus-visible { background: #27935f; outline: 2px solid #ffd166; outline-offset: 2px; }
+.chat-vastaa:disabled { opacity: .45; cursor: default; outline: none; }
+.saapuva { display: flex; justify-content: center; margin: 10px 0 14px; }
+.sa-kortti { display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 12px 16px; width: min(460px, 100%);
+  padding: 14px 16px; border-radius: 22px; background: #0b141a; color: #e9edef; box-shadow: 0 10px 26px rgba(0, 0, 0, .3), inset 0 0 0 2px #2a3942; }
+.sa-kasvo { width: 56px; height: 56px; flex: none; border-radius: 999px; }
+.sa-tiedot { display: flex; flex-direction: column; flex: 1 1 140px; min-width: 0; }
+.sa-tiedot b { font-size: 19px; }
+.sa-tila { color: #8696a0; font-size: 14px; }
+.sa-napit { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+.sa-napit .vp-pyorea { height: 52px; min-width: 52px; padding: 0 18px; }
+.sa-kortti.sa-soi .sa-kasvo { animation: sa-soi 1.2s ease-in-out infinite; }
+.sa-kortti.sa-puhelu .sa-tila { color: #6cc485; }
+.sa-kortti.sa-ohi { background: #1f2c34; }
+@keyframes sa-soi { 0%, 100% { box-shadow: 0 0 0 0 rgba(47, 163, 107, .7); } 50% { box-shadow: 0 0 0 10px rgba(47, 163, 107, 0); } }
+@media (prefers-reduced-motion: reduce) { .sa-kortti.sa-soi .sa-kasvo { animation: none; } }
+
+/* AV-037 (23.10.2026): värityskirjan käänteinen tila. Aukko = värisanan paikka; valittu lause ja kuvan osa korostuvat. */
+.vk-aukko { font: inherit; min-width: 4.5em; min-height: 34px; padding: 0 10px; border: 2px dashed var(--meri); border-radius: 8px;
+  background: var(--pinta); color: var(--himmea); cursor: pointer; }
+.vk-aukko.vk-taytetty { border-style: solid; color: var(--muste); font-weight: 700; }
+.vk-ohjeet li.vk-valittu .vk-aukko { background: var(--meri-pehmea); box-shadow: 0 0 0 2px var(--meri); }
+.vk-ohjeet li.vk-oikein .vk-aukko { border-color: var(--oikein); color: var(--oikein); }
+.vk-ohjeet li.vk-vaarin .vk-aukko { border-color: var(--vaarin); color: var(--vaarin); }
+.vk-alue.vk-valittu-alue { stroke: #f39a1e; stroke-width: 5; }
+/* Hoje: taivutettujen muotojen kertaus (AV-042, app.js muotoRivi): perusmuoto jonon rivillä, ”Formas de hoje” -rivit,
+   ”Ver a resposta” ja ”Acertei”/”Errei”. Painikkeet vähintään 44 px korkeat (kosketus). */
+.hoje-perus { color: var(--himmea); font-size: 15px; }
+.hoje-perus a.fi { font-weight: 600; }
+.hoje-muoto .hoje-teksti { font-weight: 600; }
+.hoje-nayta, .hoje-arvio { min-height: 44px; padding: 6px 14px; border: 1px solid var(--viiva); border-radius: 10px;
+  background: var(--meri-pehmea); color: var(--muste); font: inherit; font-size: 15px; cursor: pointer; }
+.hoje-nayta:focus-visible, .hoje-arvio:focus-visible { outline: 2px solid var(--meri); outline-offset: 2px; }
+.hoje-nayta, .hoje-arviot { margin-left: auto; }
+.hoje-arviot { display: inline-flex; gap: 8px; }
+
+/* ---------- AV-077 Takaa-ajo peruutuspeilissä (assets/pomo.js takaaAjo, oppitunti 20 osa B) ----------
+   Areena = pomotaistelun .pomo-ruutu (HUD, alapalkki, Maian kuvake); näkymä = tuulilasi (.ajo-kuva), peili (.ajo-peili),
+   kartta (.ajo-kartta) ja Hiisi (.ajo-hiisi) kehyksessä .ajo-kehys, joka zoomaa peiliin (.zoom). Risteyksen paikka ja
+   poliisin koko lasketaan pomo.js:ssä (SVG-attribuutit). */
+.pomo-ruutu[data-pomo="ajo"] { background: #10131a; }
+.pomo-ruutu[data-pomo="ajo"] .pomo-hud b { color: #9ec0ff; }
+.ajo-naytto { background: #10131a; }
+.ajo-nakyma { position: absolute; left: 0; right: 0; top: 0; bottom: var(--pomo-ala, 0px); overflow: hidden; }
+.pomo-ruutu.tuloksessa .ajo-nakyma, .pomo-ruutu.tuloksessa .ajo-sauna { bottom: 0; }
+.ajo-kehys { position: absolute; inset: 0; transform-origin: 50% 10%; transition: transform .7s cubic-bezier(.3, .7, .3, 1); }
+.ajo-kehys.zoom { transform: scale(2.3); }
+.ajo-kehys::before { content: ""; position: absolute; z-index: 2; left: 50%; top: 0; width: 10px; height: 3%; margin-left: -5px; background: #1b1c21; }
+.ajo-kuva { position: absolute; inset: 0; transform-origin: 50% 65%; }
+.ajo-kuva svg, .ajo-sauna-kuva svg { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.ajo-peili { position: absolute; z-index: 2; top: 2.5%; left: 50%; width: clamp(140px, 30%, 320px); aspect-ratio: 26 / 10; transform: translateX(-50%);
+  border: 5px solid #1b1c21; border-radius: 16px; overflow: hidden; background: #a8d8f2; box-shadow: 0 6px 18px rgba(0, 0, 0, .55); }
+.ajo-peili svg { display: block; width: 100%; height: 100%; }
+.ajo-naytto[data-lahella="2"] .ajo-peili, .ajo-naytto[data-lahella="3"] .ajo-peili { border-color: #8f1d1d; }
+.ajo-naytto.poliisi .ajo-peili { animation: ajo-peili-hehku 1s ease-in-out infinite alternate; }
+@keyframes ajo-peili-hehku { from { box-shadow: 0 0 0 2px #2a6cff, 0 0 10px rgba(42, 108, 255, .4); } to { box-shadow: 0 0 0 2px #9ec0ff, 0 0 34px rgba(42, 108, 255, .9); } }
+.ajo-naytto.poliisi .ajo-valo-a { animation: ajo-vilkku .5s steps(1) infinite; }
+.ajo-naytto.poliisi .ajo-valo-b { animation: ajo-vilkku .5s steps(1) .25s infinite; }
+@keyframes ajo-vilkku { 0% { fill: #2a6cff; } 50% { fill: #eef4ff; } }
+.ajo-kartta { position: absolute; z-index: 2; top: 3%; left: 9%; width: clamp(78px, 15%, 150px); aspect-ratio: 1; padding: 4px; border-radius: 8px;
+  background: #fff; box-shadow: 0 4px 14px rgba(0, 0, 0, .5); transform: rotate(-3deg); }
+.ajo-kartta svg { display: block; width: 100%; height: 100%; border-radius: 4px; }
+.ajo-hiisi { position: absolute; z-index: 2; left: 4%; bottom: 3%; width: clamp(60px, 11vw, 120px); height: clamp(60px, 11vw, 120px); box-shadow: 0 0 0 3px #4f74a8, 0 6px 16px rgba(0, 0, 0, .5); }
+.ajo-huuto { position: absolute; z-index: 4; left: 50%; top: 44%; transform: translate(-50%, -50%) rotate(-4deg); pointer-events: none;
+  font: 900 clamp(34px, 8vw, 84px) / 1 "Arial Black", Arial, sans-serif; letter-spacing: .06em; color: #fff; text-shadow: 0 0 18px #2a6cff, 3px 3px 0 #1f4fb4;
+  animation: ajo-huuto 2s ease-out forwards; }
+@keyframes ajo-huuto { 0% { opacity: 0; transform: translate(-50%, -50%) rotate(-4deg) scale(.4); } 15% { opacity: 1; transform: translate(-50%, -50%) rotate(-4deg) scale(1.1); }
+  80% { opacity: 1; transform: translate(-50%, -50%) rotate(-4deg) scale(1); } 100% { opacity: 0; transform: translate(-50%, -50%) rotate(-4deg) scale(1); } }
+.ajo-leima { position: absolute; z-index: 5; left: 50%; top: 40%; transform: translate(-50%, -50%) rotate(-12deg); pointer-events: none; padding: 4px 18px;
+  border: 6px solid #d7161e; border-radius: 10px; background: rgba(255, 255, 255, .88); color: #d7161e;
+  font: 900 clamp(40px, 10vw, 110px) / 1 "Arial Black", Arial, sans-serif; letter-spacing: .04em; animation: ajo-leima .45s cubic-bezier(.2, 1.6, .4, 1) both; }
+@keyframes ajo-leima { from { opacity: 0; transform: translate(-50%, -50%) rotate(-12deg) scale(2.4); } to { opacity: 1; transform: translate(-50%, -50%) rotate(-12deg) scale(1); } }
+.ajo-naytto.kiinni::after { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; animation: ajo-kiinni-valo .5s steps(1) infinite; }
+@keyframes ajo-kiinni-valo { 0% { background: rgba(42, 108, 255, .38); } 50% { background: rgba(255, 255, 255, .26); } }
+.ajo-kello { display: block; height: 7px; margin: 0 0 6px; border-radius: 4px; background: var(--raita); overflow: hidden; }
+.ajo-kello-taso { display: block; width: 100%; height: 100%; background: linear-gradient(90deg, #e2574c, #ffd166); }
+.ajo-tilanne { font-size: 18px; }
+.ajo-merkki { display: inline-block; min-width: 1.3em; font-size: 32px; line-height: 1; vertical-align: middle; color: var(--poliisi); }
+.ajo-kehys.liike-vasen .ajo-kuva { animation: ajo-vasen .8s ease-in-out; }
+.ajo-kehys.liike-oikea .ajo-kuva { animation: ajo-oikea .8s ease-in-out; }
+.ajo-kehys.liike-ympari .ajo-kuva { animation: ajo-ympari .9s ease-in-out; }
+.ajo-kehys.liike-eteen .ajo-kuva { animation: ajo-eteen .7s ease-in-out; }
+.ajo-kehys.liike-hidas .ajo-kuva { animation: ajo-hidas .7s ease-in-out; }
+@keyframes ajo-vasen { 50% { transform: translateX(14%) rotate(4deg); } }
+@keyframes ajo-oikea { 50% { transform: translateX(-14%) rotate(-4deg); } }
+@keyframes ajo-ympari { 35% { transform: translateX(26%) rotate(7deg); filter: blur(3px); } 65% { transform: translateX(-26%) rotate(-7deg); filter: blur(3px); } }
+@keyframes ajo-eteen { 50% { transform: scale(1.12) translateY(3%); } }
+@keyframes ajo-hidas { 50% { transform: translateY(2.5%) rotate(.6deg); } }
+.ajo-sauna { position: absolute; z-index: 3; left: 0; right: 0; top: 0; bottom: var(--pomo-ala, 0px); overflow: hidden; animation: ajo-sauna .8s ease-out both; }
+@keyframes ajo-sauna { from { opacity: 0; } }
+.ajo-sauna-kuva { position: absolute; inset: 0; }
+.ajo-sauna-hahmot { position: absolute; left: 50%; bottom: 5%; display: flex; gap: 10px; transform: translateX(-50%); }
+.ajo-sauna-kasvo { width: clamp(44px, 9vw, 92px); height: clamp(44px, 9vw, 92px); box-shadow: 0 0 0 3px #fff, 0 6px 14px rgba(0, 0, 0, .4); }
+.ajo-kulttuuri { margin: 10px 0; padding: 10px 14px; border-left: 4px solid var(--poliisi); border-radius: 8px; font-size: 15.5px;
+  background: color-mix(in srgb, var(--poliisi) 10%, var(--pinta)); }
+@media (prefers-reduced-motion: reduce) {
+  .ajo-kehys { transition: none; }
+  .ajo-kehys.zoom { transform: none; }
+  .ajo-kehys[class*="liike-"] .ajo-kuva, .ajo-huuto, .ajo-leima, .ajo-sauna, .ajo-naytto.poliisi .ajo-peili,
+  .ajo-naytto.poliisi .ajo-valo-a, .ajo-naytto.poliisi .ajo-valo-b, .ajo-naytto.kiinni::after { animation: none; }
+  .ajo-naytto.kiinni::after { background: rgba(42, 108, 255, .3); }
+}
+
+/* ---------- Treeni: sijamuotojen lajitteluruudukko (AV-036) ja oma kierros (AV-033 d), treeni-työntekijä 23.10.2026 ---------- */
+.sijaruudukko { margin: 10px 0; }
+.sijaruudukko-kehys { overflow-x: auto; max-width: 100%; }
+.sijaruudukko-taulu { border-collapse: separate; border-spacing: 6px; width: 100%; max-width: 640px; table-layout: fixed; }
+.sijaruudukko-taulu th { font-size: 14.5px; font-weight: 600; color: var(--himmea); text-align: left; padding: 2px 4px; overflow-wrap: anywhere; }
+.sijaruudukko-taulu thead th:first-child { width: 28%; }
+.sijaruudukko-taulu tbody th { color: var(--meri); font-family: var(--f-fi); }
+.sijaruudukko-taulu td { padding: 0; }
+.sijaruudukko-solu, .sijaruudukko-syote { width: 100%; min-height: 44px; box-sizing: border-box; font-family: var(--f-fi); font-size: 17px;
+  border: 1px dashed var(--viiva); border-radius: 10px; background: var(--pinta); color: var(--muste); padding: 6px 8px; overflow-wrap: anywhere; }
+.sijaruudukko-solu { cursor: pointer; text-align: center; }
+.sijaruudukko-solu:hover, .sijaruudukko-solu:focus-visible { border-color: var(--meri); }
+.sijaruudukko-solu.valittu { border: 2px solid var(--meri); background: var(--meri-pehmea); }
+.sijaruudukko-solu.oikein, .sijaruudukko-syote.oikein { border: 1px solid var(--oikein); background: color-mix(in srgb, var(--oikein) 14%, var(--pinta)); }
+.sijaruudukko-solu.vaarin, .sijaruudukko-syote.vaarin { border: 1px solid var(--vaarin); color: var(--vaarin); }
+.sijaruudukko-sanat { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; min-height: 44px; }
+.sijaruudukko-sana { font-family: var(--f-fi); font-size: 17px; min-height: 44px; padding: 6px 14px; border: 1px solid var(--viiva); border-radius: 999px;
+  background: var(--pinta); color: var(--muste); cursor: pointer; }
+.sijaruudukko-sana:hover, .sijaruudukko-sana:focus-visible { border-color: var(--meri); }
+.sijaruudukko-sana.valittu { border: 2px solid var(--meri); background: var(--meri); color: var(--pinta); }
+.sijaruudukko-sana[hidden] { display: none; }
+.treeni-valitsin { border: 1px solid var(--viiva); border-radius: 12px; padding: 10px 14px; margin: 0 0 12px; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.treeni-valitsin legend { font-weight: 600; padding: 0 6px; }
+.treeni-valitsin .valintaruutu { margin: 0; }
+.treeni-valitsin-asti { font-size: 16px; padding: 6px 8px; max-width: 100%; border: 1px solid var(--viiva); border-radius: 8px; background: var(--pinta); color: var(--muste); }
+
+/* ---------- AV-030 Spa da Capivara: oma teema kertauksen 1 sivuille (#k01, #k01-b) ----------
+   Vaaleanpunainen paletti; kylpylän sininen mandariinitausta (.kylpyla, assets/kuvitus.css) säilyy ennallaan. Vain CSS:
+   sivun tunniste on osanavigaation nykyinen linkki (.osa-nav a[aria-current="page"][href^="#k01"]) :has()-valitsimella.
+   Jos app.js joskus merkitsee reitin (#sisalto[data-oppitunti="k01"]), sama sääntö toimii sillä ilman :has()-tukea. */
+body:has(#sisalto .osa-nav a[aria-current="page"][href^="#k01"]), #sisalto[data-oppitunti="k01"] {
+  --paperi: #fbf0f4; --pinta: #fffafc; --viiva: #edd2dd; --himmea: #6f5762;
+  --meri: #b8336a; --meri-pehmea: #fbe0ea; --paino: #b8336a; --p1: #b8336a;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body:has(#sisalto .osa-nav a[aria-current="page"][href^="#k01"]), :root:not([data-theme="light"]) #sisalto[data-oppitunti="k01"] {
+    --paperi: #1c1016; --pinta: #2a1720; --viiva: #4a2a39; --himmea: #b598a5;
+    --meri: #f28dbb; --meri-pehmea: #44202f; --paino: #f5a3c7; --p1: #f28dbb;
+  }
+}
+:root[data-theme="dark"] body:has(#sisalto .osa-nav a[aria-current="page"][href^="#k01"]), :root[data-theme="dark"] #sisalto[data-oppitunti="k01"] {
+  --paperi: #1c1016; --pinta: #2a1720; --viiva: #4a2a39; --himmea: #b598a5;
+  --meri: #f28dbb; --meri-pehmea: #44202f; --paino: #f5a3c7; --p1: #f28dbb;
+}
+body:has(#sisalto .osa-nav a[aria-current="page"][href^="#k01"]) .kylpyla > h2 { background: #f7c9da; color: #5a1d36; box-shadow: 0 4px 0 #c2708f, 0 8px 16px rgba(0, 0, 0, .25); }
+body:has(#sisalto .osa-nav a[aria-current="page"][href^="#k01"]) .kylpyla > h2[data-kyltti]::after { color: #8f2c55; }
+body:has(#sisalto .osa-nav a[aria-current="page"][href^="#k01"]) .kylpyla .apuhahmo-kupla { background: #ffe8f0; color: #4a1c2f; }
+body:has(#sisalto .osa-nav a[aria-current="page"][href^="#k01"]) .kylpyla .apuhahmo-kupla::before { border-right-color: #ffe8f0; }
+/* AV-077: pitkä tuloskortti alkaa ylhäältä (keskitetty rivi leikkaisi otsikon pois), ja zoomaus peiliin kasvaa peilin
+   yläreunasta alaspäin (peili ei leikkaudu kapealla ruudulla). */
+.pomo-ruutu[data-pomo="ajo"].tuloksessa .pomo-runko > .pomo-ohjaus { align-items: flex-start; }
+.ajo-kehys { transform-origin: 50% 3%; }
+/* Takaa-ajon (AV-077) SVG-koukut ja Hojen muotolistan kehys: JS valitsee nämä luokalla, ulkoasu tulee piirroksen
+   omista attribuuteista tai lapsiluokista. Sääntö on käytäntöportille (T1), eikä se muuta ulkoasua (alkuarvot). */
+.ajo-kohde, .ajo-neula, .ajo-poliisi, .ajo-risteys { transform-box: view-box; }
+.hoje-muodot { min-width: 0; }
+/* Kun käännökset ovat piilossa ja esimerkkitaulun portugalisarake piilotetaan (yllä), suomen sarake saa koko leveyden:
+   muuten se jäi neljännekseen ja pitkät ilmaukset katkesivat kesken sanan (”vasemma lle”, t14). */
+body:not(.kaannokset-auki) table.sanataulu:has(td.lahdesolu > .kaannos) { table-layout: auto; }
+body:not(.kaannokset-auki) table.sanataulu:has(td.lahdesolu > .kaannos) col { width: auto; }
+
+/* Sanasivun taivutusluokka (Kotus-tyyppi, AV-041; kupla.js sivu): pieni rivi Formas-otsikon alla. */
+.sanasivu-tyyppi { font-size: 0.92em; color: var(--himmea); margin-block: 0 0.4rem; }
+
+/* Nimike tekstin sisällä (ryhmän, lehden tai kirjan nimi): lainausmerkit tekstissä, kursiivi tästä (omistaja 23.10.2026, t17). */
+.nimike { font-style: italic; }
+
+/* Salakielen ajatusrivi (t11, t18) samaan kokoon ja sarakkeisiin kuin muut repliikit (omistaja 23.10.2026: ”font and
+   layout is different form other lines, fix”): sama 18 px ja väri kuin .sk-pt; ajatuksen merkkinä vain pisteviiva. */
+.sk-ajatus { font-size: 18px; color: inherit; border-radius: 8px; }
+
+/* t19 matkabingo: kuvat kaksinkertaisiksi (omistaja 23.10.2026 ”make the pictures here 2x size”). Puhelimessa ruutu on
+   noin 90 px leveä, joten kaksi kasvoa mahtuu vain 42 px:n kokoisina. */
+.bg-ikoni { font-size: 52px; }
+.bg-kasvo { width: 60px; height: 60px; }
+.bg-kasvot { gap: 4px; }
+@media (max-width: 640px) {
+  .bg-ikoni { font-size: 44px; }
+  .bg-kasvo { width: 42px; height: 42px; }
+  .bg-kasvot { gap: 2px; }
+}
+
+/* t20 takaa-ajo: Hiisin puhekupla kuskin kuvan yläpuolella (pomo.js hiisiSanoo; omistaja 23.10.2026: oikeasta ”Okei!”,
+   ”Selvä!”, väärästä kirosana). Näkyy hetken; ei liikettä, jos käyttäjä on pyytänyt vähemmän liikettä. */
+.ajo-hiisi-sanoo { position: absolute; z-index: 4; left: 3%; bottom: calc(3% + clamp(60px, 11vw, 120px) + 14px); max-width: 60%;
+  padding: 6px 14px; border-radius: 16px; background: #fffdf5; color: #1d1d1d; font-family: var(--f-fi); font-size: clamp(18px, 2.4vw, 26px);
+  font-weight: 700; box-shadow: 0 4px 14px rgba(0, 0, 0, .45); opacity: 0; transform: translateY(6px); transition: opacity .15s, transform .15s; pointer-events: none; }
+.ajo-hiisi-sanoo::after { content: ""; position: absolute; left: 22px; bottom: -8px; border: 8px solid transparent; border-bottom: 0; border-top-color: #fffdf5; }
+.ajo-hiisi-sanoo.nakyy { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .ajo-hiisi-sanoo { transition: none; transform: none; } }
+
+/* AV-028 (kuvat2, 23.10.2026): ’Esburgerin hampurilainen piirroksena (pelit.js HAMPURILAINEN_SVG, 1em × 1em) emojin tilalla. */
+.peli-svg-ikoni { display: inline-block; line-height: 1; }
+.peli-svg-ikoni svg { display: block; width: 1em; height: 1em; }
+.peli-ikoni-teksti { vertical-align: -0.15em; }
+
+/* AV-028 (kuvat2): tekstin sisäinen hampurilaispiirros emojin kokoiseksi. */
+.peli-ikoni-teksti svg { width: 1.25em; height: 1.25em; }
+.peli-ikoni-teksti { vertical-align: -0.25em; }
+
+/* AV-057 jatko (23.10.2026): kirkkaat paperi- ja kylttiesineet himmennetään tummassa teemassa samalla tavalla kuin
+   .ficha ja .juliste (tyyli.css --realia-himmennys: vaaleassa none, tummassa brightness(.82)). Säännöt ovat Tottakain
+   omassa tiedostossa, jotta kuvitus.css ja komponentit.css pysyvät Passon alkuperäisten kopioina. */
+.kylpyla > h2, .apuhahmo-kupla, .manaattila > h2, .kuitti-paperi, .tl-taulu, .rt-kehys, .al-sivu, .pk-taka { filter: var(--realia-himmennys); }
+
+/* Dialogin puhujan kuva (omistaja 23.10.2026): hiiren hover kolminkertaiseksi, jotta kuvan näkee (vain hiirellä; puhelimen
+   napautus poistettu omistajan pyynnöstä); puhuvan repliikin (.s.soi) kuva kaksinkertaiseksi tärinän lisäksi. CSS:n
+   scale-ominaisuus ei siirrä tekstiä eikä riitele puhuja-puhuu-animaation transformin kanssa. */
+.s .puhuja-kasvo:not(.puhuja-paikka) { position: relative; transform-origin: 30% 50%; transition: scale .18s ease; }
+.s.soi .puhuja-kasvo { scale: 2; z-index: 3; }
+@media (hover: hover) { .s .puhuja-kasvo:not(.puhuja-paikka):hover { scale: 3; z-index: 5; } }
+@media (prefers-reduced-motion: reduce) { .s .puhuja-kasvo:not(.puhuja-paikka) { transition: none; } }
+
+/* t20 ”Maia tulkkaa” on harjoitus: käännös paljastaisi vastauksen, joten repliikkien portugalinkieliset käännökset eivät
+   näy tässä edes Tradução-valinnalla (omistaja 23.10.2026: ”shows translations in pt, remove translations”). Tieto
+   (data-pt) säilyy porttien vuoksi. */
+.tulkkaus .kaannos, body.kaannokset-auki .tulkkaus .kaannos { display: none !important; }
+
+/* Pelien tuotekuvat kuvatiedostona (pelit.js PULLA_KUVA, assets/ikonit/pulla.svg): sama koko kuin piirretyllä SVG:llä. */
+.peli-svg-ikoni img { display: block; width: 1em; height: 1em; }
+.peli-ikoni-teksti img { width: 1.25em; height: 1.25em; }
+/* Pelin tilausrivi (”Capivara quer: [kuva] 1 × pão doce …”) on tavallista juoksevaa tekstiä: .kysymys on muualla
+   rivittyvä flex, jolloin teksti ja kuva katkesivat omiksi riveikseen. */
+.peli-asiakas .kysymys { display: block; }
