@@ -1,0 +1,57 @@
+/* Vaihtoehtoinen asettelu (assets/asettelu.js). Vaikuttaa vain, kun html-elementillä on data-asettelu-uusi. */
+
+/* Sanataulukot ja taivutustaulukot: sama ulkoasu kuin Hakuosan taulukoissa, ▶ jokaisella rivillä. */
+[data-asettelu-uusi] table.yhten-taulu { border-collapse: collapse; margin: 6px 0 16px; font-size: 16px; }
+/* Sanataulukoissa kiinteät sarakeleveydet, jotta kaikki taulukot ovat samanlaisia. */
+[data-asettelu-uusi] table.yhten-taulu th {
+  text-align: left; padding: 6px 14px 6px 0; border-bottom: 1px solid var(--viiva);   /* koko ja fontti: tyyli.css */
+}
+[data-asettelu-uusi] table.yhten-taulu td { padding: 6px 14px 6px 0; border-bottom: 1px solid var(--viiva); vertical-align: middle; }
+[data-asettelu-uusi] table.yhten-taulu .ohj { margin-right: 8px; vertical-align: middle; }
+[data-asettelu-uusi] table.yhten-taulu .suku { margin-left: 6px; color: var(--himmea); font-size: 13px; }
+[data-asettelu-uusi] table.yhten-taulu td.kohdesolu,
+[data-asettelu-uusi] table.taivutus.yhten-taulu td:last-child { font-family: var(--f-pt); font-size: 18px; }
+[data-asettelu-uusi] table.yhten-taulu .kohdesolu .w { font-family: var(--f-pt); }
+[data-asettelu-uusi] table.yhten-taulu td.lahdesolu { color: var(--muste); }
+[data-asettelu-uusi] table.yhten-taulu .lahdesolu .teema-fi { color: inherit; font-size: inherit; }
+[data-asettelu-uusi] table.yhten-taulu tr:hover td { background: var(--meri-pehmea); }
+[data-asettelu-uusi] table.yhten-taulu tr.soi td, [data-asettelu-uusi] table.yhten-taulu td.soi { background: var(--meri-pehmea); }
+[data-asettelu-uusi] table.hakutaulu.yhten-taulu td.pt-solu .ohj { margin-right: 8px; vertical-align: middle; }
+
+/* Esimerkkilauseet: leveät rivit, enintään kaksi saraketta, ▶ lauseen vasemmalla puolella samalla korkeudella. */
+[data-asettelu-uusi] ul.esim.esim-lauseet { grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr)); gap: 2px 28px; }
+[data-asettelu-uusi] ul.esim.esim-lauseet > li.s { align-items: start; }
+/* Ääntämisesimerkit ilman käännöstä: tiivis rivi. */
+[data-asettelu-uusi] ul.esim.esim-sirut { display: flex; flex-wrap: wrap; gap: 6px 10px; }
+[data-asettelu-uusi] ul.esim.esim-sirut > li.s {
+  display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--viiva); border-radius: 999px;
+  padding: 2px 14px 2px 4px; background: var(--pinta);
+}
+
+/* Huomiolaatikot: neljä lajia, nimi näkyvissä, sama muoto. */
+[data-asettelu-uusi] .laatikko {
+  position: relative; border: 1px solid var(--viiva); border-left: 5px solid var(--laatikko-vari, var(--meri));
+  border-radius: 10px; background: var(--pinta); padding: 12px 16px; margin: 10px 0 18px;
+}
+[data-asettelu-uusi] .laatikko.saanto { --laatikko-vari: var(--meri); }
+[data-asettelu-uusi] .laatikko.muista { --laatikko-vari: var(--p2); }
+[data-asettelu-uusi] .laatikko.huomio { --laatikko-vari: var(--vaarin); }
+[data-asettelu-uusi] .laatikko.kulttuuri { --laatikko-vari: var(--p3); border-top: 1px solid var(--viiva); }
+[data-asettelu-uusi] .laatikko-nimi {
+  display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--laatikko-vari, var(--meri)); margin-bottom: 4px;
+}
+[data-asettelu-uusi] .laatikko > p:last-child { margin-bottom: 0; }
+[data-asettelu-uusi] .laatikko h3:first-of-type { margin-top: 2px; }
+
+#asettelu-nappi[aria-pressed="true"] { background: var(--meri); color: var(--pinta); border-color: var(--meri); }
+
+/* Puhelin: taulukon rivi taittuu kahdelle riville (kohdekieli ylhäällä, käännös alla). */
+@media (max-width: 560px) {
+  [data-asettelu-uusi] table.sanataulu thead { display: none; }
+  [data-asettelu-uusi] table.sanataulu, [data-asettelu-uusi] table.sanataulu tbody { display: block; }
+  [data-asettelu-uusi] table.sanataulu colgroup { display: none; }
+  [data-asettelu-uusi] table.sanataulu tr { display: grid; grid-template-columns: 1fr; border-bottom: 1px solid var(--viiva); padding: 4px 0; }
+  [data-asettelu-uusi] table.sanataulu td { border: 0; padding: 2px 6px 2px 0; }
+  [data-asettelu-uusi] table.sanataulu .lahdesolu { padding-left: 44px; color: var(--himmea); font-size: 15px; }
+}
