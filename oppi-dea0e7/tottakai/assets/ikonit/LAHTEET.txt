@@ -1,0 +1,54 @@
+Tottakai sanakuvat (AV-073, sarja 1: Fluent Flat + omat litteät piirrokset). Yksi tiedosto = yksi kuva, 40 px.
+
+Microsoft Fluent Emoji, Flat, Medium-Light (https://github.com/microsoft/fluentui-emoji), MIT License,
+Copyright (c) Microsoft Corporation. Lisenssiteksti: LICENSE-fluent-emoji.txt.
+  aiti.svg          Woman (Medium-Light)
+  kuuntele.svg      Megaphone (omistaja 23.10.2026: korvan tilalle, ”the ear is kinda gross”)
+  olankohautus-1.svg  Person shrugging (Medium-Light)
+  olankohautus-2.svg  Woman shrugging (Medium-Dark)
+  olankohautus-3.svg  Man shrugging (Light)
+  olankohautus-4.svg  Woman shrugging (Medium)
+  olankohautus-5.svg  Man shrugging (Dark)
+  (app.js vaihtaa olankohautus-1…5 vuorotellen, kun merkintä on data-sanakuva="olankohautus")
+  opettaja.svg      Teacher (Medium-Light)
+
+Omat piirrokset (Tottakai-projekti, Claude Opus 22.10.2026), kurssin oma lisenssi (../../../LICENSE):
+  mina.svg, sina.svg, han.svg, me.svg, te.svg, he.svg   pronominit (Maia osoittaa)
+  veli.svg, brasilialainen.svg, suomalainen.svg, geologi.svg
+
+Omat piirrokset, oppitunti 2 ja myöhemmät (Claude Opus 22.10.2026), kurssin oma lisenssi:
+  hitaasti.svg kartta.svg kello.svg kertoa.svg lukea.svg maara0.svg maara1.svg maara10.svg maara2.svg maara3.svg maara4.svg maara5.svg maara6.svg maara7.svg maara8.svg maara9.svg metro.svg nukkua.svg suomenkieli.svg tanne.svg tietaa.svg tuonne.svg ymmartaa.svg
+  (maara0…maara10 = kymmenruudukko, jossa n merkkiä; tanne = sormi osoittaa avointa kämmentä (omistajan malli: ”here”);
+  tuonne = käsi osoittaa poispäin)
+
+Tarinakuvat (sarja 2, Noto-tyyli; Claude Opus 22.10.2026), kurssin oma lisenssi: ../tarinakuvat/t01-1, t01-2, t02-1, t02-2
+
+Omat piirrokset, oppitunnit 6–20 ja K2–K4 (Claude Opus 24.11.2026; omistaja: ”same thing, graphics missing for exercises for
+later lessons, add these”), kurssin oma lisenssi:
+  aamu.svg alla.svg aste.svg aurinkovoide.svg avata.svg bussi.svg edessa.svg eilen.svg
+  halpa.svg hame.svg hanska.svg hanskat.svg hiekka.svg hissi.svg holmo.svg housut.svg
+  huomenna.svg huone.svg hyva.svg ikkuna.svg ilta.svg iltapaiva.svg iso.svg jalka.svg
+  jarvi.svg joki.svg joulu.svg joulukuusi.svg joululaulu.svg joulupukki.svg joulupuuro.svg
+  juhannus.svg juhla.svg juosta.svg kaamos.svg kaatua.svg kai.svg kaksi-paivaa-sitten.svg
+  kallis.svg kamera.svg kasi.svg kaunis.svg kauppa.svg kaupunki.svg kayda.svg keittio.svg
+  kellari.svg kello405.svg kello415.svg kello430.svg kello440.svg kello445.svg kello530.svg
+  kengat.svg kenka.svg kenka1.svg kinkku.svg kirjasto.svg kirjoittaa.svg kivi.svg koira.svg
+  kortti.svg koskaan.svg kulho.svg kuume.svg kylmalaukku.svg kylpyhuone.svg kysya.svg
+  lahella.svg lahja.svg lahtea.svg laiha.svg laiska.svg laituri.svg lamppu.svg lapsi.svg
+  lasit.svg lauantai.svg laukku.svg lentaa.svg lippis.svg lippu.svg lista.svg lounas.svg
+  lumi.svg maalata.svg maanantai.svg maki.svg makkara.svg makuuhuone.svg maljakko.svg mango.svg
+  mekko.svg meri.svg metsa.svg mokki.svg muusikko.svg nahda.svg nainen.svg nuori.svg
+  odottaa.svg oikealle.svg olut.svg ostaa.svg ovi.svg paa.svg paita.svg paivystys.svg
+  parveke.svg passi.svg peili.svg peruttu.svg pieni.svg pihaportti.svg pipo.svg pipot.svg
+  polvi.svg poro.svg portti.svg possu.svg postikortti.svg poyta.svg puu.svg ranta.svg
+  rantaperuna.svg rantavahti.svg rauta.svg rikas.svg ruska.svg sahkoposti.svg sairaanhoitaja.svg
+  sataa.svg sateenvarjo.svg sattua.svg sauna.svg selka.svg shortsit.svg sihteeri.svg silma.svg
+  sohva.svg sovituskoppi.svg sukat.svg sukka.svg sukka1.svg suoraan.svg syoda.svg tahti.svg
+  takana.svg takki.svg talo.svg tanaan.svg tanssia.svg taulu.svg tavata.svg taynna.svg
+  tehda.svg tervetuloa.svg tonttu.svg tukka.svg tulkata.svg tulkki.svg tyyny.svg uusi.svg
+  vaaka.svg vaalea.svg valita.svg valmis.svg vanha.svg vasemmalle.svg vieressa.svg viesti.svg
+  viime-viikko.svg yhdessa.svg ylpea.svg
+  (kelloNNNN = kellotaulu ilman numeroita; kenka1, sukka1 = yksi, kengat, sukat, kenka, sukka = pari)
+
+Tarinakuvat oppitunneille 6–20 ja K2–K4 (sarja 2; Claude Opus 24.11.2026), kurssin oma lisenssi: ../tarinakuvat/t06-1 … k04-2,
+tehty koodilla: tottakai/tools/tee_tarinakuvat.js ja tottakai/tools/tarinakuvat/*.js
